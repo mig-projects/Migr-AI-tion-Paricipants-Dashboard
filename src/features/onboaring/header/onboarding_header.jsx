@@ -7,7 +7,7 @@ const OnboardingHeader = () => {
     <Toolbar style={{
       height: '80px',
     }}>
-      <img src={Logo} alt="logo" height={40} width={40} className={'me-3'}/>
+      <img src={Logo} alt="logo" height={40} width={40} className={'me-4'}/>
 
       <Typography
         color={variables.primaryPurple}

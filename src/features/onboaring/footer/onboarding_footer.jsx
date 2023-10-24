@@ -1,6 +1,6 @@
-import {BottomNavigation, Button} from "@mui/material";
 import styles from './onboarding_footer.module.scss';
 import PropTypes from "prop-types";
+import CustomButton from "../../../components/buttons/custom_button.jsx";
 
 const OnboardingFooter = ({
   showOnlyOne,
@@ -11,53 +11,35 @@ const OnboardingFooter = ({
   isPreviousDisabled,
   isNextDisabled,
 }) => {
-  return <BottomNavigation
+  return <div
     className={`${styles.footer}`}
   >
     <div className={`${styles.footerButtons}`}>
       {
         showOnlyOne ?
-          <Button
-            variant={'contained'}
-            size={'large'}
-            style={{
-              width: '100%',
-            }}
+          <CustomButton
+            text={nextButtonText ?? previousButtonText}
             onClick={onNext ?? onPrevious}
             disabled={isNextDisabled ?? isPreviousDisabled}
-          >
-            {nextButtonText ?? previousButtonText}
-          </Button>
+          />
           :
           <div className={`d-flex gap-3`}>
-            <Button
-              variant={'contained'}
-              size={'large'}
-              style={{
-                width: '100%',
-              }}
+            <CustomButton
+              text={previousButtonText}
               onClick={onPrevious}
               disabled={isPreviousDisabled}
-            >
-              {previousButtonText}
-            </Button>
-            <Button
-              variant={'contained'}
-              size={'large'}
-              style={{
-                width: '100%',
-              }}
+            />
+            <CustomButton
+              text={nextButtonText}
               onClick={onNext}
               disabled={isNextDisabled}
-            >
-              {nextButtonText}
-            </Button>
+            />
           </div>
       }
 
 
     </div>
-  </BottomNavigation>
+  </div>
 }
 
 OnboardingFooter.propTypes = {
