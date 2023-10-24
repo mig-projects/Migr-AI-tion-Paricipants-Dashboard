@@ -15,6 +15,11 @@ const lightTheme = createTheme({
       defaultProps: {
         disableElevation: true,
       }
+    },
+    MuiAppBar: {
+      defaultProps: {
+        elevation: 0,
+      }
     }
   }
 });

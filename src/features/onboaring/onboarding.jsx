@@ -1,17 +1,23 @@
 import OnboardingHeader from "./header/onboarding_header.jsx";
-import {Box, LinearProgress, Tab, Tabs} from "@mui/material";
-import {useState} from "react";
-import OnboardingFooter from "./footer/onboarding_footer.jsx";
+import {LinearProgress} from "@mui/material";
+import {useEffect, useState} from "react";
 import WelcomeTab from "./tabs/welcome_tab.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(10);
   const [currentTab, setCurrentTab] = useState(0);
+  const [height, setHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setHeight(window.innerHeight);
+    })
+  });
 
   return <div id={'onboarding'}
               className={`d-flex flex-column`}
               style={{
-                height: window.innerHeight,
+                height: height,
               }}
   >
     <OnboardingHeader />

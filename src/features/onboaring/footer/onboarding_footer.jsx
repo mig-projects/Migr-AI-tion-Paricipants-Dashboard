@@ -13,6 +13,9 @@ const OnboardingFooter = ({
 }) => {
   return <div
     className={`${styles.footer}`}
+    style={{
+      backgroundColor: 'white',
+    }}
   >
     <div className={`${styles.footerButtons}`}>
       {
