@@ -1,23 +1,26 @@
 import OnboardingHeader from "./header/onboarding_header.jsx";
 import {LinearProgress} from "@mui/material";
 import {useState} from "react";
-import styles from './onboarding.module.scss';
+import OnboardingFooter from "./footer/onboarding_footer.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(10);
 
-  return <div id={'onboarding'}>
+  return <div id={'onboarding'} className={`vh-100`}>
     <OnboardingHeader />
 
     <LinearProgress variant="determinate" value={onboardingProgress}
-                    className={`${styles.progressBar}`}
+                    style={{
+                      backgroundColor: 'white',
+                      height: '7px',
+                    }}
     />
 
-    <div>
+    <div className={``}>
 
     </div>
 
-
+    <OnboardingFooter />
   </div>
 }
 

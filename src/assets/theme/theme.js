@@ -9,6 +9,13 @@ const lightTheme = createTheme({
   },
   typography: {
     fontFamily: ['Inter', 'sans-serif'].join(','),
+  },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+      }
+    }
   }
 });
 
