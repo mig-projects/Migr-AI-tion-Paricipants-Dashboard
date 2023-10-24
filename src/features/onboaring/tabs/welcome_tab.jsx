@@ -3,7 +3,7 @@ import {Divider} from "@mui/material";
 import PropTypes from "prop-types";
 
 const WelcomeTab = () => {
-  const CustomText = ({text}) => <p className={`fw-medium`}>{text}</p>
+  const CustomText = ({text}) => <p className={`fw-medium h5 text-center`}>{text}</p>
   CustomText.propTypes = {
     text: PropTypes.string.isRequired,
   }
