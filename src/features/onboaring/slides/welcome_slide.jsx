@@ -1,14 +1,17 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import {Divider} from "@mui/material";
 import PropTypes from "prop-types";
+import {useSwiper} from "swiper/react";
 
 const WelcomeSlide = () => {
+  const swiper = useSwiper();
+
   const CustomText = ({text}) => <p className={`fw-medium h5 text-center`}>{text}</p>
   CustomText.propTypes = {
     text: PropTypes.string.isRequired,
   }
 
-  return <div id={'welcome-tab'} className={`d-flex flex-column h-100 align-items-center`}
+  return <div id={'welcome-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center justify-content-center'}
          style={{
@@ -37,6 +40,7 @@ const WelcomeSlide = () => {
     <OnboardingFooter
       showOnlyOne={true}
       nextButtonText={'Start'}
+      onNext={() => swiper.slideNext()}
     />
   </div>
 }
