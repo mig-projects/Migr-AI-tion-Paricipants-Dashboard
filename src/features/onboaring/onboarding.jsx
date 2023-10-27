@@ -44,6 +44,7 @@ const Onboarding = () => {
       className={'h-100 w-100'}
       style={{
         backgroundColor: '#f2f1f5',
+        paddingTop: '100px',
       }}
     >
       <SwiperSlide>
