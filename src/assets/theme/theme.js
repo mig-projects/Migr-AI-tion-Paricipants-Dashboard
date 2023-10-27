@@ -14,7 +14,7 @@ const lightTheme = createTheme({
     MuiButton: {
       defaultProps: {
         disableElevation: true,
-      }
+      },
     },
     MuiAppBar: {
       defaultProps: {

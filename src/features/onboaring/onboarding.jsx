@@ -5,6 +5,7 @@ import WelcomeSlide from "./slides/welcome_slide.jsx";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/scss';
 import AddEmailSlide from "./slides/add_email_slide.jsx";
+import CreatePasswordSlide from "./slides/create_password_slide.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -52,6 +53,9 @@ const Onboarding = () => {
       </SwiperSlide>
       <SwiperSlide>
         <AddEmailSlide />
+      </SwiperSlide>
+      <SwiperSlide>
+        <CreatePasswordSlide />
       </SwiperSlide>
     </Swiper>
   </div>

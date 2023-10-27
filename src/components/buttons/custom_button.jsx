@@ -5,12 +5,14 @@ const CustomButton = ({
   onClick,
   disabled,
   text,
+  variant,
 }) => (
   <Button
-    variant={'contained'}
+    variant={variant ?? 'contained'}
     size={'large'}
     style={{
       borderRadius: '8px',
+      borderWidth: '2px',
     }}
     fullWidth
     onClick={onClick}
@@ -24,6 +26,7 @@ CustomButton.propTypes = {
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
   text: PropTypes.string.isRequired,
+  variant: PropTypes.string,
 }
 
 export default CustomButton;
