@@ -1,5 +1,4 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
-import {Divider} from "@mui/material";
 import PropTypes from "prop-types";
 import {useSwiper} from "swiper/react";
 
