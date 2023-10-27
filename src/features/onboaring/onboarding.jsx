@@ -2,10 +2,11 @@ import OnboardingHeader from "./header/onboarding_header.jsx";
 import {LinearProgress} from "@mui/material";
 import {useEffect, useState} from "react";
 import WelcomeTab from "./tabs/welcome_tab.jsx";
+import {Swiper, SwiperSlide} from "swiper/react";
+import 'swiper/scss';
 
 const Onboarding = () => {
-  const [onboardingProgress, setOnboardingProgress] = useState(10);
-  const [currentTab, setCurrentTab] = useState(0);
+  const [onboardingProgress, setOnboardingProgress] = useState(0);
   const [height, setHeight] = useState(window.innerHeight);
 
   useEffect(() => {
@@ -29,7 +30,28 @@ const Onboarding = () => {
                     }}
     />
 
-    <WelcomeTab />
+    <Swiper
+      onSlideChange={(swiper) => {
+        setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
+      }}
+      onSwiper={(swiper) => {
+        setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
+      }}
+      allowTouchMove={false}
+      slidesPerView={1}
+      spaceBetween={0}
+      className={'h-100 w-100'}
+      style={{
+        backgroundColor: '#f2f1f5',
+      }}
+    >
+      <SwiperSlide>
+        <WelcomeTab />
+      </SwiperSlide>
+      <SwiperSlide>
+        <div />
+      </SwiperSlide>
+    </Swiper>
   </div>
 }
 

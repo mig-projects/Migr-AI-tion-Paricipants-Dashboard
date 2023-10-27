@@ -9,9 +9,6 @@ const WelcomeTab = () => {
   }
 
   return <div id={'welcome-tab'} className={`d-flex flex-column h-100 align-items-center`}
-              style={{
-                backgroundColor: '#f2f1f5',
-              }}
   >
     <div className={'h-100 d-flex flex-column align-items-center justify-content-center'}
          style={{
