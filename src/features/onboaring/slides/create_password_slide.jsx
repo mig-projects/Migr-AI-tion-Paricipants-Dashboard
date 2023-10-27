@@ -7,6 +7,9 @@ const CreatePasswordSlide = () => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center'}>
@@ -20,12 +23,14 @@ const CreatePasswordSlide = () => {
       >
         <TextField
           required
+          value={password}
           type="password"
           id="password"
           label="Password"
           fullWidth={true}
           onChange={(e) => {
-            setAllowNext(e.target.validity.valid);
+            setPassword(e.target.value);
+            setAllowNext(e.target.validity.valid && confirmPassword === e.target.value);
           }}
         />
         <TextField
@@ -33,9 +38,13 @@ const CreatePasswordSlide = () => {
           type="password"
           id="confirmPassword"
           label="Confirm Password"
+          value={confirmPassword}
           fullWidth={true}
+          error={confirmPassword !== '' && password !== confirmPassword}
+          helperText={confirmPassword !== '' && password !== confirmPassword ? 'Passwords do not match' : null}
           onChange={(e) => {
-            setAllowNext(e.target.validity.valid);
+            setConfirmPassword(e.target.value);
+            setAllowNext(e.target.validity.valid && password === e.target.value);
           }}
         />
       </Box>
