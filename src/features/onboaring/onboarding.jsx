@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import WelcomeSlide from "./slides/welcome_slide.jsx";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/scss';
+import AddEmailSlide from "./slides/add_email_slide.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -49,7 +50,7 @@ const Onboarding = () => {
         <WelcomeSlide />
       </SwiperSlide>
       <SwiperSlide>
-        <div />
+        <AddEmailSlide />
       </SwiperSlide>
     </Swiper>
   </div>

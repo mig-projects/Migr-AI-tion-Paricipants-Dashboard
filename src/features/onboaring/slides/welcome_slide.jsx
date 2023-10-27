@@ -5,7 +5,7 @@ import {useSwiper} from "swiper/react";
 const WelcomeSlide = () => {
   const swiper = useSwiper();
 
-  const CustomText = ({text}) => <p className={`fw-medium h5 text-center`}>{text}</p>
+  const CustomText = ({text}) => <p className={`fw-normal h5 text-center`}>{text}</p>
   CustomText.propTypes = {
     text: PropTypes.string.isRequired,
   }

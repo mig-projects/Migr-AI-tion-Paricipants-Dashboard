@@ -20,6 +20,19 @@ const lightTheme = createTheme({
       defaultProps: {
         elevation: 0,
       }
+    },
+    MuiTextField: {
+      defaultProps: {
+        variant: 'outlined',
+      },
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            background: 'white',
+            borderRadius: '8px',
+          },
+        },
+      },
     }
   }
 });
