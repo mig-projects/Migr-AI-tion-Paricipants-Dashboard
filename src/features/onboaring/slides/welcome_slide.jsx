@@ -2,7 +2,7 @@ import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import {Divider} from "@mui/material";
 import PropTypes from "prop-types";
 
-const WelcomeTab = () => {
+const WelcomeSlide = () => {
   const CustomText = ({text}) => <p className={`fw-medium h5 text-center`}>{text}</p>
   CustomText.propTypes = {
     text: PropTypes.string.isRequired,
@@ -41,4 +41,4 @@ const WelcomeTab = () => {
   </div>
 }
 
-export default WelcomeTab;
+export default WelcomeSlide;

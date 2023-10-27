@@ -1,7 +1,7 @@
 import OnboardingHeader from "./header/onboarding_header.jsx";
 import {LinearProgress} from "@mui/material";
 import {useEffect, useState} from "react";
-import WelcomeTab from "./tabs/welcome_tab.jsx";
+import WelcomeSlide from "./slides/welcome_slide.jsx";
 import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/scss';
 
@@ -46,7 +46,7 @@ const Onboarding = () => {
       }}
     >
       <SwiperSlide>
-        <WelcomeTab />
+        <WelcomeSlide />
       </SwiperSlide>
       <SwiperSlide>
         <div />
