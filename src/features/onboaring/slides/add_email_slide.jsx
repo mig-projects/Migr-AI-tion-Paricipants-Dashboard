@@ -7,6 +7,8 @@ const AddEmailSlide = () => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
+  const [email, setEmail] = useState('');
+
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center'}>
@@ -22,11 +24,13 @@ const AddEmailSlide = () => {
       >
         <TextField
           required
+          value={email}
           type="email"
           id="email"
           label="Email"
           fullWidth={true}
           onChange={(e) => {
+            setEmail(e.target.value);
             setAllowNext(e.target.validity.valid);
           }}
         />
