@@ -1,7 +1,8 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
-import {Box, TextField} from "@mui/material";
+import {Box, IconButton, InputAdornment, OutlinedInput, TextField} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 const CreatePasswordSlide = () => {
   const swiper = useSwiper();
@@ -9,6 +10,9 @@ const CreatePasswordSlide = () => {
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -24,7 +28,7 @@ const CreatePasswordSlide = () => {
         <TextField
           required
           value={password}
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           id="password"
           label="Password"
           fullWidth={true}
@@ -32,10 +36,23 @@ const CreatePasswordSlide = () => {
             setPassword(e.target.value);
             setAllowNext(e.target.validity.valid && confirmPassword === e.target.value);
           }}
+          InputProps={{
+            endAdornment: <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                edge="end"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }}
         />
         <TextField
           required
-          type="password"
+          type={showConfirmPassword ? 'text' : 'password'}
           id="confirmPassword"
           label="Confirm Password"
           value={confirmPassword}
@@ -45,6 +62,19 @@ const CreatePasswordSlide = () => {
           onChange={(e) => {
             setConfirmPassword(e.target.value);
             setAllowNext(e.target.validity.valid && password === e.target.value);
+          }}
+          InputProps={{
+            endAdornment: <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                edge="end"
+                onClick={() => {
+                  setShowConfirmPassword(!showConfirmPassword);
+                }}
+              >
+                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
           }}
         />
       </Box>
