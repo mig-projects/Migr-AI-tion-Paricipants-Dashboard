@@ -1,8 +1,7 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
-import {Box, IconButton, InputAdornment, TextField} from "@mui/material";
+import {Box} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
 import PasswordField from "../../../components/fields/password_field.jsx";
 
 const CreatePasswordSlide = () => {
@@ -11,9 +10,6 @@ const CreatePasswordSlide = () => {
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
