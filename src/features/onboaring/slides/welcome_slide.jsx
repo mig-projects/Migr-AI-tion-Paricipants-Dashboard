@@ -35,8 +35,6 @@ const WelcomeSlide = () => {
       }/>
     </div>
 
-    <Divider />
-
     <OnboardingFooter
       showOnlyOne={true}
       nextButtonText={'Start'}
