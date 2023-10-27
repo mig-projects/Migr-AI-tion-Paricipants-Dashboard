@@ -26,7 +26,7 @@ const OnboardingFooter = ({
             disabled={isNextDisabled ?? isPreviousDisabled}
           />
           :
-          <div className={`d-flex gap-3`}>
+          <div className={`d-flex gap-2`}>
             <CustomButton
               variant={'outlined'}
               text={previousButtonText}
