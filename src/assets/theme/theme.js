@@ -5,6 +5,9 @@ const lightTheme = createTheme({
   palette: {
     primary: {
       main: variables.primaryPurple,
+    },
+    secondary: {
+      main: '#fff',
     }
   },
   typography: {
@@ -31,6 +34,13 @@ const lightTheme = createTheme({
             background: 'white',
             borderRadius: '8px',
           },
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
         },
       },
     },

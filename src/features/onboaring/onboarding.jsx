@@ -6,6 +6,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import 'swiper/scss';
 import AddEmailSlide from "./slides/add_email_slide.jsx";
 import CreatePasswordSlide from "./slides/create_password_slide.jsx";
+import CategorySelectionSlide from "./slides/category_selection_slide.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -33,6 +34,7 @@ const Onboarding = () => {
     />
 
     <Swiper
+      initialSlide={3}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
@@ -56,6 +58,9 @@ const Onboarding = () => {
       </SwiperSlide>
       <SwiperSlide>
         <CreatePasswordSlide />
+      </SwiperSlide>
+      <SwiperSlide>
+        <CategorySelectionSlide />
       </SwiperSlide>
     </Swiper>
   </div>
