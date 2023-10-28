@@ -9,7 +9,7 @@ const ExperienceHeadlineSlide = () => {
 
   const [headline, setHeadline] = useState('');
 
-  return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
+  return <div id={'experience-headline-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center'}>
       <h2 className={`h2 fw-semibold mb-4`}>
