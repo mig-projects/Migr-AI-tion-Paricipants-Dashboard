@@ -8,6 +8,7 @@ import AddEmailSlide from "./slides/add_email_slide.jsx";
 import CreatePasswordSlide from "./slides/create_password_slide.jsx";
 import CategorySelectionSlide from "./slides/category_selection_slide.jsx";
 import ExperienceDescriptionSlide from "./slides/experience_desccription_slide.jsx";
+import DiscriminationNameSlide from "./slides/discrimination_name_slide.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -65,6 +66,9 @@ const Onboarding = () => {
       </SwiperSlide>
       <SwiperSlide>
         <ExperienceDescriptionSlide />
+      </SwiperSlide>
+      <SwiperSlide>
+        <DiscriminationNameSlide />
       </SwiperSlide>
     </Swiper>
   </div>
