@@ -11,7 +11,7 @@ const CategorySelectionSlide = () => {
 
   return <div id={'category-selection-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
-    <div className={'h-100 d-flex flex-column align-items-center max-width'}>
+    <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
       <h2 className={`h2 fw-semibold mb-4`}>
         Which Category does this experience relates to?
       </h2>

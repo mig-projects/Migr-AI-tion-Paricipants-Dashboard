@@ -12,6 +12,7 @@ import ExperienceDescriptionSlide from "./slides/experience_desccription_slide.j
 import DiscriminationNameSlide from "./slides/discrimination_name_slide.jsx";
 import ExperienceHeadlineSlide from "./slides/experience_headline_slide.jsx";
 import InfluentialFactorsSlide from "./slides/influential_factors_slide.jsx";
+import ThankYouSlide from "./slides/thank_you_slide.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -39,7 +40,7 @@ const Onboarding = () => {
     />
 
     <Swiper
-      initialSlide={7}
+      initialSlide={8}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
@@ -52,7 +53,6 @@ const Onboarding = () => {
       className={'h-100 w-100'}
       style={{
         backgroundColor: '#f2f1f5',
-        paddingTop: '10vh',
       }}
     >
       <SwiperSlide>
@@ -78,6 +78,9 @@ const Onboarding = () => {
       </SwiperSlide>
       <SwiperSlide>
         <InfluentialFactorsSlide />
+      </SwiperSlide>
+      <SwiperSlide>
+        <ThankYouSlide />
       </SwiperSlide>
     </Swiper>
   </div>

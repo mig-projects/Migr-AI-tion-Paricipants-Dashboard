@@ -19,7 +19,7 @@ const InfluentialFactorsSlide = () => {
 
   return <div id={'influential-factors-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
-    <div className={'h-100 d-flex flex-column align-items-center max-width'}>
+    <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
       <h2 className={`h2 fw-semibold mb-4`}
           style={{
             textAlign: 'center',

@@ -11,7 +11,7 @@ const AddEmailSlide = () => {
 
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
-    <div className={'h-100 d-flex flex-column align-items-center max-width'}>
+    <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
       <h2 className={`h2 fw-semibold mb-3`}>
         Add your email address
       </h2>
