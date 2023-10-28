@@ -1,6 +1,5 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import {Box, Card, Chip} from "@mui/material";
-import {useState} from "react";
 import variables from "../../../variables.module.scss";
 
 const ThankYouSlide = () => {
