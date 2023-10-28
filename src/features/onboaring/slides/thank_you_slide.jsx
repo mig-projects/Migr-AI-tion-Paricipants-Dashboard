@@ -23,7 +23,7 @@ const ThankYouSlide = () => {
           <p className={`fs-2 fw-bold`}>“Fired twice within 6 months of moving to Germany”</p>
           <p className={`fs-5 fw-medium`}>Category</p>
           <p className={`fs-6 fw-normal`}>Relevant tags</p>
-          <div className={`d-flex gap-2 mt-4 mb-3`}>
+          <div className={`d-flex gap-2 mt-4 mb-2`}>
             {
               ['women', 'women', 'women'].map((tag, index) => {
                 return <Chip
