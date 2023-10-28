@@ -38,11 +38,14 @@ const AddEmailSlide = () => {
     </div>
 
     <OnboardingFooter
-      showOnlyOne={true}
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {
         swiper.slideNext();
+      }}
+      previousButtonText={'Back'}
+      onPrevious={() => {
+        swiper.slidePrev();
       }}
     />
   </div>
