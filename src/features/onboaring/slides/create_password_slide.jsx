@@ -13,7 +13,7 @@ const CreatePasswordSlide = () => {
 
   return <div id={'create-password-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
-    <div className={'h-100 d-flex flex-column align-items-center'}>
+    <div className={'h-100 d-flex flex-column align-items-center max-width'}>
       <h2 className={`h2 fw-semibold mb-4`}>
         Create your password:
       </h2>

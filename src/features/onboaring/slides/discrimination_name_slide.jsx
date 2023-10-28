@@ -16,9 +16,9 @@ const DiscriminationNameSlide = () => {
 
   return <div id={'discrimination-name-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
-    <div className={'h-100 d-flex flex-column align-items-center'}>
+    <div className={'h-100 d-flex flex-column align-items-center max-width'}>
       <h2 className={`h2 fw-semibold mb-4`}>
-        Does this type of discrimination has a name? (Optional)
+        Does this type of discrimination have a name? (Optional)
       </h2>
       <p className={`mb-4 h5 fw-normal`}>
         For example “Ageism” Sexism”

@@ -11,7 +11,7 @@ const ExperienceHeadlineSlide = () => {
 
   return <div id={'experience-headline-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
-    <div className={'h-100 d-flex flex-column align-items-center'}>
+    <div className={'h-100 d-flex flex-column align-items-center max-width'}>
       <h2 className={`h2 fw-semibold mb-4`}>
         What would be the headline of this experience?
       </h2>
