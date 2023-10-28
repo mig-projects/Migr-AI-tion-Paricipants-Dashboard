@@ -26,9 +26,11 @@ const CreatePasswordSlide = () => {
           id={'password'}
           label={'Password'}
           value={password}
+          showError={password !== '' && password.length < 8}
+          error={'Password must be at least 8 characters'}
           onChange={(e) => {
             setPassword(e.target.value);
-            setAllowNext(e.target.validity.valid && confirmPassword === e.target.value);
+            setAllowNext(e.target.validity.valid && e.target.value.length > 8 && confirmPassword === e.target.value);
           }}
         />
         <PasswordField
@@ -39,7 +41,7 @@ const CreatePasswordSlide = () => {
           error={'Passwords do not match'}
           onChange={(e) => {
             setConfirmPassword(e.target.value);
-            setAllowNext(e.target.validity.valid && password === e.target.value);
+            setAllowNext(e.target.validity.valid && e.target.value.length > 8 && password === e.target.value);
           }}
         />
       </Box>
@@ -51,6 +53,9 @@ const CreatePasswordSlide = () => {
       previousButtonText={'Back'}
       onPrevious={() => {
         swiper.slidePrev();
+      }}
+      onNext={() => {
+        swiper.slideNext();
       }}
     />
   </div>

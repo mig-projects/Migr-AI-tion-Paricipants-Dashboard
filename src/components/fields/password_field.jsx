@@ -14,7 +14,7 @@ const PasswordField = (props) => {
     value={props.value}
     fullWidth={true}
     error={props.showError}
-    helperText={props.showError ? 'Passwords do not match' : null}
+    helperText={props.showError ? props.error : null}
     onChange={props.onChange}
     InputProps={{
       endAdornment: <InputAdornment position="end">
