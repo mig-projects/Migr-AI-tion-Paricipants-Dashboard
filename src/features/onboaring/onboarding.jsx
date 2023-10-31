@@ -40,7 +40,6 @@ const Onboarding = () => {
     />
 
     <Swiper
-      initialSlide={8}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
@@ -55,31 +54,31 @@ const Onboarding = () => {
         backgroundColor: '#f2f1f5',
       }}
     >
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <WelcomeSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <AddEmailSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <CreatePasswordSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <CategorySelectionSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <ExperienceDescriptionSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <DiscriminationNameSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <ExperienceHeadlineSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <InfluentialFactorsSlide />
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <ThankYouSlide />
       </SwiperSlide>
     </Swiper>
