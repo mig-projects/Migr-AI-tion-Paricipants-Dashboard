@@ -5,6 +5,7 @@ import variables from "../../../variables.module.scss";
 const OnboardingHeader = () => {
   return <AppBar position="static" className={'appbar'} color={'transparent'}>
     <Toolbar style={{
+      backgroundColor: 'white',
       height: '80px',
     }}>
       <img src={Logo} alt="logo" height={40} width={40} className={'me-4'}/>
