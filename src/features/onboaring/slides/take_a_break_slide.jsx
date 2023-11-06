@@ -5,7 +5,7 @@ import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import HourGlass from "../../../assets/images/hour_glass.png";
 import {delay} from "../../../utility_functions.js";
 
-const TakeABreak = () => {
+const TakeABreakSlide = () => {
   const swiper = useSwiper();
 
   const [allowNext, setAllowNext] = useState(false);
@@ -53,4 +53,4 @@ const TakeABreak = () => {
   </div>;
 }
 
-export default TakeABreak;
+export default TakeABreakSlide;

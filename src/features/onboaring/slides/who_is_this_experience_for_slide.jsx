@@ -3,7 +3,7 @@ import {useState} from "react";
 import {Checkbox, FormControlLabel} from "@mui/material";
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
 
-const WhoIsThisExperienceFor = () => {
+const WhoIsThisExperienceForSlide = () => {
   const swiper = useSwiper();
 
   const [forMyself, setForMyself] = useState(null);
@@ -68,4 +68,4 @@ const WhoIsThisExperienceFor = () => {
   </div>
 }
 
-export default WhoIsThisExperienceFor;
+export default WhoIsThisExperienceForSlide;
