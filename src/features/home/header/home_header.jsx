@@ -1,9 +1,9 @@
-import {AppBar, Toolbar, Typography} from "@mui/material";
+import {AppBar, Divider, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography} from "@mui/material";
 import Logo from "../../../assets/images/logo.svg";
 import variables from "../../../variables.module.scss";
 
 const HomeHeader = () => {
-  return <AppBar position="static" className={'appbar'} color={'transparent'}>
+  return <AppBar position="fixed" className={'appbar'} color={'transparent'}>
     <Toolbar style={{
       height: '80px',
     }}>
@@ -15,6 +15,16 @@ const HomeHeader = () => {
       >
         MIGR-AI-TION
       </Typography>
+
+      <Divider />
+
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemText primary={'meow'} />
+          </ListItemButton>
+        </ListItem>
+      </List>
     </Toolbar>
   </AppBar>
 }
