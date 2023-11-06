@@ -16,8 +16,7 @@ const CategorySelectionSlide = () => {
         Which Category does this experience relates to?
       </h2>
       <Box
-        maxWidth={'900px'}
-        className={`d-flex flex-wrap gap-2 justify-content-center`}
+        className={`d-flex flex-wrap gap-3 justify-content-center`}
       >
         {
           categories.map((category, index) => {
