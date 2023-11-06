@@ -16,7 +16,7 @@ const TakeABreakSlide = () => {
     });
   }, []);
 
-  return <div id={'welcome-slide'} className={`d-flex flex-column h-100 align-items-center`}
+  return <div id={'take-a-break-slide'} className={`d-flex flex-column h-100 align-items-center`}
               style={{
                 backgroundColor: variables.backgroundPurple,
               }}

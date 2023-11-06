@@ -15,7 +15,7 @@ const WhoIsThisExperienceForSlide = () => {
     marginInlineEnd: '0px',
   };
 
-  return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
+  return <div id={'who-is-this-experience-for-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
       <h2 className={`h2 fw-semibold mb-4`}>
