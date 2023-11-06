@@ -14,6 +14,7 @@ import ExperienceHeadlineSlide from "./slides/experience_headline_slide.jsx";
 import InfluentialFactorsSlide from "./slides/influential_factors_slide.jsx";
 import ThankYouSlide from "./slides/thank_you_slide.jsx";
 import TakeABreak from "./slides/take_a_break.jsx";
+import WhoIsThisExperienceFor from "./slides/who_is_this_experience_for.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -66,6 +67,9 @@ const Onboarding = () => {
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <TakeABreak />
+      </SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
+        <WhoIsThisExperienceFor />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <CategorySelectionSlide />
