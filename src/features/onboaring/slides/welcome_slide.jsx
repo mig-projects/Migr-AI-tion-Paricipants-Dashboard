@@ -57,36 +57,39 @@ const WelcomeSlide = () => {
         To speak out, and submit your first contribution we need your consent:
       </Typography>
 
-      <div className={`d-flex gap-3`}>
-        <Link
-          className={`text-white link-underline-light`}
-          href={''}
-        >
-          Read consent
-        </Link>
-        <Link
-          className={`text-white link-underline-light`}
-          href={''}
-        >
-          GDPR
-        </Link>
+      <div className={`d-flex flex-column`}>
+        <div className={`d-flex gap-3`}>
+          <Link
+            className={`text-white link-underline-light`}
+            href={''}
+          >
+            Read consent
+          </Link>
+          <Link
+            className={`text-white link-underline-light`}
+            href={''}
+          >
+            GDPR
+          </Link>
+        </div>
+
+        <FormControlLabel
+          control={<Checkbox
+            value={allowNext}
+            onChange={(e) => {
+              setAllowNext(e.target.checked);
+            }}
+            sx={{
+              color: 'white',
+              '&.Mui-checked': {
+                color: 'white',
+              },
+            }}
+          />}
+          label="I agree to be part of the research"
+        />
       </div>
 
-      <FormControlLabel
-        control={<Checkbox
-          value={allowNext}
-          onChange={(e) => {
-            setAllowNext(e.target.checked);
-          }}
-          sx={{
-            color: 'white',
-            '&.Mui-checked': {
-              color: 'white',
-            },
-          }}
-        />}
-        label="I agree to be part of the research"
-      />
     </div>
 
     <OnboardingFooter
