@@ -6,9 +6,12 @@ import {Card, CardContent, Checkbox, FormControlLabel, Link, Typography} from "@
 import DataLossPrevention from "../../../assets/icons/data_loss_prevention.svg";
 import AddChart from "../../../assets/icons/add_chart.svg";
 import ZoomInMap from "../../../assets/icons/zoom_in_map.svg";
+import {useState} from "react";
 
 const WelcomeSlide = () => {
   const swiper = useSwiper();
+
+  const [allowNext, setAllowNext] = useState(false);
 
   const CustomCard = ({text, image}) => <Card>
     <CardContent
@@ -71,6 +74,10 @@ const WelcomeSlide = () => {
 
       <FormControlLabel
         control={<Checkbox
+          value={allowNext}
+          onChange={(e) => {
+            setAllowNext(e.target.checked);
+          }}
           sx={{
             color: 'white',
             '&.Mui-checked': {
@@ -83,6 +90,7 @@ const WelcomeSlide = () => {
     </div>
 
     <OnboardingFooter
+      isNextDisabled={!allowNext}
       showOnlyOne={true}
       nextButtonText={'Start'}
       onNext={() => swiper.slideNext()}
