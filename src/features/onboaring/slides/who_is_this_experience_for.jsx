@@ -26,7 +26,7 @@ const WhoIsThisExperienceFor = () => {
         Your contribution will stay anonymous.
       </p>
 
-      <div className={`d-flex flex-column gap-3`}
+      <div className={`d-flex flex-column gap-3 mt-2`}
         style={{
           minWidth: '360px',
         }}

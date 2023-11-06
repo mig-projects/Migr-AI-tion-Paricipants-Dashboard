@@ -24,6 +24,7 @@ const ExperienceHeadlineSlide = () => {
       <Box
         component="form"
         width={'360px'}
+        className={`mt-2`}
       >
         <TextField
           required

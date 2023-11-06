@@ -26,6 +26,7 @@ const DiscriminationNameSlide = () => {
       <Box
         maxWidth={'700px'}
         minWidth={'360px'}
+        className={`mt-2`}
       >
         <Autocomplete
           multiple

@@ -12,7 +12,7 @@ const ExperienceDescriptionSlide = () => {
   return <div id={'experience-description-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
-      <h2 className={`h2 fw-semibold mb-3`}>
+      <h2 className={`h2 fw-semibold mb-4`}>
         Describe your experience
       </h2>
       <p className={`mb-4 h5 fw-normal text-center`}>
@@ -23,6 +23,7 @@ const ExperienceDescriptionSlide = () => {
       <Box
         component="form"
         width={'700px'}
+        className={`mt-2`}
       >
         <TextField
           required
