@@ -15,7 +15,7 @@ const WelcomeSlide = () => {
 
   const CustomCard = ({text, image}) => <Card>
     <CardContent
-      className={`d-flex flex-column align-items-center gap-3`}
+      className={`d-flex flex-column align-items-center gap-3 p-4`}
     >
       <img src={image} alt="Data Loss Prevention"/>
       <Typography>
