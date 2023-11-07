@@ -11,10 +11,13 @@ const TakeABreakSlide = () => {
   const [allowNext, setAllowNext] = useState(false);
 
   useEffect(() => {
-    delay(5000).then(() => {
-      setAllowNext(true);
-    });
-  }, []);
+    if (swiper.activeIndex === 3 || swiper.activeIndex === 8) {
+      setAllowNext(false);
+      delay(5000).then(() => {
+        setAllowNext(true);
+      });
+    }
+  }, [swiper.activeIndex]);
 
   return <div id={'take-a-break-slide'} className={`d-flex flex-column h-100 align-items-center`}
               style={{
