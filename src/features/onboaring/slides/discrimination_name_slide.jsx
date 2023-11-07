@@ -30,10 +30,12 @@ const DiscriminationNameSlide = () => {
       >
         <Autocomplete
           multiple
+          freeSolo
           id="discrimination-name"
           options={discriminationNameOptions}
           onChange={(event, newValue) => {
             setDiscriminationName(newValue);
+            console.log(newValue);
           }}
           renderInput={(params) => (
             <TextField
