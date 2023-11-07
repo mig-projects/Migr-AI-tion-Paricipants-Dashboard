@@ -2,9 +2,11 @@ import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import {Box, Card, Chip} from "@mui/material";
 import variables from "../../../variables.module.scss";
 import {useSwiper} from "swiper/react";
+import {useNavigate} from "react-router-dom";
 
 const ThankYouSlide = () => {
   const swiper = useSwiper();
+  const navigate = useNavigate();
 
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
               style={{
@@ -74,7 +76,7 @@ const ThankYouSlide = () => {
     <OnboardingFooter
       nextButtonText={'Submit'}
       onNext={() => {
-
+        navigate('/');
       }}
       previousButtonText={"Back"}
       onPrevious={() => {
