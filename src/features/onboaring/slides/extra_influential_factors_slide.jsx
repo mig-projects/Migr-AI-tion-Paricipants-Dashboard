@@ -1,78 +1,94 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
-import {Autocomplete, Box, TextField} from "@mui/material";
-import {useState} from "react";
+import {Box} from "@mui/material";
+import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
+import CustomSelect from "../components/custom_select.jsx";
 
 const ExtraInfluentialFactorsSlide = () => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
-  const [influentialFactors, setInfluentialFactors] = useState([]);
-  const [otherFactors, setOtherFactors] = useState('');
+  const [profession, setProfession] = useState([]);
+  const [migrationResidenceStatus, setMigrationResidenceStatus] = useState([]);
+  const [languageProficiency, setLanguageProficiency] = useState([]);
+  const [education, setEducation] = useState([]);
+  const [professionalLevel, setProfessionalLevel] = useState([]);
 
-  const influentialFactorsOptions = [
-    'Mothers',
-    'Fathers',
-    'Males',
-    'Migrants',
-  ];
+  useEffect(() => {
+    setAllowNext(false);
+    if (profession.length > 0 || migrationResidenceStatus.length > 0 || languageProficiency.length > 0 ||
+      education.length > 0 || professionalLevel.length > 0) {
+      setAllowNext(true);
+    }
+  }, [migrationResidenceStatus.length, languageProficiency.length, professionalLevel.length, profession.length, education.length]);
 
-  return <div id={'extra-influential-factors-slide'} className={`d-flex flex-column h-100 align-items-center`}
+  return <div id={'influential-factors-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
+
       <h2 className={`h2 fw-semibold mb-4`}
           style={{
             textAlign: 'center',
           }}
       >
-        Which factors from your intersectional identity do you believe influenced your experience?
+        Are there any other factors from your identity do you believe influenced your experience?
       </h2>
+
       <p className={`mb-4 h5 fw-medium`}>
         Your tags will help us to map systemic patterns affecting your community.
       </p>
-      <Box
-        component="form"
-        width={'700px'}
-      >
-        <Autocomplete
-          multiple
-          id="influential-factors"
-          options={influentialFactorsOptions}
-          onChange={(event, newValue) => {
-            setInfluentialFactors(newValue);
-            setAllowNext(newValue.length > 0);
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="outlined"
-            />
-          )}
-        />
-      </Box>
-
-      <p className={`my-4 h5 fw-normal text-center`}>
-        Discrimination is often opaque and hidden within layers. Which other factors regarding your identity may have influenced your experience, that you&apos;re not sure about?
-      </p>
 
       <Box
         component="form"
-        width={'700px'}
+        maxWidth={800}
+        className={`d-flex flex-wrap align-items-center justify-content-center`}
       >
-        <TextField
-          value={otherFactors}
-          type="text"
-          id="otherFactors"
-          fullWidth={true}
-          onChange={(e) => {
-            setOtherFactors(e.target.value);
+        <CustomSelect
+          title={`Profession`}
+          list={['Teacher', 'Doctor', 'Engineer', 'Lawyer', 'Accountant']}
+          onChange={(value) => {
+            setProfession(value);
           }}
+          value={profession}
+        />
+        <CustomSelect
+          title={`Migration & Residence Status`}
+          list={['Citizen', 'Permanent Resident', 'Temporary Resident', 'Refugee', 'Asylum Seeker', 'Undocumented']}
+          onChange={(value) => {
+            setMigrationResidenceStatus(value);
+          }}
+          value={migrationResidenceStatus}
+        />
+        <CustomSelect
+          title={`Language proficiency`}
+          list={['Native', 'Fluent', 'Intermediate', 'Basic']}
+          onChange={(value) => {
+            setLanguageProficiency(value);
+          }}
+          value={languageProficiency}
+        />
+        <CustomSelect
+          title={`Education`}
+          list={['High School', 'College', 'University', 'Graduate School']}
+          onChange={(value) => {
+            setEducation(value);
+          }}
+          value={education}
+        />
+        <CustomSelect
+          title={`Professional level`}
+          list={['Entry', 'Mid', 'Senior', 'Executive']}
+          onChange={(value) => {
+            setProfessionalLevel(value);
+          }}
+          value={professionalLevel}
         />
       </Box>
+
     </div>
 
     <OnboardingFooter
-      nextButtonText={'Review'}
+      nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {
         swiper.slideNext();
