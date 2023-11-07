@@ -44,7 +44,7 @@ const Onboarding = () => {
     />
 
     <Swiper
-      initialSlide={6}
+      initialSlide={0}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
