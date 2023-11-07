@@ -13,6 +13,10 @@ import DiscriminationNameSlide from "./slides/discrimination_name_slide.jsx";
 import ExperienceHeadlineSlide from "./slides/experience_headline_slide.jsx";
 import InfluentialFactorsSlide from "./slides/influential_factors_slide.jsx";
 import ThankYouSlide from "./slides/thank_you_slide.jsx";
+import TakeABreakSlide from "./slides/take_a_break_slide.jsx";
+import WhoIsThisExperienceForSlide from "./slides/who_is_this_experience_for_slide.jsx";
+import ExtraInfluentialFactorsSlide from "./slides/extra_influential_factors_slide.jsx";
+import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -40,6 +44,7 @@ const Onboarding = () => {
     />
 
     <Swiper
+      initialSlide={0}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
@@ -63,20 +68,36 @@ const Onboarding = () => {
       <SwiperSlide className={`swiper-slide`}>
         <CreatePasswordSlide />
       </SwiperSlide>
+
       <SwiperSlide className={`swiper-slide`}>
-        <CategorySelectionSlide />
+        <TakeABreakSlide />
       </SwiperSlide>
+
       <SwiperSlide className={`swiper-slide`}>
-        <ExperienceDescriptionSlide />
+        <WhoIsThisExperienceForSlide />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <DiscriminationNameSlide />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
+        <InfluentialFactorsSlide />
+      </SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
+        <ExperienceDescriptionSlide />
+      </SwiperSlide>
+
+      <SwiperSlide className={`swiper-slide`}>
+        <ReflectOnExperienceSlide />
+      </SwiperSlide>
+
+      <SwiperSlide className={`swiper-slide`}>
+        <CategorySelectionSlide />
+      </SwiperSlide>
+      <SwiperSlide className={`swiper-slide`}>
         <ExperienceHeadlineSlide />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
-        <InfluentialFactorsSlide />
+        <ExtraInfluentialFactorsSlide />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <ThankYouSlide />

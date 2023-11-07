@@ -12,7 +12,7 @@ const AddEmailSlide = () => {
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
     <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
-      <h2 className={`h2 fw-semibold mb-3`}>
+      <h2 className={`h2 fw-semibold mb-4`}>
         Add your email address
       </h2>
       <p className={`mb-4 h5 fw-normal`}>
@@ -21,6 +21,7 @@ const AddEmailSlide = () => {
       <Box
         component="form"
         width={'360px'}
+        className={`mt-2`}
       >
         <TextField
           required

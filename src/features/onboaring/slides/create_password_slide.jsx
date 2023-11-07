@@ -20,7 +20,7 @@ const CreatePasswordSlide = () => {
       <Box
         component="form"
         width={'360px'}
-        className={`d-flex flex-column gap-2`}
+        className={`d-flex flex-column gap-3`}
       >
         <PasswordField
           id={'password'}

@@ -26,13 +26,16 @@ const DiscriminationNameSlide = () => {
       <Box
         maxWidth={'700px'}
         minWidth={'360px'}
+        className={`mt-2`}
       >
         <Autocomplete
           multiple
+          freeSolo
           id="discrimination-name"
           options={discriminationNameOptions}
           onChange={(event, newValue) => {
             setDiscriminationName(newValue);
+            console.log(newValue);
           }}
           renderInput={(params) => (
             <TextField
