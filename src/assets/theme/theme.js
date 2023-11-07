@@ -51,6 +51,14 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
+          backgroundColor: 'white',
+        },
+      },
+    },
   }
 });
 
