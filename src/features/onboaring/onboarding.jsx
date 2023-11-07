@@ -16,6 +16,7 @@ import ThankYouSlide from "./slides/thank_you_slide.jsx";
 import TakeABreakSlide from "./slides/take_a_break_slide.jsx";
 import WhoIsThisExperienceForSlide from "./slides/who_is_this_experience_for_slide.jsx";
 import ExtraInfluentialFactorsSlide from "./slides/extra_influential_factors_slide.jsx";
+import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -86,7 +87,7 @@ const Onboarding = () => {
       </SwiperSlide>
 
       <SwiperSlide className={`swiper-slide`}>
-        <TakeABreakSlide />
+        <ReflectOnExperienceSlide />
       </SwiperSlide>
 
       <SwiperSlide className={`swiper-slide`}>

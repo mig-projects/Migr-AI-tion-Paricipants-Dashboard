@@ -5,13 +5,13 @@ import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import HourGlass from "../../../assets/images/hour_glass.png";
 import {delay} from "../../../utility_functions.js";
 
-const TakeABreakSlide = () => {
+const ReflectOnExperienceSlide = () => {
   const swiper = useSwiper();
 
   const [allowNext, setAllowNext] = useState(false);
 
   useEffect(() => {
-    if (swiper.activeIndex === 3) {
+    if (swiper.activeIndex === 8) {
       setAllowNext(false);
       delay(5000).then(() => {
         setAllowNext(true);
@@ -19,7 +19,7 @@ const TakeABreakSlide = () => {
     }
   }, [swiper.activeIndex]);
 
-  return <div id={'take-a-break-slide'} className={`d-flex flex-column h-100 align-items-center`}
+  return <div id={'reflect-on-experience-slide'} className={`d-flex flex-column h-100 align-items-center`}
               style={{
                 backgroundColor: variables.backgroundPurple,
               }}
@@ -29,16 +29,13 @@ const TakeABreakSlide = () => {
            maxWidth: '1000px',
          }}
     >
-      <img src={HourGlass} alt="Hour Glass"/>
+      <img src={HourGlass} alt="Hour Glass mb-4"/>
       <h2 className={`h2 fw-semibold text-center`}>
-        Think about the experience you want to describe, who was affected and what were the feelings associated?
+        Reflect on the experience that you just described.
       </h2>
 
       <p className={`text-center`}>
-        Discrimination isn’t just about interpersonal prejudices and interactions.
-        It can be experienced as exceptional challenges or systemic barriers based on particular aspects
-        of a person’s identity. Sometimes one type of discrimination can also be masked by
-        another form of discrimination.
+        Take a minute and think about how organisational factors influenced your experience.
       </p>
     </div>
 
@@ -56,4 +53,4 @@ const TakeABreakSlide = () => {
   </div>;
 }
 
-export default TakeABreakSlide;
+export default ReflectOnExperienceSlide;
