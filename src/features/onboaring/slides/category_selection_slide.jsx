@@ -1,13 +1,29 @@
 import {useSwiper} from "swiper/react";
-import {useState} from "react";
-import {Box, Chip} from "@mui/material";
+import {useEffect, useState} from "react";
+import {Box, Chip, TextField} from "@mui/material";
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
 
 const CategorySelectionSlide = () => {
   const swiper = useSwiper();
 
+  const [allowNext, setAllowNext] = useState(false);
+
   const categories = ['Company Values & Exploitation', 'Discrimination in HR', 'Other', 'Cross-cultural Communication', 'Migration Journey', 'Psychological burden', 'Bureaucratic Barriers and Misalignment'];
-  const [selectedCategory, setSelectedCategory] = useState(categories.at(0));
+  const [selectedCategories, setSelectedCategories] = useState([categories.at(0)]);
+  const [otherCategory, setOtherCategory] = useState('');
+
+  useEffect(() => {
+    setAllowNext(false);
+    if (selectedCategories.length > 0) {
+      if (selectedCategories.includes('Other')) {
+        if (otherCategory.length > 0) {
+          setAllowNext(true);
+        }
+      } else {
+        setAllowNext(true);
+      }
+    }
+  }, [selectedCategories, otherCategory]);
 
   return <div id={'category-selection-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -24,19 +40,51 @@ const CategorySelectionSlide = () => {
               key={index}
               label={category}
               variant={'filled'}
-              color={selectedCategory === category ? 'primary' : 'secondary'}
+              color={selectedCategories.includes(category) ? 'primary' : 'secondary'}
               value={category}
               onClick={() => {
-                setSelectedCategory(category);
+                if (selectedCategories.includes(category)) {
+                  setSelectedCategories(selectedCategories.filter((selectedCategory) => {
+                    return selectedCategory !== category;
+                  }));
+                } else {
+                  setSelectedCategories([...selectedCategories, category]);
+                }
               }}
               className={`fs-5 p-4`}
             />
           })
         }
       </Box>
+
+      {selectedCategories.includes('Other') ?
+        <div className={`d-flex flex-column align-items-center`}>
+          <p className={`mt-4`}>
+            Describe “Other”
+          </p>
+          <Box
+            component="form"
+            width={'600px'}
+            className={`mt-2`}
+          >
+            <TextField
+              value={otherCategory}
+              type="text"
+              id="otherCategory"
+              fullWidth={true}
+              onChange={(e) => {
+                setOtherCategory(e.target.value);
+              }}
+            />
+          </Box>
+        </div> :
+        <></>
+      }
+
     </div>
 
     <OnboardingFooter
+      isNextDisabled={!allowNext}
       nextButtonText={'Next'}
       onNext={() => {
         swiper.slideNext();
