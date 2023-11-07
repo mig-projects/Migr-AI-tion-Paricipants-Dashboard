@@ -17,6 +17,7 @@ import TakeABreakSlide from "./slides/take_a_break_slide.jsx";
 import WhoIsThisExperienceForSlide from "./slides/who_is_this_experience_for_slide.jsx";
 import ExtraInfluentialFactorsSlide from "./slides/extra_influential_factors_slide.jsx";
 import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
+import variables from '../../variables.module.scss';
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
@@ -56,7 +57,7 @@ const Onboarding = () => {
       spaceBetween={0}
       className={'h-100 w-100'}
       style={{
-        backgroundColor: '#f2f1f5',
+        backgroundColor: variables.backgroundColor,
       }}
     >
       <SwiperSlide className={`swiper-slide`}>

@@ -1,8 +1,10 @@
 // Colors
 $primary-purple: #7438E2;
 $background-purple: #8e5ee6;
+$background-color: #f2f1f5;
 
 :export {
   primaryPurple: $primary-purple;
   backgroundPurple: $background-purple;
+  backgroundColor: $background-color;
 }
