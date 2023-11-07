@@ -1,9 +1,15 @@
-import {AppBar, Divider, List, ListItem, ListItemButton, ListItemText, Toolbar, Typography} from "@mui/material";
+import {
+  AppBar,
+  Button,
+  Toolbar,
+  Typography
+} from "@mui/material";
 import Logo from "../../../assets/images/logo.svg";
 import variables from "../../../variables.module.scss";
+import CustomButton from "../../../components/buttons/custom_button.jsx";
 
 const HomeHeader = () => {
-  return <AppBar position="fixed" className={'appbar'} color={'transparent'}>
+  return <AppBar component="nav" position="fixed" className={'appbar'} color={'transparent'}>
     <Toolbar style={{
       height: '80px',
     }}>
@@ -11,20 +17,24 @@ const HomeHeader = () => {
 
       <Typography
         color={variables.primaryPurple}
-        className={'fw-bold'}
+        className={'fw-bold flex-grow-1'}
       >
         MIGR-AI-TION
       </Typography>
 
-      <Divider />
-
-      <List>
-        <ListItem disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }}>
-            <ListItemText primary={'meow'} />
-          </ListItemButton>
-        </ListItem>
-      </List>
+      <div className={`d-flex gap-2`}>
+        <CustomButton variant={`outlined`} text={'Discord Community'} sx={{
+          width: '200px',
+        }} />
+        <CustomButton text={'HR Bias Explorer'} sx={{
+          width: '180px',
+        }} />
+        <Button className={`text-black`} sx={{
+          width: '100px',
+        }} >
+          Log out
+        </Button>
+      </div>
     </Toolbar>
   </AppBar>
 }

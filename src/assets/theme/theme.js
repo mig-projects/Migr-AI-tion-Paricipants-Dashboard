@@ -15,6 +15,11 @@ const lightTheme = createTheme({
   },
   components: {
     MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
       defaultProps: {
         disableElevation: true,
       },
