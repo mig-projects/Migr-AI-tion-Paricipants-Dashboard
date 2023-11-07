@@ -64,7 +64,7 @@ const CategorySelectionSlide = () => {
           </p>
           <Box
             component="form"
-            width={'600px'}
+            width={'360px'}
             className={`mt-2`}
           >
             <TextField
