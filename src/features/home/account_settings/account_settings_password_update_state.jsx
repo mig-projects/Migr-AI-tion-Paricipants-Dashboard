@@ -9,6 +9,8 @@ import CustomButton from "../../../components/buttons/custom_button.jsx";
 const AccountSettingsPasswordUpdateState = ({
   onBack,
 }) => {
+  const [allowSubmit, setAllowSubmit] = useState(false);
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -43,6 +45,7 @@ const AccountSettingsPasswordUpdateState = ({
           error={'Password must be at least 8 characters'}
           onChange={(e) => {
             setPassword(e.target.value);
+            setAllowSubmit(e.target.validity.valid && e.target.value.length > 8 && confirmPassword === e.target.value);
           }}
         />
         <PasswordField
@@ -53,14 +56,17 @@ const AccountSettingsPasswordUpdateState = ({
           error={'Passwords do not match'}
           onChange={(e) => {
             setConfirmPassword(e.target.value);
+            setAllowSubmit(e.target.validity.valid && e.target.value.length > 8 && password === e.target.value);
           }}
         />
 
         <div className={`flex-grow-1`}/>
 
         <CustomButton text={'Save Changes'} sx={{
-          width: '200px',
-        }}/>
+                        width: '200px',
+                      }}
+                      disabled={!allowSubmit}
+        />
       </Box>
 
     </div>
