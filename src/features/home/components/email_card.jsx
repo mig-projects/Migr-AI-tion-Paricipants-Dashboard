@@ -2,6 +2,7 @@ import {Card, Typography} from "@mui/material";
 
 const EmailCard = () => {
   return <Card className={`d-flex justify-content-between align-items-center`}
+               elevation={0}
                style={{
                  height: '80px',
                  padding: '20px 30px',
