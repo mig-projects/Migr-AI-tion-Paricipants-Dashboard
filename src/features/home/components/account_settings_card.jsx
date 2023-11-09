@@ -14,7 +14,7 @@ const AccountSettingsCard = () => {
                  padding: '20px 30px',
                }}
   >
-    <div className={`d-flex flex-column gap-3`}
+    <div className={`d-flex flex-column gap-3 h-100`}
           style={{
             maxWidth: '800px',
           }}
@@ -47,7 +47,7 @@ const AccountSettingsCard = () => {
         </div>
       </Button>
 
-      <div style={{height: '100px'}} />
+      <div className={`flex-grow-1`} />
 
       <div
         style={{
