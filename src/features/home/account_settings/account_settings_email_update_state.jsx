@@ -8,6 +8,8 @@ import CustomButton from "../../../components/buttons/custom_button.jsx";
 const AccountSettingsEmailUpdateState = ({
   onBack,
 }) => {
+  const [allowSubmit, setAllowSubmit] = useState(false);
+
   const [email, setEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
 
@@ -43,6 +45,7 @@ const AccountSettingsEmailUpdateState = ({
           fullWidth={true}
           onChange={(e) => {
             setEmail(e.target.value);
+            setAllowSubmit(e.target.validity.valid && e.target.value === confirmEmail);
           }}
         />
         <TextField
@@ -56,14 +59,17 @@ const AccountSettingsEmailUpdateState = ({
           helperText={confirmEmail !== '' && email !== confirmEmail ? 'Emails do not match' : null}
           onChange={(e) => {
             setConfirmEmail(e.target.value);
+            setAllowSubmit(e.target.validity.valid && email === e.target.value);
           }}
         />
 
         <div className={`flex-grow-1`}/>
 
         <CustomButton text={'Save Changes'} sx={{
-          width: '200px',
-        }}/>
+                        width: '200px',
+                      }}
+                      disabled={!allowSubmit}
+        />
       </Box>
 
     </div>
