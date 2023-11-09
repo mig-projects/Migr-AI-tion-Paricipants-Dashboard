@@ -10,6 +10,7 @@ const HomeLeftDrawer = ({
                elevation={0}
                style={{
                  padding: '20px 30px',
+                 height: 'calc(100vh - 220px)',
                }}
   >
     <CustomChip
