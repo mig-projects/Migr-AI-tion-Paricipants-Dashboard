@@ -3,7 +3,7 @@ import './home_screen.scss';
 import EmailCard from "./components/email_card.jsx";
 import HomeLeftDrawer from "./components/home_left_drawer.jsx";
 import {useState} from "react";
-import AccountSettingsCard from "./components/account_settings_card.jsx";
+import AccountSettingsCard from "./account_settings/account_settings_card.jsx";
 
 const HomeScreenState = {
   inProgress: 'inProgress',
