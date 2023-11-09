@@ -14,7 +14,7 @@ const HomeScreenState = {
 export const HomeScreen = () => {
   const [homeScreenState, setHomeScreenState] = useState(HomeScreenState.accountSettings);
 
-  return <div id={`home`}>
+  return <div id={`home`} className={`overflow-x-hidden`}>
     <HomeHeader />
 
     {document.body.getAttribute('')}
