@@ -7,6 +7,7 @@ const CustomButton = ({
   text,
   variant,
   className,
+  color = 'primary',
   sx,
 }) => (
   <Button
@@ -16,6 +17,7 @@ const CustomButton = ({
       borderRadius: '8px',
       borderWidth: '2px',
     }}
+    color={color}
     fullWidth
     onClick={onClick}
     disabled={disabled}
@@ -33,6 +35,7 @@ CustomButton.propTypes = {
   variant: PropTypes.string,
   className: PropTypes.string,
   sx: PropTypes.object,
+  color: PropTypes.string,
 }
 
 export default CustomButton;

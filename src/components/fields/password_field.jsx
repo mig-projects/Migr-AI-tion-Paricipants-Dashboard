@@ -16,6 +16,7 @@ const PasswordField = (props) => {
     error={props.showError}
     helperText={props.showError ? props.error : null}
     onChange={props.onChange}
+    sx={props.sx}
     InputProps={{
       endAdornment: <InputAdornment position="end">
         <IconButton
@@ -39,6 +40,7 @@ PasswordField.propTypes = {
   error: PropTypes.string,
   showError: PropTypes.bool,
   onChange: PropTypes.func,
+  sx: PropTypes.object,
 };
 
 export default PasswordField;
