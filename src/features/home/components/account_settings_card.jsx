@@ -5,6 +5,7 @@ const AccountSettingsCard = () => {
   const buttonStyle = {
     height: '70px',
     border: '1.5px solid #E7E7E7',
+    borderRadius: '8px',
   };
 
   return <Card className={`flex-grow-1`}
@@ -26,7 +27,7 @@ const AccountSettingsCard = () => {
               sx={buttonStyle}
       >
         <div className={`d-flex justify-content-between text-black w-100 px-2`}>
-          <Typography>
+          <Typography className={`fw-semibold`}>
             Update your Email
           </Typography>
 
@@ -38,7 +39,7 @@ const AccountSettingsCard = () => {
               sx={buttonStyle}
       >
         <div className={`d-flex justify-content-between text-black w-100 px-2`}>
-          <Typography>
+          <Typography className={`fw-semibold`}>
             Update your Password
           </Typography>
 
@@ -58,16 +59,22 @@ const AccountSettingsCard = () => {
       >
 
         <div className={`d-flex flex-column align-items-start`}>
-          <Typography>
+          <Typography className={`fw-semibold`}>
             Close Account
           </Typography>
 
-          <Typography className={`fw-light`} style={{fontSize: '12px'}}>
+          <Typography className={`fw-light`} style={{fontSize: '12px', color: '##ADADAD'}}>
             Closing your account can’t be undone. We value your participation.
           </Typography>
         </div>
 
-        <Button variant="outlined" color={`error`}>Close Account</Button>
+        <Button variant="outlined" color={`error`}
+                sx={{
+                  borderRadius: '8px',
+                }}
+        >
+          Close Account
+        </Button>
       </div>
     </div>
   </Card>;
