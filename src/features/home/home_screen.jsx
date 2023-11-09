@@ -3,6 +3,7 @@ import './home_screen.scss';
 import EmailCard from "./components/email_card.jsx";
 import HomeLeftDrawer from "./components/home_left_drawer.jsx";
 import {useState} from "react";
+import AccountSettingsCard from "./components/account_settings_card.jsx";
 
 const HomeScreenState = {
   inProgress: 'inProgress',
@@ -11,7 +12,7 @@ const HomeScreenState = {
 }
 
 export const HomeScreen = () => {
-  const [homeScreenState, setHomeScreenState] = useState(HomeScreenState.inProgress);
+  const [homeScreenState, setHomeScreenState] = useState(HomeScreenState.accountSettings);
 
   return <div id={`home`}>
     <HomeHeader />
@@ -27,6 +28,26 @@ export const HomeScreen = () => {
           currentScreenState={homeScreenState}
           setCurrentScreenState={setHomeScreenState}
         />
+        <div style={{width: '20px'}}/>
+
+        {
+          homeScreenState === HomeScreenState.inProgress &&
+          <div className={`flex-grow-1`}>
+            In progress
+          </div>
+        }
+
+        {
+          homeScreenState === HomeScreenState.completed &&
+          <div className={`flex-grow-1`}>
+            Completed
+          </div>
+        }
+
+        {
+          homeScreenState === HomeScreenState.accountSettings &&
+          <AccountSettingsCard />
+        }
       </div>
 
     </div>
