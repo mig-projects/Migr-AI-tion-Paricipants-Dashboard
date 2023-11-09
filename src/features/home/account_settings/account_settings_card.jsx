@@ -1,6 +1,6 @@
 import {Button, Typography} from "@mui/material";
 import {ChevronRight} from "@mui/icons-material";
-import SlideInCard from "./slide_in_card.jsx";
+import SlideInCard from "../components/slide_in_card.jsx";
 
 const AccountSettingsCard = () => {
   const buttonStyle = {
