@@ -1,5 +1,6 @@
-import {Button, Card, Typography} from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import {ChevronRight} from "@mui/icons-material";
+import SlideInCard from "./slide_in_card.jsx";
 
 const AccountSettingsCard = () => {
   const buttonStyle = {
@@ -8,12 +9,7 @@ const AccountSettingsCard = () => {
     borderRadius: '8px',
   };
 
-  return <Card className={`flex-grow-1`}
-               elevation={0}
-               style={{
-                 padding: '20px 30px',
-               }}
-  >
+  return <SlideInCard>
     <div className={`d-flex flex-column gap-3 h-100`}
           style={{
             maxWidth: '800px',
@@ -77,7 +73,7 @@ const AccountSettingsCard = () => {
         </Button>
       </div>
     </div>
-  </Card>;
+  </SlideInCard>;
 }
 
 export default AccountSettingsCard;
