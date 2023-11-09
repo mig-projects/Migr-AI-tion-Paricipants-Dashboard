@@ -31,6 +31,7 @@ const HomeHeader = () => {
         }} />
         <Button className={`text-black`} sx={{
           width: '100px',
+          borderRadius: '8px',
         }} >
           Log out
         </Button>
