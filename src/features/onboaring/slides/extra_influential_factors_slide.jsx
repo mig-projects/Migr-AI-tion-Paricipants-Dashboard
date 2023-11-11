@@ -1,5 +1,5 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
-import {Box} from "@mui/material";
+import {Box, Chip, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
 import CustomSelect from "../components/custom_select.jsx";
@@ -14,13 +14,23 @@ const ExtraInfluentialFactorsSlide = () => {
   const [name, setName] = useState([]);
   const [appearance, setAppearance] = useState([]);
 
+  const [otherSelected, setOtherSelected] = useState(false);
+  const [otherFactor, setOtherFactor] = useState('');
+
   useEffect(() => {
     setAllowNext(false);
     if (name.length > 0 || migrationResidenceStatus.length > 0 || languageProficiency.length > 0 ||
       education.length > 0 || appearance.length > 0) {
       setAllowNext(true);
     }
-  }, [migrationResidenceStatus.length, languageProficiency.length, name.length, appearance.length, education.length]);
+
+    if (otherSelected) {
+      setAllowNext(false);
+      if (otherFactor.length > 0) {
+        setAllowNext(true);
+      }
+    }
+  }, [migrationResidenceStatus.length, languageProficiency.length, name.length, appearance.length, education.length, otherSelected, otherFactor.length]);
 
   return <div id={'influential-factors-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -87,7 +97,43 @@ const ExtraInfluentialFactorsSlide = () => {
           }}
           value={appearance}
         />
+        <Chip
+          label={'Other'}
+          variant={'filled'}
+          color={otherSelected ? 'primary' : 'secondary'}
+          onClick={() => {
+            setOtherSelected(!otherSelected);
+          }}
+          className={`fs-6 p-4 ms-2`}
+          sx={{
+            height: '58px',
+          }}
+        />
       </Box>
+
+      {otherSelected ?
+        <div className={`d-flex flex-column align-items-center`}>
+          <p className={`mt-4`}>
+            Describe “Other”
+          </p>
+          <Box
+            component="form"
+            width={'360px'}
+            className={`mt-2`}
+          >
+            <TextField
+              value={otherFactor}
+              type="text"
+              id="otherCategory"
+              fullWidth={true}
+              onChange={(e) => {
+                setOtherFactor(e.target.value);
+              }}
+            />
+          </Box>
+        </div> :
+        <></>
+      }
 
     </div>
 
