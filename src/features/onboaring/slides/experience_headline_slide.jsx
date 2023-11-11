@@ -19,7 +19,7 @@ const ExperienceHeadlineSlide = () => {
         This response will be visible as quotation.
       </p>
       <p className={`mb-4 h5 fw-normal`}>
-        Ex. “Fired twice within 6 months of moving to Germany.”
+        i.e. “Fired twice within six-months of moving to Germany”
       </p>
       <Box
         component="form"
