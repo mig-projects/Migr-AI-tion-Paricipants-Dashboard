@@ -45,7 +45,11 @@ const ExtraInfluentialFactorsSlide = () => {
       >
         <CustomSelect
           title={`Profession`}
-          list={['Teacher', 'Doctor', 'Engineer', 'Lawyer', 'Accountant']}
+          list={['Tech worker', 'Entrepreneurs', 'Linguist', 'Data people', 'Data science teachers', 'Data scientists', 'Mini-jobbers', 'Public Speakers',
+            'Job searchers', 'Non-technical but IT', 'PRODUCT MANAGERS', 'People Experience or EX People', 'Data scientists', 'PRODUCT MANAGERS', 'HR people',
+            'Engineer', 'IT people', 'Unemployed', 'Consultants', 'STARTUP EMPLOYEES',
+          ]}
+          greyedList={['Teacher', 'Doctor', 'Engineer', 'Lawyer', 'Accountant']}
           onChange={(value) => {
             setProfession(value);
           }}
@@ -53,7 +57,8 @@ const ExtraInfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Migration & Residence Status`}
-          list={['Citizen', 'Permanent Resident', 'Temporary Resident', 'Refugee', 'Asylum Seeker', 'Undocumented']}
+          list={['EU National', 'Non-EU National', 'Non-German', 'Permanent resident', 'Newcomer', 'Resident', 'Blue Card', 'Work Permit', 'Displaced or Stateless', 'Migrant']}
+          greyedList={['Citizen', 'Permanent Resident', 'Temporary Resident', 'Refugee', 'Asylum Seeker', 'Undocumented']}
           onChange={(value) => {
             setMigrationResidenceStatus(value);
           }}
@@ -61,7 +66,8 @@ const ExtraInfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Language proficiency`}
-          list={['Native', 'Fluent', 'Intermediate', 'Basic']}
+          list={['Multilingual', 'English-speaker', 'German Level A1', 'German Level A2', 'German Level B1', 'German Level B2', 'Non-German speaker', 'Native English-speaker']}
+          greyedList={['Native', 'Fluent', 'Intermediate', 'Basic']}
           onChange={(value) => {
             setLanguageProficiency(value);
           }}
@@ -69,7 +75,8 @@ const ExtraInfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Education`}
-          list={['High School', 'College', 'University', 'Graduate School']}
+          list={['Educated in EU', 'Educated outside of Germany', 'Educated in Germany']}
+          greyedList={['High School', 'College', 'University', 'Graduate School']}
           onChange={(value) => {
             setEducation(value);
           }}
@@ -77,7 +84,8 @@ const ExtraInfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Professional level`}
-          list={['Entry', 'Mid', 'Senior', 'Executive']}
+          list={['Entry level', 'Mid level', 'Senior level', 'Executive', 'Freelancer', 'Business Owner', 'Consultants', 'Startup Founder']}
+          greyedList={['Entry', 'Mid', 'Senior', 'Executive']}
           onChange={(value) => {
             setProfessionalLevel(value);
           }}
