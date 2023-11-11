@@ -4,7 +4,7 @@ import {
   Typography
 } from "@mui/material";
 import PropTypes from "prop-types";
-import {DeleteOutlined, EditOutlined, Menu, MoreVert, ThreeDRotation} from "@mui/icons-material";
+import {DeleteOutlined, EditOutlined, MoreVert} from "@mui/icons-material";
 import {useEffect, useRef, useState} from "react";
 
 const PublishedCard = ({
