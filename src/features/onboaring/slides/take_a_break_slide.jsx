@@ -28,6 +28,7 @@ const TakeABreakSlide = () => {
     <div className={'h-100 d-flex flex-column align-items-center slides-wrapper text-white gap-3'}
          style={{
            maxWidth: '1000px',
+           paddingTop: '5vh',
          }}
     >
       <Player
