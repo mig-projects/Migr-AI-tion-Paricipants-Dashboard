@@ -1,4 +1,4 @@
-import {useSwiper} from "swiper/react";
+import {useSwiper, useSwiperSlide} from "swiper/react";
 import {useEffect, useState} from "react";
 import variables from "../../../variables.module.scss";
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
@@ -7,17 +7,17 @@ import {delay} from "../../../utility_functions.js";
 
 const ReflectOnExperienceSlide = () => {
   const swiper = useSwiper();
+  const swiperSlide = useSwiperSlide();
 
   const [allowNext, setAllowNext] = useState(false);
 
   useEffect(() => {
-    if (swiper.activeIndex === 8) {
-      setAllowNext(false);
+    if (swiperSlide.isActive) {
       delay(5000).then(() => {
         setAllowNext(true);
       });
     }
-  }, [swiper.activeIndex]);
+  }, [swiperSlide.isActive]);
 
   return <div id={'reflect-on-experience-slide'} className={`d-flex flex-column h-100 align-items-center`}
               style={{

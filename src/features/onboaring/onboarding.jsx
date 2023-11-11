@@ -18,10 +18,15 @@ import WhoIsThisExperienceForSlide from "./slides/who_is_this_experience_for_sli
 import ExtraInfluentialFactorsSlide from "./slides/extra_influential_factors_slide.jsx";
 import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
 import variables from '../../variables.module.scss';
+import PropTypes from "prop-types";
+import {useLocation} from "react-router-dom";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
   const [height, setHeight] = useState(window.innerHeight);
+
+  const location = useLocation();
+  const {withoutSignup} = location.state || {};
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -60,19 +65,26 @@ const Onboarding = () => {
         backgroundColor: variables.backgroundColor,
       }}
     >
-      <SwiperSlide className={`swiper-slide`}>
-        <WelcomeSlide />
-      </SwiperSlide>
-      <SwiperSlide className={`swiper-slide`}>
-        <AddEmailSlide />
-      </SwiperSlide>
-      <SwiperSlide className={`swiper-slide`}>
-        <CreatePasswordSlide />
-      </SwiperSlide>
-
-      <SwiperSlide className={`swiper-slide`}>
-        <TakeABreakSlide />
-      </SwiperSlide>
+      {!withoutSignup &&
+        <SwiperSlide className={`swiper-slide`}>
+          <WelcomeSlide />
+        </SwiperSlide>
+      }
+      {!withoutSignup &&
+        <SwiperSlide className={`swiper-slide`}>
+          <AddEmailSlide />
+        </SwiperSlide>
+      }
+      {!withoutSignup &&
+        <SwiperSlide className={`swiper-slide`}>
+          <CreatePasswordSlide />
+        </SwiperSlide>
+      }
+      {!withoutSignup &&
+        <SwiperSlide className={`swiper-slide`}>
+          <TakeABreakSlide />
+        </SwiperSlide>
+      }
 
       <SwiperSlide className={`swiper-slide`}>
         <WhoIsThisExperienceForSlide />
@@ -105,6 +117,10 @@ const Onboarding = () => {
       </SwiperSlide>
     </Swiper>
   </div>
+}
+
+Onboarding.propTypes = {
+  withSignup: PropTypes.bool,
 }
 
 export default Onboarding;

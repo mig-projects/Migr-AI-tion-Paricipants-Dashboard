@@ -10,7 +10,7 @@ import HomeScreen from "./features/home/home_screen.jsx";
 // This component is used to render the correct page based on the URL
 const Routing = () => {
   return <Routes>
-    <Route path="/onboarding" element={<Onboarding />} />
+    <Route path="/onboarding" element={<Onboarding/>} />
     <Route path="/" element={<HomeScreen />} />
     <Route path="*" element={<HomeScreen />} />
   </Routes>;

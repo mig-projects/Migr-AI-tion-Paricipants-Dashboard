@@ -12,6 +12,7 @@ import PropTypes from "prop-types";
 import {
   ArrowDropDown, DeleteOutlined, EditOutlined,
 } from "@mui/icons-material";
+import {useNavigate} from "react-router-dom";
 
 const InProgressCard = ({
   entryFor,
@@ -37,6 +38,8 @@ const InProgressCard = ({
     borderRadius: '8px',
     boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.02)'
   };
+
+  const navigate = useNavigate();
 
   return <SlideInCard>
     <div className={`d-flex flex-column gap-2`}>
@@ -120,6 +123,9 @@ const InProgressCard = ({
         <div className={`d-flex gap-2`}>
           <IconButton
             sx={iconButtonStyle}
+            onClick={() => {
+              navigate('/onboarding', { state: { withoutSignup: true } });
+            }}
           >
             <EditOutlined />
           </IconButton>
