@@ -19,9 +19,9 @@ const HomeLeftDrawer = ({
       onClick={() => setCurrentScreenState(HomeScreenState.inProgress)}
     />
     <CustomChip
-      text={'Completed'}
-      selected={currentScreenState === HomeScreenState.completed}
-      onClick={() => setCurrentScreenState(HomeScreenState.completed)}
+      text={'Published'}
+      selected={currentScreenState === HomeScreenState.published}
+      onClick={() => setCurrentScreenState(HomeScreenState.published)}
     />
     <CustomChip
       text={'+ Add New Entry'}

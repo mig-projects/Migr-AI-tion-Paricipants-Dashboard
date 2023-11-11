@@ -5,15 +5,16 @@ import HomeLeftDrawer from "./components/home_left_drawer.jsx";
 import {useState} from "react";
 import AccountSettingsCard from "./account_settings/account_settings_card.jsx";
 import InProgressCardsList from "./in_progress/in_progress_cards_list.jsx";
+import PublishedCardsList from "./published/published_cards_list.jsx";
 
 const HomeScreenState = {
   inProgress: 'inProgress',
-  completed: 'completed',
+  published: 'published',
   accountSettings: 'accountSettings',
 }
 
 export const HomeScreen = () => {
-  const [homeScreenState, setHomeScreenState] = useState(HomeScreenState.inProgress);
+  const [homeScreenState, setHomeScreenState] = useState(HomeScreenState.published);
 
   return <div id={`home`} className={`overflow-x-hidden`}>
     <HomeHeader />
@@ -38,10 +39,8 @@ export const HomeScreen = () => {
         }
 
         {
-          homeScreenState === HomeScreenState.completed &&
-          <div className={`flex-grow-1`}>
-            Completed
-          </div>
+          homeScreenState === HomeScreenState.published &&
+          <PublishedCardsList />
         }
 
         {
