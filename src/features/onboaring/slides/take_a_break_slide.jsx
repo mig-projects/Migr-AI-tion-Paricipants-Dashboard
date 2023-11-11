@@ -2,8 +2,9 @@ import {useSwiper, useSwiperSlide} from "swiper/react";
 import {useEffect, useState} from "react";
 import variables from "../../../variables.module.scss";
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
-import HourGlass from "../../../assets/images/hour_glass.png";
 import {delay} from "../../../utility_functions.js";
+import { Player } from '@lottiefiles/react-lottie-player';
+import HourGlass from "../../../assets/animations/hourglass.json";
 
 const TakeABreakSlide = () => {
   const swiper = useSwiper();
@@ -29,7 +30,14 @@ const TakeABreakSlide = () => {
            maxWidth: '1000px',
          }}
     >
-      <img src={HourGlass} alt="Hour Glass"/>
+      <Player
+        autoplay
+        loop
+        src={HourGlass}
+        speed={0.5}
+        style={{ height: '200px', width: '200px' }}
+      />
+
       <h2 className={`h2 fw-semibold text-center`}>
         Think about the experience you want to describe, who was affected and what were the feelings associated?
       </h2>
