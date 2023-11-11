@@ -9,7 +9,7 @@ import variables from "../../../variables.module.scss";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
 
 const HomeHeader = () => {
-  return <AppBar component="nav" position="fixed" className={'appbar'} color={'transparent'}>
+  return <AppBar component="nav" position="static" className={'appbar'} color={'transparent'}>
     <Toolbar style={{
       height: '80px',
     }}>
