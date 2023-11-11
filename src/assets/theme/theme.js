@@ -64,6 +64,15 @@ const lightTheme = createTheme({
         },
       },
     },
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          "&:before": {
+            backgroundColor: "transparent",
+          },
+        },
+      },
+    },
   }
 });
 

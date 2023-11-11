@@ -6,7 +6,7 @@ const HomeLeftDrawer = ({
   currentScreenState,
   setCurrentScreenState,
 }) => {
-  return <Card className={`d-flex flex-column justify-content-between gap-3`}
+  return <Card className={`d-flex flex-column justify-content-between gap-3 flex-shrink-0`}
                elevation={0}
                style={{
                  padding: '20px 30px',
