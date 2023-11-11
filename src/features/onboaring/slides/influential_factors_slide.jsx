@@ -60,7 +60,8 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Age`}
-          list={['18-24', '25-34', '35-44', '45-54', '55-64', '65+']}
+          list={['40+ years old', 'Youthful Look']}
+          greyedList={['18-24', '25-34', '35-44', '45-54', '55-64', '65+']}
           onChange={(value) => {
             setAge(value);
           }}
@@ -68,7 +69,8 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Disability`}
-          list={['Physical', 'Mental', 'Learning', 'Sensory', 'Chronic', 'Invisible']}
+          list={['Neurodivergent', 'ADHD', 'Dyslexia', 'Autism']}
+          greyedList={['Physical', 'Mental', 'Learning', 'Sensory', 'Chronic', 'Invisible']}
           onChange={(value) => {
             setDisability(value);
           }}
@@ -76,7 +78,7 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Name`}
-          list={['IDK', 'IDK', 'IDK', 'IDK', 'IDK', 'IDK']}
+          list={['Non-Western Name', 'Western name', 'Western name with Non-English Characters']}
           onChange={(value) => {
             setName(value);
           }}
@@ -84,7 +86,8 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Ethnicity`}
-          list={['South Asian', 'East Asian', 'Southeast Asian', 'Black', 'Hispanic', 'White', 'Mixed']}
+          greyedList={['Southeast Asian', 'Black', 'Hispanic', 'White', 'Mixed']}
+          list={['Latin American', 'Eastern European', 'North American', 'South Asian', 'East Asian', 'Middle Eastern/West Asian', 'African']}
           onChange={(value) => {
             setEthnicity(value);
           }}
@@ -92,7 +95,8 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Appearance`}
-          list={['Chubby', 'Skinny', 'Tall', 'Short', 'Bald', 'Hairy', 'Bearded', 'Glasses', 'Tattoos', 'Piercings', 'Scars', 'Birthmarks', 'Freckles', 'Acne', 'Wrinkles']}
+          list={['Person of Color', 'Caucasian White']}
+          greyedList={['Chubby', 'Skinny', 'Tall', 'Short', 'Bald', 'Hairy', 'Bearded', 'Glasses', 'Tattoos', 'Piercings', 'Scars', 'Birthmarks', 'Freckles', 'Acne', 'Wrinkles']}
           onChange={(value) => {
             setAppearance(value);
           }}
@@ -100,7 +104,8 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Religion`}
-          list={['Christian', 'Muslim', 'Jewish', 'Hindu', 'Buddhist', 'Atheist', 'Agnostic']}
+          greyedList={['Atheist', 'Agnostic']}
+          list={['Christian', 'Muslim', 'Jewish', 'Hindu', 'Buddhist']}
           onChange={(value) => {
             setReligion(value);
           }}
@@ -108,7 +113,8 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Sexuality`}
-          list={['Bisexuality', 'Homosexuality', 'Heterosexuality', 'Asexuality', 'Pansexuality', 'Queer', 'Questioning']}
+          list={['LGBTIQ+', 'Heterosexual']}
+          greyedList={['Bisexuality', 'Homosexuality', 'Heterosexuality', 'Asexuality', 'Pansexuality', 'Queer', 'Questioning']}
           onChange={(value) => {
             setSexuality(value);
           }}
@@ -116,7 +122,8 @@ const InfluentialFactorsSlide = () => {
         />
         <CustomSelect
           title={`Family Status`}
-          list={['Married', 'Single', 'Divorced', 'Widowed', 'Separated', 'In a relationship', 'In an open relationship', 'In a civil union', 'In a domestic partnership', 'Engaged', 'It\'s complicated', 'Single parent', 'Step-parent', 'Adoptive parent', 'Foster parent', 'Grandparent', 'Child', 'Step-child', 'Adopted child', 'Foster child', 'Sibling', 'Step-sibling', 'Half-sibling', 'Grandchild', 'Aunt', 'Uncle', 'Cousin', 'Niece', 'Nephew']}
+          list={['Mother', 'Father', 'Parent']}
+          greyedList={['Married', 'Single', 'Divorced', 'Widowed', 'Separated', 'In a relationship', 'In an open relationship', 'In a civil union', 'In a domestic partnership', 'Engaged', 'It\'s complicated', 'Single parent', 'Step-parent', 'Adoptive parent', 'Foster parent', 'Grandparent', 'Child', 'Step-child', 'Adopted child', 'Foster child', 'Sibling', 'Step-sibling', 'Half-sibling', 'Grandchild', 'Aunt', 'Uncle', 'Cousin', 'Niece', 'Nephew']}
           onChange={(value) => {
             setFamilyStatus(value);
           }}
