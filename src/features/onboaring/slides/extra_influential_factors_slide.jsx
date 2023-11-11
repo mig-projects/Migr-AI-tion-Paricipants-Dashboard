@@ -8,19 +8,19 @@ const ExtraInfluentialFactorsSlide = () => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
-  const [profession, setProfession] = useState([]);
   const [migrationResidenceStatus, setMigrationResidenceStatus] = useState([]);
   const [languageProficiency, setLanguageProficiency] = useState([]);
   const [education, setEducation] = useState([]);
-  const [professionalLevel, setProfessionalLevel] = useState([]);
+  const [name, setName] = useState([]);
+  const [appearance, setAppearance] = useState([]);
 
   useEffect(() => {
     setAllowNext(false);
-    if (profession.length > 0 || migrationResidenceStatus.length > 0 || languageProficiency.length > 0 ||
-      education.length > 0 || professionalLevel.length > 0) {
+    if (name.length > 0 || migrationResidenceStatus.length > 0 || languageProficiency.length > 0 ||
+      education.length > 0 || appearance.length > 0) {
       setAllowNext(true);
     }
-  }, [migrationResidenceStatus.length, languageProficiency.length, professionalLevel.length, profession.length, education.length]);
+  }, [migrationResidenceStatus.length, languageProficiency.length, name.length, appearance.length, education.length]);
 
   return <div id={'influential-factors-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -43,18 +43,6 @@ const ExtraInfluentialFactorsSlide = () => {
         maxWidth={800}
         className={`d-flex flex-wrap align-items-center justify-content-center`}
       >
-        <CustomSelect
-          title={`Profession`}
-          list={['Tech worker', 'Entrepreneurs', 'Linguist', 'Data people', 'Data science teachers', 'Data scientists', 'Mini-jobbers', 'Public Speakers',
-            'Job searchers', 'Non-technical but IT', 'PRODUCT MANAGERS', 'People Experience or EX People', 'Data scientists', 'PRODUCT MANAGERS', 'HR people',
-            'Engineer', 'IT people', 'Unemployed', 'Consultants', 'STARTUP EMPLOYEES',
-          ]}
-          greyedList={['Teacher', 'Doctor', 'Engineer', 'Lawyer', 'Accountant']}
-          onChange={(value) => {
-            setProfession(value);
-          }}
-          value={profession}
-        />
         <CustomSelect
           title={`Migration & Residence Status`}
           list={['EU National', 'Non-EU National', 'Non-German', 'Permanent resident', 'Newcomer', 'Resident', 'Blue Card', 'Work Permit', 'Displaced or Stateless', 'Migrant']}
@@ -83,13 +71,21 @@ const ExtraInfluentialFactorsSlide = () => {
           value={education}
         />
         <CustomSelect
-          title={`Professional level`}
-          list={['Entry level', 'Mid level', 'Senior level', 'Executive', 'Freelancer', 'Business Owner', 'Consultants', 'Startup Founder']}
-          greyedList={['Entry', 'Mid', 'Senior', 'Executive']}
+          title={`Name`}
+          list={['Non-Western Name', 'Western name', 'Western name with Non-English Characters']}
           onChange={(value) => {
-            setProfessionalLevel(value);
+            setName(value);
           }}
-          value={professionalLevel}
+          value={name}
+        />
+        <CustomSelect
+          title={`Appearance`}
+          list={['Person of Color', 'Caucasian White']}
+          greyedList={['Chubby', 'Skinny', 'Tall', 'Short', 'Bald', 'Hairy', 'Bearded', 'Glasses', 'Tattoos', 'Piercings', 'Scars', 'Birthmarks', 'Freckles', 'Acne', 'Wrinkles']}
+          onChange={(value) => {
+            setAppearance(value);
+          }}
+          value={appearance}
         />
       </Box>
 

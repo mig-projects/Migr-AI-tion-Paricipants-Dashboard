@@ -13,21 +13,21 @@ const InfluentialFactorsSlide = () => {
   const [gender, setGender] = useState([]);
   const [age, setAge] = useState([]);
   const [disability, setDisability] = useState([]);
-  const [name, setName] = useState([]);
   const [ethnicity, setEthnicity] = useState([]);
-  const [appearance, setAppearance] = useState([]);
   const [religion, setReligion] = useState([]);
   const [sexuality, setSexuality] = useState([]);
   const [familyStatus, setFamilyStatus] = useState([]);
+  const [profession, setProfession] = useState([]);
+  const [professionalLevel, setProfessionalLevel] = useState([]);
 
   useEffect(() => {
     setAllowNext(false);
     if (gender.length > 0 || age.length > 0 || disability.length > 0 ||
-        name.length > 0 || ethnicity.length > 0 || appearance.length > 0 ||
-        religion.length > 0 || sexuality.length > 0 || familyStatus.length > 0) {
+        ethnicity.length > 0 || profession.length > 0 ||
+        religion.length > 0 || sexuality.length > 0 || familyStatus.length > 0 || professionalLevel.length > 0) {
       setAllowNext(true);
     }
-  }, [age.length, appearance.length, disability.length, ethnicity.length, familyStatus.length, gender.length, name.length, religion.length, sexuality.length]);
+  }, [age.length, profession.length, disability.length, ethnicity.length, familyStatus.length, gender.length, religion.length, sexuality.length, professionalLevel.length]);
 
   return <div id={'influential-factors-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -68,6 +68,18 @@ const InfluentialFactorsSlide = () => {
           value={age}
         />
         <CustomSelect
+          title={`Profession`}
+          list={['Tech worker', 'Entrepreneurs', 'Linguist', 'Data people', 'Data science teachers', 'Data scientists', 'Mini-jobbers', 'Public Speakers',
+            'Job searchers', 'Non-technical but IT', 'PRODUCT MANAGERS', 'People Experience or EX People', 'Data scientists', 'PRODUCT MANAGERS', 'HR people',
+            'Engineer', 'IT people', 'Unemployed', 'Consultants', 'STARTUP EMPLOYEES',
+          ]}
+          greyedList={['Teacher', 'Doctor', 'Engineer', 'Lawyer', 'Accountant']}
+          onChange={(value) => {
+            setProfession(value);
+          }}
+          value={profession}
+        />
+        <CustomSelect
           title={`Disability`}
           list={['Neurodivergent', 'ADHD', 'Dyslexia', 'Autism']}
           greyedList={['Physical', 'Mental', 'Learning', 'Sensory', 'Chronic', 'Invisible']}
@@ -76,14 +88,7 @@ const InfluentialFactorsSlide = () => {
           }}
           value={disability}
         />
-        <CustomSelect
-          title={`Name`}
-          list={['Non-Western Name', 'Western name', 'Western name with Non-English Characters']}
-          onChange={(value) => {
-            setName(value);
-          }}
-          value={name}
-        />
+
         <CustomSelect
           title={`Ethnicity`}
           greyedList={['Southeast Asian', 'Black', 'Hispanic', 'White', 'Mixed']}
@@ -92,15 +97,6 @@ const InfluentialFactorsSlide = () => {
             setEthnicity(value);
           }}
           value={ethnicity}
-        />
-        <CustomSelect
-          title={`Appearance`}
-          list={['Person of Color', 'Caucasian White']}
-          greyedList={['Chubby', 'Skinny', 'Tall', 'Short', 'Bald', 'Hairy', 'Bearded', 'Glasses', 'Tattoos', 'Piercings', 'Scars', 'Birthmarks', 'Freckles', 'Acne', 'Wrinkles']}
-          onChange={(value) => {
-            setAppearance(value);
-          }}
-          value={appearance}
         />
         <CustomSelect
           title={`Religion`}
@@ -128,6 +124,15 @@ const InfluentialFactorsSlide = () => {
             setFamilyStatus(value);
           }}
           value={familyStatus}
+        />
+        <CustomSelect
+          title={`Professional level`}
+          list={['Entry level', 'Mid level', 'Senior level', 'Executive', 'Freelancer', 'Business Owner', 'Consultants', 'Startup Founder']}
+          greyedList={['Entry', 'Mid', 'Senior', 'Executive']}
+          onChange={(value) => {
+            setProfessionalLevel(value);
+          }}
+          value={professionalLevel}
         />
       </Box>
 
