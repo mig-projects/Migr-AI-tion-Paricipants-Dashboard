@@ -3,10 +3,13 @@ import {Box, Card, Chip} from "@mui/material";
 import variables from "../../../variables.module.scss";
 import {useSwiper} from "swiper/react";
 import {useNavigate} from "react-router-dom";
+import {useState} from "react";
 
 const ThankYouSlide = () => {
   const swiper = useSwiper();
   const navigate = useNavigate();
+
+  const [detailedSelected, setDetailedSelected] = useState(true);
 
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
               style={{
@@ -27,8 +30,12 @@ const ThankYouSlide = () => {
         <Card className={`py-4 px-5`}
           style={{
             backgroundColor: '#dfd4f2',
-            boxShadow: '0px 0px 10px 10px rgba(255, 255, 255, 0.25)',
+            boxShadow: !detailedSelected ? '0px 0px 10px 10px rgba(255, 255, 255, 0.25)' : 'none',
+            cursor: 'pointer',
           }}
+              onClick={() => {
+                setDetailedSelected(false);
+              }}
         >
           <p className={`fs-2 fw-bold`}>“Fired twice within 6 months of moving to Germany”</p>
           <p className={`fs-5 fw-medium`}>Category</p>
@@ -49,7 +56,11 @@ const ThankYouSlide = () => {
         <Card className={`py-4 px-5`}
               style={{
                 backgroundColor: '#dfd4f2',
-                boxShadow: '0px 0px 10px 10px rgba(255, 255, 255, 0.25)',
+                boxShadow: detailedSelected ? '0px 0px 10px 10px rgba(255, 255, 255, 0.25)' : 'none',
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                setDetailedSelected(true);
               }}
         >
           <p className={`fs-2 fw-bold`}>“Fired twice within 6 months of moving to Germany”</p>
