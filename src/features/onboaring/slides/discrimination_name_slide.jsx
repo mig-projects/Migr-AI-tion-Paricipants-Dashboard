@@ -21,7 +21,7 @@ const DiscriminationNameSlide = () => {
         Does this type of discrimination have a name? (Optional)
       </h2>
       <p className={`mb-4 h5 fw-normal`}>
-        For example “Ageism” Sexism”
+        i.e. ageism or sexism
       </p>
       <Box
         maxWidth={'700px'}
