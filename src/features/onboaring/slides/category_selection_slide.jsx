@@ -29,7 +29,7 @@ const CategorySelectionSlide = () => {
   >
     <div className={'h-100 d-flex flex-column align-items-center slides-wrapper'}>
       <h2 className={`h2 fw-semibold mb-4`}>
-        Which Category does this experience relates to?
+        Which research category does this experience relates to?
       </h2>
       <Box
         className={`d-flex flex-wrap gap-3 justify-content-center`}
