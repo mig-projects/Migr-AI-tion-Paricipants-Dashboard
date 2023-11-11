@@ -146,10 +146,11 @@ const PublishedCard = ({
                       autoFocusItem={open}
                       id="composition-menu"
                       aria-labelledby="composition-button"
+                      className={`pb-3`}
                     >
                       <Typography
                         style={{
-                          padding: '30px 30px',
+                          padding: '20px 30px',
                         }}
                       >
                         Before deciding to edit remember that, it is<br/>
