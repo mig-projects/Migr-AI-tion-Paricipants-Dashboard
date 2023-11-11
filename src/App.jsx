@@ -2,7 +2,7 @@ import './App.scss';
 import {
   BrowserRouter,
   Routes,
-  Route,
+  Route, Navigate,
 } from 'react-router-dom';
 import Onboarding from "./features/onboaring/onboarding.jsx";
 import HomeScreen from "./features/home/home_screen.jsx";
@@ -11,8 +11,8 @@ import HomeScreen from "./features/home/home_screen.jsx";
 const Routing = () => {
   return <Routes>
     <Route path="/onboarding" element={<Onboarding/>} />
-    <Route path="/" element={<HomeScreen />} />
-    <Route path="*" element={<HomeScreen />} />
+    <Route path="/home" element={<HomeScreen />} />
+    <Route path="*" element={<Navigate to='/home' />} />
   </Routes>;
 }
 
