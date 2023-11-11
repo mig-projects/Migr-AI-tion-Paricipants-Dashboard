@@ -1,11 +1,14 @@
 import {Card, Chip} from "@mui/material";
 import PropTypes from "prop-types";
 import {HomeScreenState} from "../home_screen.jsx";
+import {useNavigate} from "react-router-dom";
 
 const HomeLeftDrawer = ({
   currentScreenState,
   setCurrentScreenState,
 }) => {
+  const navigate = useNavigate();
+
   return <Card className={`d-flex flex-column justify-content-between gap-3 flex-shrink-0`}
                elevation={0}
                style={{
@@ -26,7 +29,9 @@ const HomeLeftDrawer = ({
     <CustomChip
       text={'+ Add New Entry'}
       selected={false}
-      onClick={() => {}}
+      onClick={() => {
+        navigate('/onboarding', { state: { withoutSignup: true } });
+      }}
     />
 
     <div className={`flex-grow-1`}/>

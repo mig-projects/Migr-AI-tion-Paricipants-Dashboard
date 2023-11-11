@@ -6,6 +6,7 @@ import {
 import PropTypes from "prop-types";
 import {DeleteOutlined, EditOutlined, MoreVert} from "@mui/icons-material";
 import {useEffect, useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const PublishedCard = ({
   showBiasExplorerText = false,
@@ -13,6 +14,8 @@ const PublishedCard = ({
   subtitle,
   tags,
 }) => {
+  const navigate = useNavigate();
+
   const iconButtonStyle = {
     border: '1px solid #E7E7E7',
     borderRadius: '8px',
@@ -155,7 +158,10 @@ const PublishedCard = ({
                       <div
                         className={`d-flex flex-column gap-2`}
                       >
-                        <MenuItem onClick={handleClose}
+                        <MenuItem onClick={(e) => {
+                          navigate('/onboarding', { state: { withoutSignup: true } });
+                          handleClose(e);
+                        }}
                           style={{
                             padding: '10px 30px',
                           }}
