@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Onboarding from "./features/onboaring/onboarding.jsx";
 import HomeScreen from "./features/home/home_screen.jsx";
+import {ToastContainer} from "react-toastify";
 
 // This component is used to render the correct page based on the URL
 const Routing = () => {
@@ -21,6 +22,18 @@ function App() {
     <BrowserRouter>
       <Routing />
     </BrowserRouter>
+    <ToastContainer
+      position="bottom-right"
+      autoClose={3000}
+      hideProgressBar
+      newestOnTop
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+    />
   </div>;
 }
 
