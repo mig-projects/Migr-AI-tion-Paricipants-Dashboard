@@ -7,6 +7,7 @@ import {
 import Onboarding from "./features/onboaring/onboarding.jsx";
 import HomeScreen from "./features/home/home_screen.jsx";
 import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 // This component is used to render the correct page based on the URL
 const Routing = () => {
