@@ -2,10 +2,12 @@ import HomeHeader from "./header/home_header.jsx";
 import './home_screen.scss';
 import EmailCard from "./components/email_card.jsx";
 import HomeLeftDrawer from "./components/home_left_drawer.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import AccountSettingsCard from "./account_settings/account_settings_card.jsx";
 import InProgressCardsList from "./in_progress/in_progress_cards_list.jsx";
 import PublishedCardsList from "./published/published_cards_list.jsx";
+import {useNavigate} from "react-router-dom";
+import {isUserSignedIn} from "../supabase/authentication.js";
 
 const HomeScreenState = {
   inProgress: 'inProgress',
@@ -14,6 +16,16 @@ const HomeScreenState = {
 }
 
 export const HomeScreen = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isUserSignedIn().then((signedIn) => {
+      if (!signedIn) {
+        navigate('/sign-in');
+      }
+    });
+  }, [navigate]);
+
   const [homeScreenState, setHomeScreenState] = useState(HomeScreenState.published);
 
   return <div id={`home`} className={`overflow-x-hidden`}>
