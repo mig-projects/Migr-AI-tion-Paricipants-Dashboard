@@ -38,7 +38,7 @@ const AddEmailSlide = () => {
       </Box>
 
       <Typography className={`mt-4`}>
-        Already have an account? <Link to={'/sign-in'}>Sign in</Link>
+        Already have an account? <Link href={'/sign-in'} className={`text-black text-decoration-underline`}>Sign in</Link>
       </Typography>
     </div>
 
