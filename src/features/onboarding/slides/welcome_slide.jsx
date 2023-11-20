@@ -1,4 +1,3 @@
-import OnboardingFooter from "../footer/experience_footer.jsx";
 import PropTypes from "prop-types";
 import {useSwiper} from "swiper/react";
 import variables from "../../../variables.module.scss";
@@ -9,6 +8,7 @@ import ZoomInMap from "../../../assets/icons/zoom_in_map.svg";
 import {useEffect, useState} from "react";
 import {isUserSignedIn} from "../../supabase/authentication.js";
 import {useNavigate} from "react-router-dom";
+import ExperienceFooter from "../../describe_your_experience/footer/experience_footer.jsx";
 
 const WelcomeSlide = () => {
   const swiper = useSwiper();
@@ -103,7 +103,7 @@ const WelcomeSlide = () => {
 
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       isNextDisabled={!allowNext}
       showOnlyOne={true}
       nextButtonText={'Start'}

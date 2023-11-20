@@ -1,10 +1,10 @@
-import OnboardingFooter from "../footer/experience_footer.jsx";
 import {Box, Link, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
 import PropTypes from "prop-types";
 import {isUserSignedIn} from "../../supabase/authentication.js";
 import {useNavigate} from "react-router-dom";
+import ExperienceFooter from "../../describe_your_experience/footer/experience_footer.jsx";
 
 const AddEmailSlide = ({
   onEmailSubmit,
@@ -56,7 +56,7 @@ const AddEmailSlide = ({
       </Typography>
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {

@@ -1,10 +1,10 @@
 import {useSwiper, useSwiperSlide} from "swiper/react";
 import {useEffect, useState} from "react";
 import variables from "../../../variables.module.scss";
-import OnboardingFooter from "../footer/experience_footer.jsx";
 import {delay} from "../../../utility_functions.js";
 import { Player } from '@lottiefiles/react-lottie-player';
 import HourGlass from "../../../assets/animations/hourglass.json";
+import ExperienceFooter from "../../describe_your_experience/footer/experience_footer.jsx";
 
 const TakeABreakSlide = () => {
   const swiper = useSwiper();
@@ -51,7 +51,7 @@ const TakeABreakSlide = () => {
       </p>
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {

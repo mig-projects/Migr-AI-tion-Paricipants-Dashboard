@@ -1,4 +1,3 @@
-import OnboardingFooter from "../footer/experience_footer.jsx";
 import {Box} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
@@ -7,6 +6,7 @@ import {toast} from "react-toastify";
 import {signUp} from "../../supabase/authentication.js";
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
+import ExperienceFooter from "../../describe_your_experience/footer/experience_footer.jsx";
 
 const CreatePasswordSlide = ({
   email,
@@ -54,7 +54,7 @@ const CreatePasswordSlide = ({
       </Box>
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Sign Up'}
       isNextDisabled={!allowNext}
       previousButtonText={'Back'}
