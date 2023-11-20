@@ -1,8 +1,6 @@
 import {LinearProgress} from "@mui/material";
 import {useEffect, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
-import 'swiper/scss';
-import './describe_your_experience.scss';
 import CategorySelectionSlide from "./slides/category_selection_slide.jsx";
 import ExperienceDescriptionSlide from "./slides/experience_desccription_slide.jsx";
 import DiscriminationNameSlide from "./slides/discrimination_name_slide.jsx";
@@ -15,10 +13,15 @@ import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
 import variables from '../../variables.module.scss';
 import PropTypes from "prop-types";
 import ExperienceHeader from "./header/experience_header.jsx";
+import TakeABreakSlide from "../onboarding/slides/take_a_break_slide.jsx";
+import {useLocation} from "react-router-dom";
 
 const DescribeYourExperience = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
   const [height, setHeight] = useState(window.innerHeight);
+
+  const location = useLocation();
+  const {freshSignup} = location.state || {};
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -57,6 +60,12 @@ const DescribeYourExperience = () => {
         backgroundColor: variables.backgroundColor,
       }}
     >
+      {
+        freshSignup && <SwiperSlide className={`swiper-slide`}>
+          <TakeABreakSlide />
+        </SwiperSlide>
+      }
+
       <SwiperSlide className={`swiper-slide`}>
         <WhoIsThisExperienceForSlide />
       </SwiperSlide>

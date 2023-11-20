@@ -1,1 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+
+.slides-wrapper {
+  max-width: 1100px;
+  padding-top: 10vh;
+  padding-bottom: 20px;
+}
+
+.swiper-slide {
+  overflow-y: auto;
+}

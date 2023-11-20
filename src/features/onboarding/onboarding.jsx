@@ -2,22 +2,15 @@ import {LinearProgress} from "@mui/material";
 import {useEffect, useState} from "react";
 import WelcomeSlide from "./slides/welcome_slide.jsx";
 import {Swiper, SwiperSlide} from "swiper/react";
-import 'swiper/scss';
-import './onboarding.scss';
 import AddEmailSlide from "./slides/add_email_slide.jsx";
 import CreatePasswordSlide from "./slides/create_password_slide.jsx";
-import TakeABreakSlide from "./slides/take_a_break_slide.jsx";
 import variables from '../../variables.module.scss';
 import PropTypes from "prop-types";
-import {useLocation} from "react-router-dom";
 import ExperienceHeader from "../describe_your_experience/header/experience_header.jsx";
 
 const Onboarding = () => {
   const [onboardingProgress, setOnboardingProgress] = useState(0);
   const [height, setHeight] = useState(window.innerHeight);
-
-  const location = useLocation();
-  const {withoutSignup} = location.state || {};
 
   const [email, setEmail] = useState('');
 
@@ -72,9 +65,6 @@ const Onboarding = () => {
         <CreatePasswordSlide
           email={email}
         />
-      </SwiperSlide>
-      <SwiperSlide className={`swiper-slide`}>
-        <TakeABreakSlide />
       </SwiperSlide>
     </Swiper>
   </div>
