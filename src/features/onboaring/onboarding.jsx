@@ -28,7 +28,7 @@ const Onboarding = () => {
   const location = useLocation();
   const {withoutSignup} = location.state || {};
 
-  let email = '';
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -76,14 +76,16 @@ const Onboarding = () => {
         <SwiperSlide className={`swiper-slide`}>
           <AddEmailSlide
             onEmailSubmit={(newEmail) => {
-              email = newEmail;
+              setEmail(newEmail);
             }}
           />
         </SwiperSlide>
       }
       {!withoutSignup &&
         <SwiperSlide className={`swiper-slide`}>
-          <CreatePasswordSlide />
+          <CreatePasswordSlide
+            email={email}
+          />
         </SwiperSlide>
       }
       {!withoutSignup &&
