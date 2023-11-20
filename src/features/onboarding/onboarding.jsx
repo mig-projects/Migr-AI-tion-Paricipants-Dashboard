@@ -20,7 +20,7 @@ const Onboarding = () => {
     })
   });
 
-  return <div id={'describe-your-experience'}
+  return <div id={'onboarding'}
               className={`d-flex flex-column`}
               style={{
                 height: height,
