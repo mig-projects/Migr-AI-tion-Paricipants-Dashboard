@@ -1,4 +1,4 @@
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Box, TextField} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
@@ -40,7 +40,7 @@ const ExperienceHeadlineSlide = () => {
       </Box>
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {

@@ -1,4 +1,4 @@
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import OnboardingFooter from "../footer/experience_footer.jsx";
 import PropTypes from "prop-types";
 import {useSwiper} from "swiper/react";
 import variables from "../../../variables.module.scss";

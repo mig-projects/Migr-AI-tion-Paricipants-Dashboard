@@ -124,7 +124,7 @@ const InProgressCard = ({
           <IconButton
             sx={iconButtonStyle}
             onClick={() => {
-              navigate('/onboarding', { state: { withoutSignup: true } });
+              navigate('/describe_your_experience', { state: { withoutSignup: true } });
             }}
           >
             <EditOutlined />

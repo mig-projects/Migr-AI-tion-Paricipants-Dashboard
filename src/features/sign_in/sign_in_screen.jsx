@@ -1,7 +1,7 @@
 import {Box, LinearProgress, Link, TextField, Typography} from "@mui/material";
-import OnboardingFooter from "../onboarding/footer/onboarding_footer.jsx";
+import ExperienceFooter from "../describe_your_experience/footer/experience_footer.jsx";
 import {useEffect, useState} from "react";
-import OnboardingHeader from "../onboarding/header/onboarding_header.jsx";
+import ExperienceHeader from "../describe_your_experience/header/experience_header.jsx";
 import PasswordField from "../../components/fields/password_field.jsx";
 import {isUserSignedIn, signIn} from "../supabase/authentication.js";
 import {toast} from "react-toastify";
@@ -45,7 +45,7 @@ const SignInScreen = () => {
                 height: height,
               }}
   >
-    <OnboardingHeader />
+    <ExperienceHeader />
 
     <LinearProgress variant="determinate" value={100}
                     style={{
@@ -91,11 +91,11 @@ const SignInScreen = () => {
         </Box>
 
         <Typography className={`mt-4`}>
-          Don&apos;t have an account? <Link href={'/onboarding'} className={`text-black text-decoration-underline`}>Sign up</Link>
+          Don&apos;t have an account? <Link href={'/describe_your_experience'} className={`text-black text-decoration-underline`}>Sign up</Link>
         </Typography>
       </div>
 
-      <OnboardingFooter
+      <ExperienceFooter
         nextButtonText={'Sign in'}
         isNextDisabled={!allowNext}
         onNext={async () => {

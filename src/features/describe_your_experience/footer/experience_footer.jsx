@@ -1,8 +1,8 @@
-import styles from './onboarding_footer.module.scss';
+import styles from './experience_footer.module.scss';
 import PropTypes from "prop-types";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
 
-const OnboardingFooter = ({
+const ExperienceFooter = ({
   showOnlyOne,
   nextButtonText,
   previousButtonText,
@@ -46,7 +46,7 @@ const OnboardingFooter = ({
   </div>
 }
 
-OnboardingFooter.propTypes = {
+ExperienceFooter.propTypes = {
   showOnlyOne: PropTypes.bool,
   nextButtonText: PropTypes.string,
   previousButtonText: PropTypes.string,
@@ -56,4 +56,4 @@ OnboardingFooter.propTypes = {
   isNextDisabled: PropTypes.bool,
 }
 
-export default OnboardingFooter;
+export default ExperienceFooter;

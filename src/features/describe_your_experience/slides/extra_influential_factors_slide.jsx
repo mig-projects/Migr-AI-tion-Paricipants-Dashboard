@@ -1,4 +1,4 @@
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Box, Chip, TextField} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
@@ -137,7 +137,7 @@ const ExtraInfluentialFactorsSlide = () => {
 
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {

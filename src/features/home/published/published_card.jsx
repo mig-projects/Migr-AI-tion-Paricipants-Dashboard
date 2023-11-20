@@ -160,7 +160,7 @@ const PublishedCard = ({
                         className={`d-flex flex-column gap-2`}
                       >
                         <MenuItem onClick={(e) => {
-                          navigate('/onboarding', { state: { withoutSignup: true } });
+                          navigate('/describe_your_experience', { state: { withoutSignup: true } });
                           handleClose(e);
                         }}
                           style={{

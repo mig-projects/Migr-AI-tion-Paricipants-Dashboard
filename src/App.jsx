@@ -4,7 +4,7 @@ import {
   Routes,
   Route, Navigate,
 } from 'react-router-dom';
-import Onboarding from "./features/onboarding/onboarding.jsx";
+import DescribeYourExperience from "./features/describe_your_experience/describe_your_experience.jsx";
 import HomeScreen from "./features/home/home_screen.jsx";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,7 @@ import SignInScreen from "./features/sign_in/sign_in_screen.jsx";
 const Routing = () => {
   return <Routes>
     <Route path="/sign-in" element={<SignInScreen />} />
-    <Route path="/onboarding" element={<Onboarding/>} />
+    <Route path="/onboarding" element={<DescribeYourExperience/>} />
     <Route path="/home" element={<HomeScreen />} />
     <Route path="*" element={<Navigate to='/home' />} />
   </Routes>;

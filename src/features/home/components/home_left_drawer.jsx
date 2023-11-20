@@ -30,7 +30,7 @@ const HomeLeftDrawer = ({
       text={'+ Add New Entry'}
       selected={false}
       onClick={() => {
-        navigate('/onboarding', { state: { withoutSignup: true } });
+        navigate('/describe_your_experience', { state: { withoutSignup: true } });
       }}
     />
 

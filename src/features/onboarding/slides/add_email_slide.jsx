@@ -1,4 +1,4 @@
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import OnboardingFooter from "../footer/experience_footer.jsx";
 import {Box, Link, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";

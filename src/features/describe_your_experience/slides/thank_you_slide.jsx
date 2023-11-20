@@ -1,4 +1,4 @@
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Box, Card, Chip} from "@mui/material";
 import variables from "../../../variables.module.scss";
 import {useSwiper} from "swiper/react";
@@ -84,7 +84,7 @@ const ThankYouSlide = () => {
       </Box>
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Submit'}
       onNext={() => {
         navigate('/');

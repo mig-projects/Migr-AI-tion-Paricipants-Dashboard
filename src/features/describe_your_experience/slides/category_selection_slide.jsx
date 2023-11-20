@@ -1,7 +1,7 @@
 import {useSwiper} from "swiper/react";
 import {useEffect, useState} from "react";
 import {Box, Chip, TextField} from "@mui/material";
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import ExperienceFooter from "../footer/experience_footer.jsx";
 
 const CategorySelectionSlide = () => {
   const swiper = useSwiper();
@@ -83,7 +83,7 @@ const CategorySelectionSlide = () => {
 
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       isNextDisabled={!allowNext}
       nextButtonText={'Next'}
       onNext={() => {

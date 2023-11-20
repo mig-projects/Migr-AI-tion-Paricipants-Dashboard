@@ -1,7 +1,7 @@
 import {useSwiper, useSwiperSlide} from "swiper/react";
 import {useEffect, useState} from "react";
 import variables from "../../../variables.module.scss";
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import ExperienceFooter from "../footer/experience_footer.jsx";
 import {delay} from "../../../utility_functions.js";
 import {Player} from "@lottiefiles/react-lottie-player";
 import HourGlass from "../../../assets/animations/hourglass.json";
@@ -48,7 +48,7 @@ const ReflectOnExperienceSlide = () => {
       </p>
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {

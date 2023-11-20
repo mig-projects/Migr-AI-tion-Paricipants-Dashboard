@@ -1,7 +1,7 @@
 import {useSwiper} from "swiper/react";
 import {useState} from "react";
 import {Checkbox, FormControlLabel} from "@mui/material";
-import OnboardingFooter from "../footer/onboarding_footer.jsx";
+import ExperienceFooter from "../footer/experience_footer.jsx";
 
 const WhoIsThisExperienceForSlide = () => {
   const swiper = useSwiper();
@@ -54,7 +54,7 @@ const WhoIsThisExperienceForSlide = () => {
       </div>
     </div>
 
-    <OnboardingFooter
+    <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={forMyself === null}
       onNext={() => {

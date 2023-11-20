@@ -2,7 +2,7 @@ import {AppBar, Toolbar, Typography} from "@mui/material";
 import Logo from "../../../assets/images/logo.svg";
 import variables from "../../../variables.module.scss";
 
-const OnboardingHeader = () => {
+const ExperienceHeader = () => {
   return <AppBar position="static" className={'appbar'} color={'transparent'}>
     <Toolbar style={{
       backgroundColor: 'white',
@@ -20,4 +20,4 @@ const OnboardingHeader = () => {
   </AppBar>
 }
 
-export default OnboardingHeader;
+export default ExperienceHeader;
