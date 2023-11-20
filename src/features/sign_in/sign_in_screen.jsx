@@ -1,7 +1,7 @@
 import {Box, LinearProgress, Link, TextField, Typography} from "@mui/material";
-import OnboardingFooter from "../onboaring/footer/onboarding_footer.jsx";
+import OnboardingFooter from "../onboarding/footer/onboarding_footer.jsx";
 import {useEffect, useState} from "react";
-import OnboardingHeader from "../onboaring/header/onboarding_header.jsx";
+import OnboardingHeader from "../onboarding/header/onboarding_header.jsx";
 import PasswordField from "../../components/fields/password_field.jsx";
 import {isUserSignedIn, signIn} from "../supabase/authentication.js";
 import {toast} from "react-toastify";

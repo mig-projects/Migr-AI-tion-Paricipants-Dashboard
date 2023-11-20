@@ -4,7 +4,7 @@ import {
   Routes,
   Route, Navigate,
 } from 'react-router-dom';
-import Onboarding from "./features/onboaring/onboarding.jsx";
+import Onboarding from "./features/onboarding/onboarding.jsx";
 import HomeScreen from "./features/home/home_screen.jsx";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
