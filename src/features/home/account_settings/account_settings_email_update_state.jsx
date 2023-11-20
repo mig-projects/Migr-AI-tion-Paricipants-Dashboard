@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import {useState} from "react";
 import {ArrowBack} from "@mui/icons-material";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
+import {updateEmail} from "../../supabase/authentication.js";
+import {toast} from "react-toastify";
 
 const AccountSettingsEmailUpdateState = ({
   onBack,
@@ -69,6 +71,19 @@ const AccountSettingsEmailUpdateState = ({
                         width: '200px',
                       }}
                       disabled={!allowSubmit}
+                      onClick={async () => {
+                        const {data, error} = await updateEmail(email);
+
+                        if (error) {
+                          toast.error(error.message);
+                          return;
+                        }
+
+                        toast.success('Confirmation emails have been sent to both new and old email address, please confirm the change by clicking both links.', {
+                          autoClose: 7000,
+                        });
+                        onBack();
+                      }}
         />
       </Box>
 
