@@ -9,6 +9,7 @@ import CustomButton from "../../../components/buttons/custom_button.jsx";
 import {useNavigate} from "react-router-dom";
 import {signOut} from "../../supabase/authentication.js";
 import {toast} from "react-toastify";
+import {AppRoutes} from "../../../App.jsx";
 
 const HomeHeader = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const HomeHeader = () => {
               return;
             }
 
-            navigate('/sign-in');
+            navigate(AppRoutes.SIGN_IN);
           }}
         >
           Log out

@@ -7,8 +7,21 @@ import CreatePasswordSlide from "./slides/create_password_slide.jsx";
 import variables from '../../variables.module.scss';
 import PropTypes from "prop-types";
 import ExperienceHeader from "../describe_your_experience/header/experience_header.jsx";
+import {useNavigate} from "react-router-dom";
+import {isUserSignedIn} from "../supabase/authentication.js";
+import {AppRoutes} from "../../App.jsx";
 
 const Onboarding = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isUserSignedIn().then((signedIn) => {
+      if (signedIn) {
+        navigate(AppRoutes.HOME);
+      }
+    });
+  }, [navigate]);
+
   const [onboardingProgress, setOnboardingProgress] = useState(0);
   const [height, setHeight] = useState(window.innerHeight);
 

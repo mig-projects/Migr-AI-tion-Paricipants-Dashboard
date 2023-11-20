@@ -7,6 +7,7 @@ import {signUp} from "../../supabase/authentication.js";
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
 import ExperienceFooter from "../../describe_your_experience/footer/experience_footer.jsx";
+import {AppRoutes} from "../../../App.jsx";
 
 const CreatePasswordSlide = ({
   email,
@@ -70,7 +71,7 @@ const CreatePasswordSlide = ({
         }
 
         toast.success('Signed Up Successfully!');
-        navigate('/home');
+        navigate(AppRoutes.SIGN_IN, { state: { freshSignUp: true } });
       }}
     />
   </div>

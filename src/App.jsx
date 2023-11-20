@@ -12,6 +12,13 @@ import SignInScreen from "./features/sign_in/sign_in_screen.jsx";
 import 'swiper/scss';
 import Onboarding from "./features/onboarding/onboarding.jsx";
 
+const AppRoutes = {
+  SIGN_IN: '/sign-in',
+  ONBOARDING: '/onboarding',
+  DESCRIBE_YOUR_EXPERIENCE: '/describe-your-experience',
+  HOME: '/home',
+};
+
 // This component is used to render the correct page based on the URL
 const Routing = () => {
   return <Routes>
@@ -43,4 +50,4 @@ function App() {
   </div>;
 }
 
-export default App;
+export {App as default, AppRoutes};

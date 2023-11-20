@@ -8,6 +8,7 @@ import InProgressCardsList from "./in_progress/in_progress_cards_list.jsx";
 import PublishedCardsList from "./published/published_cards_list.jsx";
 import {useNavigate} from "react-router-dom";
 import {isUserSignedIn} from "../supabase/authentication.js";
+import {AppRoutes} from "../../App.jsx";
 
 const HomeScreenState = {
   inProgress: 'inProgress',
@@ -21,7 +22,7 @@ export const HomeScreen = () => {
   useEffect(() => {
     isUserSignedIn().then((signedIn) => {
       if (!signedIn) {
-        navigate('/sign-in');
+        navigate(AppRoutes.SIGN_IN);
       }
     });
   }, [navigate]);

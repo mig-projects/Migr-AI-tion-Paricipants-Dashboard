@@ -5,16 +5,20 @@ import ExperienceHeader from "../describe_your_experience/header/experience_head
 import PasswordField from "../../components/fields/password_field.jsx";
 import {isUserSignedIn, signIn} from "../supabase/authentication.js";
 import {toast} from "react-toastify";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {validateEmail} from "../../utility_functions.js";
+import {AppRoutes} from "../../App.jsx";
 
 const SignInScreen = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const {freshSignUp} = location.state || false;
 
   useEffect(() => {
     isUserSignedIn().then((signedIn) => {
       if (signedIn) {
-        navigate('/home');
+        navigate(AppRoutes.HOME);
       }
     });
   }, [navigate]);
@@ -107,7 +111,12 @@ const SignInScreen = () => {
           }
 
           toast.success('Signed In Successfully!');
-          navigate('/home');
+
+          if (freshSignUp) {
+            navigate(AppRoutes.DESCRIBE_YOUR_EXPERIENCE, { state: { freshSignUp: freshSignUp } });
+          } else {
+            navigate(AppRoutes.HOME);
+          }
         }}
         showOnlyOne={true}
       />

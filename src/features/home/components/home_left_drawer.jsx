@@ -2,6 +2,7 @@ import {Card, Chip} from "@mui/material";
 import PropTypes from "prop-types";
 import {HomeScreenState} from "../home_screen.jsx";
 import {useNavigate} from "react-router-dom";
+import {AppRoutes} from "../../../App.jsx";
 
 const HomeLeftDrawer = ({
   currentScreenState,
@@ -30,7 +31,7 @@ const HomeLeftDrawer = ({
       text={'+ Add New Entry'}
       selected={false}
       onClick={() => {
-        navigate('/describe_your_experience', { state: { withoutSignup: true } });
+        navigate(AppRoutes.DESCRIBE_YOUR_EXPERIENCE);
       }}
     />
 
