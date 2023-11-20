@@ -72,7 +72,7 @@ const AccountSettingsEmailUpdateState = ({
                       }}
                       disabled={!allowSubmit}
                       onClick={async () => {
-                        const {data, error} = await updateEmail(email);
+                        const { error} = await updateEmail(email);
 
                         if (error) {
                           toast.error(error.message);

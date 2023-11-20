@@ -5,6 +5,8 @@ import {ArrowBack} from "@mui/icons-material";
 import PasswordField from "../../../components/fields/password_field.jsx";
 import {useState} from "react";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
+import {updatePassword} from "../../supabase/authentication.js";
+import {toast} from "react-toastify";
 
 const AccountSettingsPasswordUpdateState = ({
   onBack,
@@ -66,6 +68,17 @@ const AccountSettingsPasswordUpdateState = ({
                         width: '200px',
                       }}
                       disabled={!allowSubmit}
+                      onClick={async () => {
+                        const {error} = await updatePassword(password);
+
+                        if (error) {
+                          toast.error(error.message);
+                          return;
+                        }
+
+                        toast.success('Password updated successfully');
+                        onBack();
+                      }}
         />
       </Box>
 
