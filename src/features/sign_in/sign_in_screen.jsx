@@ -3,9 +3,10 @@ import OnboardingFooter from "../onboaring/footer/onboarding_footer.jsx";
 import {useEffect, useState} from "react";
 import OnboardingHeader from "../onboaring/header/onboarding_header.jsx";
 import PasswordField from "../../components/fields/password_field.jsx";
-import {signIn, signUp} from "../supabase/authentication.js";
+import {signIn} from "../supabase/authentication.js";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
+import {validateEmail} from "../../utility_functions.js";
 
 const SignInScreen = () => {
   const [allowNext, setAllowNext] = useState(false);
@@ -20,6 +21,15 @@ const SignInScreen = () => {
       setHeight(window.innerHeight);
     })
   });
+
+  useEffect(() => {
+    setAllowNext(false);
+    if (email !== '' && password !== '') {
+      if (validateEmail(email) && password.length >= 8) {
+        setAllowNext(true);
+      }
+    }
+  }, [email, password]);
 
   return <div id={'sign-in-screen'} className={`d-flex flex-column`}
               style={{
@@ -57,7 +67,6 @@ const SignInScreen = () => {
             fullWidth={true}
             onChange={(e) => {
               setEmail(e.target.value);
-              setAllowNext(e.target.validity.valid);
             }}
           />
           <PasswordField
@@ -68,7 +77,6 @@ const SignInScreen = () => {
             error={'Password must be at least 8 characters'}
             onChange={(e) => {
               setPassword(e.target.value);
-              setAllowNext(e.target.validity.valid && e.target.value.length > 8);
             }}
           />
         </Box>
@@ -82,7 +90,7 @@ const SignInScreen = () => {
         nextButtonText={'Sign in'}
         isNextDisabled={!allowNext}
         onNext={async () => {
-          const {data, error} = await signIn('test@test.com', 'test1234');
+          const {data, error} = await signIn(email, password);
 
           if (error) {
             toast.error(error.message);
