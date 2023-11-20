@@ -95,7 +95,7 @@ const SignInScreen = () => {
         </Box>
 
         <Typography className={`mt-4`}>
-          Don&apos;t have an account? <Link href={'/describe_your_experience'} className={`text-black text-decoration-underline`}>Sign up</Link>
+          Don&apos;t have an account? <Link href={AppRoutes.ONBOARDING} className={`text-black text-decoration-underline`}>Sign up</Link>
         </Typography>
       </div>
 

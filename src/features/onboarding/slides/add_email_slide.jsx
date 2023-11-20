@@ -3,6 +3,7 @@ import {useState} from "react";
 import {useSwiper} from "swiper/react";
 import PropTypes from "prop-types";
 import ExperienceFooter from "../../describe_your_experience/footer/experience_footer.jsx";
+import {AppRoutes} from "../../../App.jsx";
 
 const AddEmailSlide = ({
   onEmailSubmit,
@@ -41,7 +42,7 @@ const AddEmailSlide = ({
       </Box>
 
       <Typography className={`mt-4`}>
-        Already have an account? <Link href={'/sign-in'} className={`text-black text-decoration-underline`}>Sign in</Link>
+        Already have an account? <Link href={AppRoutes.SIGN_IN} className={`text-black text-decoration-underline`}>Sign in</Link>
       </Typography>
     </div>
 
