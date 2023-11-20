@@ -1,14 +1,18 @@
 import {
   AppBar,
-  Button,
   Toolbar,
   Typography
 } from "@mui/material";
 import Logo from "../../../assets/images/logo.svg";
 import variables from "../../../variables.module.scss";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
+import {useNavigate} from "react-router-dom";
+import {signOut} from "../../supabase/authentication.js";
+import {toast} from "react-toastify";
 
 const HomeHeader = () => {
+  const navigate = useNavigate();
+
   return <AppBar component="nav" position="static" className={'appbar'} color={'transparent'}>
     <Toolbar style={{
       height: '80px',
@@ -29,12 +33,27 @@ const HomeHeader = () => {
         <CustomButton text={'HR Bias Explorer'} sx={{
           width: '180px',
         }} />
-        <Button className={`text-black`} sx={{
-          width: '100px',
-          borderRadius: '8px',
-        }} >
+        <CustomButton
+          text={'Log out'}
+          variant={`outlined`}
+          className={`text-black border-0`}
+          sx={{
+            width: '100px',
+            borderRadius: '8px',
+          }}
+          onClick={async () => {
+            const {error} = await signOut();
+
+            if (error) {
+              toast.error(error.message);
+              return;
+            }
+
+            navigate('/sign-in');
+          }}
+        >
           Log out
-        </Button>
+        </CustomButton>
       </div>
     </Toolbar>
   </AppBar>
