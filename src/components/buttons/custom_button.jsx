@@ -1,5 +1,6 @@
-import {Button} from "@mui/material";
+import {Button, CircularProgress} from "@mui/material";
 import PropTypes from "prop-types";
+import {useState} from "react";
 
 const CustomButton = ({
   onClick,
@@ -9,8 +10,10 @@ const CustomButton = ({
   className,
   color = 'primary',
   sx,
-}) => (
-  <Button
+}) => {
+  const [loading, setLoading] = useState(false);
+
+  return <Button
     variant={variant ?? 'contained'}
     size={'large'}
     style={{
@@ -19,14 +22,18 @@ const CustomButton = ({
     }}
     color={color}
     fullWidth
-    onClick={onClick}
+    onClick={async () => {
+      setLoading(true);
+      await onClick();
+      setLoading(false);
+    }}
     disabled={disabled}
     className={className}
     sx={sx}
   >
-    {text}
-  </Button>
-);
+    {loading ? <CircularProgress  size={25} color={ variant === "outlined" ? 'primary' : "secondary" }/> : text}
+  </Button>;
+}
 
 CustomButton.propTypes = {
   onClick: PropTypes.func,
