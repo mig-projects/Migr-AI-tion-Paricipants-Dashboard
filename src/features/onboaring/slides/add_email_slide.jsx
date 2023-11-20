@@ -1,16 +1,27 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import {Box, Link, TextField, Typography} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
 import PropTypes from "prop-types";
+import {isUserSignedIn} from "../../supabase/authentication.js";
+import {useNavigate} from "react-router-dom";
 
 const AddEmailSlide = ({
   onEmailSubmit,
 }) => {
   const swiper = useSwiper();
+  const navigate = useNavigate();
   const [allowNext, setAllowNext] = useState(false);
 
   const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    isUserSignedIn().then((signedIn) => {
+      if (signedIn) {
+        navigate('/home');
+      }
+    });
+  }, [navigate]);
 
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >

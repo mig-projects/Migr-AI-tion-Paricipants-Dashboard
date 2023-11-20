@@ -3,18 +3,27 @@ import OnboardingFooter from "../onboaring/footer/onboarding_footer.jsx";
 import {useEffect, useState} from "react";
 import OnboardingHeader from "../onboaring/header/onboarding_header.jsx";
 import PasswordField from "../../components/fields/password_field.jsx";
-import {signIn} from "../supabase/authentication.js";
+import {isUserSignedIn, signIn} from "../supabase/authentication.js";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {validateEmail} from "../../utility_functions.js";
 
 const SignInScreen = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isUserSignedIn().then((signedIn) => {
+      if (signedIn) {
+        navigate('/home');
+      }
+    });
+  }, [navigate]);
+
   const [allowNext, setAllowNext] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [height, setHeight] = useState(window.innerHeight);
-  const navigate = useNavigate();
 
   useEffect(() => {
     window.addEventListener('resize', () => {

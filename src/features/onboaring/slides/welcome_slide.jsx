@@ -6,12 +6,23 @@ import {Card, CardContent, Checkbox, FormControlLabel, Link, Typography} from "@
 import DataLossPrevention from "../../../assets/icons/data_loss_prevention.svg";
 import AddChart from "../../../assets/icons/add_chart.svg";
 import ZoomInMap from "../../../assets/icons/zoom_in_map.svg";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {isUserSignedIn} from "../../supabase/authentication.js";
+import {useNavigate} from "react-router-dom";
 
 const WelcomeSlide = () => {
   const swiper = useSwiper();
+  const navigate = useNavigate();
 
   const [allowNext, setAllowNext] = useState(false);
+
+  useEffect(() => {
+    isUserSignedIn().then((signedIn) => {
+      if (signedIn) {
+        navigate('/home');
+      }
+    });
+  }, [navigate]);
 
   const CustomCard = ({text, image}) => <Card>
     <CardContent
