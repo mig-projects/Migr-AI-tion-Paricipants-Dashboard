@@ -6,11 +6,13 @@ import PasswordField from "../../../components/fields/password_field.jsx";
 import {toast} from "react-toastify";
 import {signUp} from "../../supabase/authentication.js";
 import PropTypes from "prop-types";
+import {useNavigate} from "react-router-dom";
 
 const CreatePasswordSlide = ({
   email,
 }) => {
   const swiper = useSwiper();
+  const navigate = useNavigate();
   const [allowNext, setAllowNext] = useState(false);
 
   const [password, setPassword] = useState('');
@@ -68,7 +70,7 @@ const CreatePasswordSlide = ({
         }
 
         toast.success('Signed Up Successfully!');
-        console.log(data);
+        navigate('/home');
       }}
     />
   </div>
