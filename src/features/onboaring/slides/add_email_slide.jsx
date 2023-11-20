@@ -1,5 +1,5 @@
 import OnboardingFooter from "../footer/onboarding_footer.jsx";
-import {Box, TextField} from "@mui/material";
+import {Box, Link, TextField, Typography} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
 
@@ -36,6 +36,10 @@ const AddEmailSlide = () => {
           }}
         />
       </Box>
+
+      <Typography className={`mt-4`}>
+        Already have an account? <Link to={'/sign-in'}>Sign in</Link>
+      </Typography>
     </div>
 
     <OnboardingFooter
