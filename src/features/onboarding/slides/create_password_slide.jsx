@@ -70,7 +70,7 @@ const CreatePasswordSlide = ({
           return;
         }
 
-        toast.success('Signed Up Successfully!');
+        toast.success('Signed Up Successfully!\nPlease confirm your email & Sign in');
         navigate(AppRoutes.SIGN_IN, { state: { freshSignUp: true } });
       }}
     />
