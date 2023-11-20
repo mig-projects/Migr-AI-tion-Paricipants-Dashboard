@@ -14,9 +14,21 @@ import variables from '../../variables.module.scss';
 import PropTypes from "prop-types";
 import ExperienceHeader from "./header/experience_header.jsx";
 import TakeABreakSlide from "../onboarding/slides/take_a_break_slide.jsx";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
+import {isUserSignedIn} from "../supabase/authentication.js";
+import {AppRoutes} from "../../App.jsx";
 
 const DescribeYourExperience = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    isUserSignedIn().then((signedIn) => {
+      if (!signedIn) {
+        navigate(AppRoutes.SIGN_IN);
+      }
+    });
+  }, [navigate]);
+
   const [onboardingProgress, setOnboardingProgress] = useState(0);
   const [height, setHeight] = useState(window.innerHeight);
 
