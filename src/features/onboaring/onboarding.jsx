@@ -28,6 +28,8 @@ const Onboarding = () => {
   const location = useLocation();
   const {withoutSignup} = location.state || {};
 
+  let email = '';
+
   useEffect(() => {
     window.addEventListener('resize', () => {
       setHeight(window.innerHeight);
@@ -72,7 +74,11 @@ const Onboarding = () => {
       }
       {!withoutSignup &&
         <SwiperSlide className={`swiper-slide`}>
-          <AddEmailSlide />
+          <AddEmailSlide
+            onEmailSubmit={(newEmail) => {
+              email = newEmail;
+            }}
+          />
         </SwiperSlide>
       }
       {!withoutSignup &&

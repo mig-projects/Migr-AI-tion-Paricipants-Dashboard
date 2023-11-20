@@ -2,8 +2,11 @@ import OnboardingFooter from "../footer/onboarding_footer.jsx";
 import {Box, Link, TextField, Typography} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
+import PropTypes from "prop-types";
 
-const AddEmailSlide = () => {
+const AddEmailSlide = ({
+  onEmailSubmit,
+}) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
@@ -46,6 +49,7 @@ const AddEmailSlide = () => {
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
       onNext={() => {
+        onEmailSubmit(email);
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -55,5 +59,9 @@ const AddEmailSlide = () => {
     />
   </div>
 }
+
+AddEmailSlide.propTypes = {
+  onEmailSubmit: PropTypes.func,
+};
 
 export default AddEmailSlide;

@@ -3,8 +3,13 @@ import {Box} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
 import PasswordField from "../../../components/fields/password_field.jsx";
+import {toast} from "react-toastify";
+import {signUp} from "../../supabase/authentication.js";
+import PropTypes from "prop-types";
 
-const CreatePasswordSlide = () => {
+const CreatePasswordSlide = ({
+  email,
+}) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
@@ -48,17 +53,29 @@ const CreatePasswordSlide = () => {
     </div>
 
     <OnboardingFooter
-      nextButtonText={'Next'}
+      nextButtonText={'Sign Up'}
       isNextDisabled={!allowNext}
       previousButtonText={'Back'}
       onPrevious={() => {
         swiper.slidePrev();
       }}
-      onNext={() => {
-        swiper.slideNext();
+      onNext={async () => {
+        const {data, error} = await signUp(email, password);
+
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+
+        toast.success('Signed Up Successfully!');
+        console.log(data);
       }}
     />
   </div>
+}
+
+CreatePasswordSlide.propTypes = {
+  email: PropTypes.string,
 }
 
 export default CreatePasswordSlide;
