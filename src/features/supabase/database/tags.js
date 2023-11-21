@@ -3,7 +3,7 @@ import supabase from "../configuration.js";
 // Fetch all tags from the database
 const fetchTags = async () => {
   const { data: tags, error: tagsError } = await supabase.from('tags').select();
-  if (tagsError) return { data: null, tagsError: error };
+  if (tagsError) return { data: null, error: tagsError };
 
   const { data: tag_groups, error} = await supabase.from('tag_groups').select();
   if (error) return { data: null, error };

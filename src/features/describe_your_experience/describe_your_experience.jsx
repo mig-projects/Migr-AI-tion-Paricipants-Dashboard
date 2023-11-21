@@ -8,7 +8,6 @@ import ExperienceHeadlineSlide from "./slides/experience_headline_slide.jsx";
 import InfluentialFactorsSlide from "./slides/influential_factors_slide.jsx";
 import ThankYouSlide from "./slides/thank_you_slide.jsx";
 import WhoIsThisExperienceForSlide from "./slides/who_is_this_experience_for_slide.jsx";
-import ExtraInfluentialFactorsSlide from "./slides/extra_influential_factors_slide.jsx";
 import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
 import variables from '../../variables.module.scss';
 import PropTypes from "prop-types";
@@ -57,7 +56,7 @@ const DescribeYourExperience = () => {
     />
 
     <Swiper
-      initialSlide={0}
+      initialSlide={2}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
@@ -100,9 +99,6 @@ const DescribeYourExperience = () => {
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <ExperienceHeadlineSlide />
-      </SwiperSlide>
-      <SwiperSlide className={`swiper-slide`}>
-        <ExtraInfluentialFactorsSlide />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <ThankYouSlide />
