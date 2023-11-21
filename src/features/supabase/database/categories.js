@@ -6,4 +6,4 @@ const fetchCategories = async () => {
   return { data, error };
 }
 
-export { fetchCategories } from "./categories.js";
+export { fetchCategories };

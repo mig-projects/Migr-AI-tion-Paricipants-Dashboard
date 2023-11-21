@@ -16,4 +16,4 @@ const fetchTags = async () => {
   return { data: tag_groups_by_id, error };
 }
 
-export { fetchTags } from "./tags.js";
+export { fetchTags };
