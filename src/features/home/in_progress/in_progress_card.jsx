@@ -63,12 +63,12 @@ const InProgressCard = ({
   return <SlideInCard>
     <div className={`d-flex flex-column gap-2`}>
       {
-        experience.entry_for && <Typography className={`fs-5 fw-semibold`}
-                                  style={{
-                                    color: '#7438E2',
-                                  }}
+        <Typography className={`fs-5 fw-semibold`}
+                    style={{
+                      color: '#7438E2',
+                    }}
         >
-          {experience.entry_for} Entry
+          {experience.entry_for ?? 'Dashboard'} Entry
         </Typography>
       }
 
