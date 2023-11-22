@@ -40,6 +40,8 @@ const DescribeYourExperience = () => {
     })
   });
 
+  const [experienceID, setExperienceID] = useState(null);
+
   return <div id={'describe_your_experience'}
               className={`d-flex flex-column`}
               style={{
@@ -56,7 +58,7 @@ const DescribeYourExperience = () => {
     />
 
     <Swiper
-      initialSlide={5}
+      initialSlide={0}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
@@ -81,7 +83,10 @@ const DescribeYourExperience = () => {
         <WhoIsThisExperienceForSlide />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
-        <DiscriminationNameSlide />
+        <DiscriminationNameSlide
+          experienceID={experienceID}
+          setExperienceID={setExperienceID}
+        />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <InfluentialFactorsSlide />

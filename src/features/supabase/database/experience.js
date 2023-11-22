@@ -1,24 +1,26 @@
-import supabase from "./configuration.js";
+import supabase from "../configuration.js";
 import PropTypes from "prop-types";
 
 // Insert an experience in the database
 const insertNewExperience = async ({
   // List of discrimination names
   discriminationNameList,
-
-  // Experience text
-  experience_text,
 }) => {
-  const { data, error } = await supabase.from('experiences').insert({
-    discrimination_name_list: discriminationNameList,
-    text: experience_text,
-  });
-  return { id: data.id, error };
+  const { data, error: experienceError } = await supabase.from('experiences').insert({}).select();
+  if (experienceError || discriminationNameList.length === 0) return { data, error: experienceError };
+
+  const experienceID = data[0].id;
+  const { error } = await supabase.from('discrimination_names').insert(discriminationNameList.map((discriminationName) => {
+    return {
+      experience_id: experienceID,
+      name: discriminationName,
+    };
+  }));
+  return { data, error };
 }
 
 insertNewExperience.propTypes = {
-  discriminationNameList: PropTypes.array.isRequired,
-  experience_text: PropTypes.string.isRequired,
+  discriminationNameList: PropTypes.array,
 }
 
 // Update an experience text in the database
@@ -43,20 +45,26 @@ updateExperienceText.propTypes = {
 // Update the discrimination names of the experience
 const updateExperienceDiscriminationNames = async ({
   // Experience ID
-  experience_id,
+  experienceID,
 
   // List of discrimination names
-  discrimination_name_list,
+  discriminationNameList,
 }) => {
-  const { error } = await supabase.from('experiences').update({
-    discrimination_name_list: discrimination_name_list,
-  }).eq('id', experience_id);
+  const { error: deletionError } = await supabase.from('discrimination_names').delete().eq('experience_id', experienceID);
+  if (deletionError) return { error: deletionError };
+
+  const { error } = await supabase.from('discrimination_names').insert(discriminationNameList.map((discriminationName) => {
+    return {
+      experience_id: experienceID,
+      name: discriminationName,
+    };
+  }));
   return { error };
 }
 
 updateExperienceDiscriminationNames.propTypes = {
-  experience_id: PropTypes.string.isRequired,
-  discrimination_name_list: PropTypes.array.isRequired,
+  experienceID: PropTypes.string.isRequired,
+  discriminationNameList: PropTypes.array.isRequired,
 }
 
 // Update the headline of the experience

@@ -2,11 +2,17 @@ import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Autocomplete, Box, TextField} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
+import PropTypes from "prop-types";
+import {insertNewExperience, updateExperienceDiscriminationNames} from "../../supabase/database/experience.js";
+import {toast} from "react-toastify";
 
-const DiscriminationNameSlide = () => {
+const DiscriminationNameSlide = ({
+  experienceID,
+  setExperienceID,
+}) => {
   const swiper = useSwiper();
 
-  const [discriminationName, setDiscriminationName] = useState(null);
+  const [discriminationNameList, setDiscriminationNameList] = useState([]);
   const discriminationNameOptions = [
     'Aegism',
     'Sexism',
@@ -34,8 +40,7 @@ const DiscriminationNameSlide = () => {
           id="discrimination-name"
           options={discriminationNameOptions}
           onChange={(event, newValue) => {
-            setDiscriminationName(newValue);
-            console.log(newValue);
+            setDiscriminationNameList(newValue);
           }}
           renderInput={(params) => (
             <TextField
@@ -49,7 +54,28 @@ const DiscriminationNameSlide = () => {
 
     <ExperienceFooter
       nextButtonText={'Next'}
-      onNext={() => {
+      onNext={async () => {
+        if (experienceID) {
+          const {error} = await updateExperienceDiscriminationNames({
+            experienceID,
+            discriminationNameList,
+          });
+
+          if (error) {
+            toast.error(error.message);
+            return;
+          }
+        } else {
+          const {data, error} = await insertNewExperience({
+            discriminationNameList,
+          });
+          setExperienceID(data[0].id);
+          if (error) {
+            toast.error(error.message);
+            return;
+          }
+        }
+
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -59,5 +85,10 @@ const DiscriminationNameSlide = () => {
     />
   </div>
 }
+
+DiscriminationNameSlide.propTypes = {
+  experienceID: PropTypes.number,
+  setExperienceID: PropTypes.func,
+};
 
 export default DiscriminationNameSlide;
