@@ -76,6 +76,9 @@ const DiscriminationNameSlide = ({
           }
         }
 
+        toast.success('Progress saved!', {
+          autoClose: 1000,
+        });
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
