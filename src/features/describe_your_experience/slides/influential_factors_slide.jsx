@@ -6,8 +6,13 @@ import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
 import CustomSelect from "../components/custom_select.jsx";
 import {fetchTags} from "../../supabase/database/tags.js";
+import PropTypes from "prop-types";
+import {updateExperienceTags} from "../../supabase/database/experience_tags.js";
+import {toast} from "react-toastify";
 
-const InfluentialFactorsSlide = () => {
+const InfluentialFactorsSlide = ({
+  experienceID,
+}) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
@@ -91,7 +96,6 @@ const InfluentialFactorsSlide = () => {
                     ...selectedTags,
                     [tagGroup]: value,
                   });
-                  console.log(selectedTags);
                 }}
                 value={
                   selectedTags[tagGroup] === undefined ? [] : selectedTags[tagGroup]
@@ -142,7 +146,27 @@ const InfluentialFactorsSlide = () => {
     <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
-      onNext={() => {
+      onNext={async () => {
+        const tagIDsList = [];
+        Object.keys(selectedTags).forEach((tagGroup) => {
+          selectedTags[tagGroup].forEach((tag) => {
+            tagIDsList.push(tag.id);
+          });
+        });
+
+        const {error} = await updateExperienceTags({
+          experienceID,
+          tagIDsList,
+          otherTagText: otherSelected ? otherFactor : null,
+        });
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+
+        toast.success('Progress saved!', {
+          autoClose: 1000,
+        });
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -152,5 +176,9 @@ const InfluentialFactorsSlide = () => {
     />
   </div>
 }
+
+InfluentialFactorsSlide.propTypes = {
+  experienceID: PropTypes.number,
+};
 
 export default InfluentialFactorsSlide;

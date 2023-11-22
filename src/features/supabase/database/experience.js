@@ -86,25 +86,6 @@ updateExperienceHeadline.propTypes = {
   headline_text: PropTypes.string.isRequired,
 }
 
-// Update the tags of the experience
-const updateExperienceTags = async ({
-  // Experience ID
-  experience_id,
-
-  // List of tags
-  tags_list,
-}) => {
-  const { error } = await supabase.from('experiences').update({
-    tags: tags_list,
-  }).eq('id', experience_id);
-  return { error };
-}
-
-updateExperienceTags.propTypes = {
-  experience_id: PropTypes.string.isRequired,
-  tags_list: PropTypes.array.isRequired,
-}
-
 // Update Experience Categories
 const updateExperienceCategories = async ({
   // Experience ID
@@ -129,6 +110,5 @@ export {
   updateExperienceHeadline,
   updateExperienceText,
   updateExperienceDiscriminationNames,
-  updateExperienceTags,
   updateExperienceCategories,
 };
