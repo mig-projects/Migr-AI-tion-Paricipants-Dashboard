@@ -2,14 +2,13 @@ import {Checkbox, FormControl, ListItemText, MenuItem, Select} from "@mui/materi
 import PropTypes from "prop-types";
 
 const CustomSelect = ({
-  key,
   onChange,
   value,
   title,
   list,
   greyedList,
 }) => {
-  return <FormControl variant={`outlined`} sx={{ m: 1, minWidth: 150 }} key={key}>
+  return <FormControl variant={`outlined`} sx={{ m: 1, minWidth: 150 }}>
     <Select
       sx={{
         '.MuiOutlinedInput-notchedOutline': { border: 0 },
@@ -46,7 +45,6 @@ const CustomSelect = ({
 }
 
 CustomSelect.propTypes = {
-  key: PropTypes.any,
   onChange: PropTypes.func,
   value: PropTypes.array,
   title: PropTypes.string,
