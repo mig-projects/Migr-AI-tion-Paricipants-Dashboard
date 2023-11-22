@@ -86,9 +86,28 @@ updateExperienceHeadline.propTypes = {
   headline_text: PropTypes.string.isRequired,
 }
 
+// Update hide Experience text and published status
+const updateExperienceHideAndPublished = async ({
+  // Experience ID
+  experienceID,
+
+  // Hide experience text
+  hideExperienceText,
+
+  // Published status
+  published,
+}) => {
+  const { error } = await supabase.from('experiences').update({
+    hide_text: hideExperienceText,
+    published: published,
+  }).eq('id', experienceID);
+  return { error };
+}
+
 export {
   insertNewExperience,
   updateExperienceHeadline,
   updateExperienceText,
   updateExperienceDiscriminationNames,
+  updateExperienceHideAndPublished,
 };

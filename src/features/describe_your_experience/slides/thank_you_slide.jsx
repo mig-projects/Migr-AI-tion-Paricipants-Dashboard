@@ -4,8 +4,14 @@ import variables from "../../../variables.module.scss";
 import {useSwiper} from "swiper/react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
+import PropTypes from "prop-types";
+import {updateExperienceHideAndPublished} from "../../supabase/database/experience.js";
+import {toast} from "react-toastify";
+import {AppRoutes} from "../../../App.jsx";
 
-const ThankYouSlide = () => {
+const ThankYouSlide = ({
+  experienceID,
+}) => {
   const swiper = useSwiper();
   const navigate = useNavigate();
 
@@ -86,8 +92,23 @@ const ThankYouSlide = () => {
 
     <ExperienceFooter
       nextButtonText={'Submit'}
-      onNext={() => {
-        navigate('/');
+      onNext={async () => {
+        const {error} = await updateExperienceHideAndPublished({
+          experienceID,
+          hideExperienceText: !detailedSelected,
+          published: true,
+        });
+
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+
+        toast.success('Experience published successfully!', {
+          autoClose: 1000,
+        });
+
+        navigate(AppRoutes.HOME);
       }}
       previousButtonText={"Back"}
       onPrevious={() => {
@@ -96,5 +117,9 @@ const ThankYouSlide = () => {
     />
   </div>
 }
+
+ThankYouSlide.propTypes = {
+  experienceID: PropTypes.number,
+};
 
 export default ThankYouSlide;
