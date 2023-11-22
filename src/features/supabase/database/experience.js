@@ -91,10 +91,20 @@ const fetchAllExperiences = async () => {
   return { data, error };
 }
 
+// Delete an experience from the database
+const deleteExperience = async ({
+  // Experience ID
+  experienceID,
+}) => {
+  const { error } = await supabase.from('experiences').delete().eq('id', experienceID);
+  return { error };
+}
+
 export {
   insertNewExperience,
   updateExperienceHeadline,
   updateExperienceText,
   updateExperienceHideAndPublished,
   fetchAllExperiences,
+  deleteExperience,
 };

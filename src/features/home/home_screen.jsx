@@ -11,6 +11,7 @@ import {isUserSignedIn} from "../supabase/authentication.js";
 import {AppRoutes} from "../../App.jsx";
 import {fetchAllExperiences} from "../supabase/database/experience.js";
 import {CircularProgress, Typography} from "@mui/material";
+import CustomButton from "../../components/buttons/custom_button.jsx";
 
 const HomeScreenState = {
   inProgress: 'inProgress',
@@ -35,6 +36,8 @@ export const HomeScreen = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -46,17 +49,20 @@ export const HomeScreen = () => {
       }
       setLoading(false);
     });
-  }, []);
+  }, [refresh]);
 
   const centered = {
     height: '100%',
     margin: 'auto',
   }
 
+  const refreshFunction = () => {
+    setRefresh(!refresh);
+  }
+
   return <div id={`home`} className={`overflow-x-hidden`}>
     <HomeHeader />
 
-    {document.body.getAttribute('')}
     <div id={`home-content`}>
       <EmailCard />
 
@@ -78,10 +84,12 @@ export const HomeScreen = () => {
                 homeScreenState === HomeScreenState.inProgress ?
                   <InProgressCardsList
                     experiences={experiences.filter((experience) => !experience.published)}
+                    refreshFunction={refreshFunction}
                   /> :
                   homeScreenState === HomeScreenState.published ?
                     <PublishedCardsList
                       experiences={experiences.filter((experience) => experience.published)}
+                      refreshFunction={refreshFunction}
                     /> : <p>Very Weird! Refresh pls...</p>
         }
       </div>

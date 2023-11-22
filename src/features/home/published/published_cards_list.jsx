@@ -5,14 +5,12 @@ import {Typography} from "@mui/material";
 import CustomChip from "../components/custom_chip.jsx";
 import {AppRoutes} from "../../../App.jsx";
 import PropTypes from "prop-types";
-import {useEffect, useState} from "react";
-import {fetchExperienceTags} from "../../supabase/database/experience_tags.js";
 
 const PublishedCardsList = ({
   experiences,
+  refreshFunction,
 }) => {
   const navigate = useNavigate();
-  const [tags, setTags] = useState([]);
 
   if (experiences.length === 0) {
     return <SlideInCard>
@@ -55,6 +53,7 @@ const PublishedCardsList = ({
 
 PublishedCardsList.propTypes = {
   experiences: PropTypes.array,
+  refreshFunction: PropTypes.func,
 }
 
 export default PublishedCardsList;

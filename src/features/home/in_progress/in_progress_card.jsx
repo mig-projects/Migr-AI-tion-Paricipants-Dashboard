@@ -10,13 +10,18 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import {
-  ArrowDropDown, DeleteOutlined, EditOutlined,
+  ArrowDropDown, DeleteOutlined, EditOutlined, Warning,
 } from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import CustomButton from "../../../components/buttons/custom_button.jsx";
+import CustomDialog from "../../../components/dialogs/custom_dialog.jsx";
+import {deleteExperience} from "../../supabase/database/experience.js";
+import {toast} from "react-toastify";
 
 const InProgressCard = ({
   experience,
+  refreshFunction,
 }) => {
   const BorderLinearProgress = styled(LinearProgress)(() => ({
     height: 20,
@@ -38,6 +43,7 @@ const InProgressCard = ({
 
   const navigate = useNavigate();
 
+  const [openDialog, setOpenDialog] = useState(false);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -80,9 +86,19 @@ const InProgressCard = ({
           }}
         />
 
-        <Typography className={`fw-semibold`}>
+        <Typography className={`fw-semibold flex-grow-1`}>
           {progress * 100}% Complete
         </Typography>
+
+        <CustomButton
+          text={'Publish'}
+          sx={{
+            width: '150px',
+          }}
+          onClick={async () => {
+
+          }}
+        />
       </div>
 
       {
@@ -151,6 +167,9 @@ const InProgressCard = ({
 
           <IconButton
             sx={iconButtonStyle}
+            onClick={() => {
+              setOpenDialog(true);
+            }}
           >
             <DeleteOutlined />
           </IconButton>
@@ -158,11 +177,42 @@ const InProgressCard = ({
       </div>
 
     </div>
+
+    <CustomDialog
+      title={<div className={`d-flex gap-3`}>
+        <Warning sx={{
+          color: 'red',
+        }}/>
+        <Typography className={`fw-bold`}>
+          Delete Entry
+        </Typography>
+      </div>}
+      description={'Are you sure you want to delete this entry?'}
+      open={openDialog}
+      handleClose={() => {
+        setOpenDialog(false);
+      }}
+      onAgree={async () => {
+        const {error} = await deleteExperience({
+          experienceID: experience.id,
+        });
+
+        if (error) {
+          toast.error(error.message);
+        }
+
+        toast.success('Entry deleted successfully.', {
+          autoClose: 1000,
+        });
+        refreshFunction();
+      }}
+    />
   </SlideInCard>
 }
 
 InProgressCard.propTypes = {
   experience: PropTypes.object,
+  refreshFunction: PropTypes.func,
 };
 
 export default InProgressCard;

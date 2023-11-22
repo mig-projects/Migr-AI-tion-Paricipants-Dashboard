@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 const InProgressCardsList = ({
   experiences,
+  refreshFunction,
 }) => {
   const navigate = useNavigate();
 
@@ -41,6 +42,7 @@ const InProgressCardsList = ({
         return <InProgressCard
           key={experience.id}
           experience={experience}
+          refreshFunction={refreshFunction}
         />
       })
     }
@@ -49,6 +51,7 @@ const InProgressCardsList = ({
 
 InProgressCardsList.propTypes = {
   experiences: PropTypes.array,
+  refreshFunction: PropTypes.func,
 }
 
 export default InProgressCardsList;
