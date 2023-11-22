@@ -14,9 +14,6 @@ import {
 } from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {fetchExperienceTags} from "../../supabase/database/experience_tags.js";
-import {PulseLoader} from "react-spinners";
-import {fetchExperienceCategories} from "../../supabase/database/experience_categories.js";
 
 const InProgressCard = ({
   experience,
@@ -40,16 +37,11 @@ const InProgressCard = ({
   };
 
   const navigate = useNavigate();
-  
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
+
   const [entryFor, setEntryFor] = useState(null);
   const [progress, setProgress] = useState(0);
 
-  const [loadingTags, setLoadingTags] = useState(false);
-  const [tagsError, setTagsError] = useState(null);
-
-  const calculateProgress = () => {
+  useEffect(() => {
     const maxPoints = 4;
 
     let progress = 0;
@@ -59,53 +51,15 @@ const InProgressCard = ({
     if (experience.text) {
       progress += 1;
     }
-    if (tags.length > 0) {
+    if (experience.tags_list.length > 0) {
       progress += 1;
     }
-    if (categories.length > 0) {
+    if (experience.categories_list.length > 0) {
       progress += 1;
     }
 
     setProgress(progress / maxPoints);
-  }
-
-  useEffect(() => {
-    calculateProgress();
-  }, [tags, categories, experience.id]);
-
-  const fetchTagsAndCategories = async () => {
-    setLoadingTags(true);
-    setTagsError(null);
-    await fetchExperienceTags({
-      experienceID: experience.id,
-    }).then(({data, error}) => {
-      if (error) {
-        setTagsError(error);
-      } else {
-        setTags(data.map((tag) => ({
-          id: tag.tag_id,
-          name: tag.tags.name,
-        })));
-      }
-
-      setLoadingTags(false);
-    });
-
-    await fetchExperienceCategories({
-      experienceID: experience.id,
-    }).then(({data, error}) => {
-      if (error) { /* empty */ } else {
-        setCategories(data.map((category) => ({
-          id: category.category_id,
-          name: category.categories.name,
-        })));
-      }
-    });
-  }
-
-  useEffect(() => {
-    fetchTagsAndCategories().then(() => {});
-  }, [experience.id]);
+  }, [experience]);
 
   return <SlideInCard>
     <div className={`d-flex flex-column gap-2`}>
@@ -166,20 +120,13 @@ const InProgressCard = ({
               className={`d-flex flex-column gap-2`}
             >
               {
-                loadingTags ? <PulseLoader size={7} /> :
-                tagsError ? <Typography sx={{
-                  fontSize: '12px'}}
-                  className={`fst-italic`}
-                  >
-                  Error loading tags - {tagsError}
-                </Typography> :
-                tags.length > 0 && <div className={`d-flex flex-wrap gap-2 mb-2`}>
+                experience.tags_list.length > 0 && <div className={`d-flex flex-wrap gap-2 mb-2`}>
                   {
-                    tags.map((tag, index) => {
+                    experience.tags_list.map((tag, index) => {
                       return <Chip
                         key={index}
                         className={`fw-semibold`}
-                        label={tag.name}
+                        label={tag}
                       />
                     })
                   }

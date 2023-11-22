@@ -87,7 +87,7 @@ updateExperienceHideAndPublished.propTypes = {
 
 // Fetch all experiences from the database
 const fetchAllExperiences = async () => {
-  const { data, error } = await supabase.from('experiences').select();
+  const {data, error} = await supabase.rpc('fetch_experiences').select();
   return { data, error };
 }
 

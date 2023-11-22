@@ -5,8 +5,6 @@ import {Typography} from "@mui/material";
 import {AppRoutes} from "../../../App.jsx";
 import CustomChip from "../components/custom_chip.jsx";
 import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
-import {fetchExperienceTags} from "../../supabase/database/experience_tags.js";
 
 const InProgressCardsList = ({
   experiences,
