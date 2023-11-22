@@ -9,6 +9,8 @@ import PublishedCardsList from "./published/published_cards_list.jsx";
 import {useNavigate} from "react-router-dom";
 import {isUserSignedIn} from "../supabase/authentication.js";
 import {AppRoutes} from "../../App.jsx";
+import {fetchAllExperiences} from "../supabase/database/experience.js";
+import {CircularProgress, Typography} from "@mui/material";
 
 const HomeScreenState = {
   inProgress: 'inProgress',
@@ -29,6 +31,28 @@ export const HomeScreen = () => {
 
   const [homeScreenState, setHomeScreenState] = useState(HomeScreenState.published);
 
+  const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    fetchAllExperiences().then(({data, error}) => {
+      if (error) {
+        setError(error);
+      } else {
+        setExperiences(data);
+      }
+      setLoading(false);
+    });
+  }, []);
+
+  const centered = {
+    height: '100%',
+    margin: 'auto',
+  }
+
   return <div id={`home`} className={`overflow-x-hidden`}>
     <HomeHeader />
 
@@ -47,18 +71,18 @@ export const HomeScreen = () => {
         <div style={{width: '20px', flexShrink: '0'}}/>
 
         {
-          homeScreenState === HomeScreenState.inProgress &&
-          <InProgressCardsList />
-        }
-
-        {
-          homeScreenState === HomeScreenState.published &&
-          <PublishedCardsList />
-        }
-
-        {
-          homeScreenState === HomeScreenState.accountSettings &&
-          <AccountSettingsCard />
+          homeScreenState === HomeScreenState.accountSettings ?
+            <AccountSettingsCard /> :
+            loading ? <CircularProgress sx={centered}/> :
+              error ? <Typography sx={centered}>{error}</Typography> :
+                homeScreenState === HomeScreenState.inProgress ?
+                  <InProgressCardsList
+                    experiences={experiences.filter((experience) => !experience.published)}
+                  /> :
+                  homeScreenState === HomeScreenState.published ?
+                    <PublishedCardsList
+                      experiences={experiences.filter((experience) => experience.published)}
+                    /> : <p>Very Weird! Refresh pls...</p>
         }
       </div>
 

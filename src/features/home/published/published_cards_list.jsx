@@ -1,25 +1,60 @@
 import PublishedCard from "./published_card.jsx";
+import {useNavigate} from "react-router-dom";
+import SlideInCard from "../components/slide_in_card.jsx";
+import {Typography} from "@mui/material";
+import CustomChip from "../components/custom_chip.jsx";
+import {AppRoutes} from "../../../App.jsx";
+import PropTypes from "prop-types";
+import {useEffect, useState} from "react";
+import {fetchExperienceTags} from "../../supabase/database/experience_tags.js";
 
-const PublishedCardsList = () => {
+const PublishedCardsList = ({
+  experiences,
+}) => {
+  const navigate = useNavigate();
+  const [tags, setTags] = useState([]);
+
+  if (experiences.length === 0) {
+    return <SlideInCard>
+      <div
+        className={`d-flex flex-column justify-content-center gap-3 align-items-center h-100`}
+      >
+        <Typography>
+          You have no entries yet.
+        </Typography>
+        <CustomChip
+          text={'+ Add New Entry'}
+          selected={false}
+          onClick={() => {
+            navigate(AppRoutes.DESCRIBE_YOUR_EXPERIENCE);
+          }}
+        />
+      </div>
+    </SlideInCard>;
+  }
+
   return <div className={`flex-grow-1 d-flex flex-column h-100`}
               style={{
                 gap: '20px',
                 paddingBottom: '30px',
               }}
   >
-    <PublishedCard
-      showBiasExplorerText={true}
-      title={'My age impacts my opportunities to work in tech'}
-      tags={['Ageism', 'Discrimination']}
-      subtitle={'Lorem ipsum dolor sit amet consectetur. Congue urna molestie diam a dignissim ut. Consequat quis blandit condimentum non nibh. Mi velit urna nulla pretium sit platea tellus cursus est....'}
-    />
-
-    <PublishedCard
-      title={'Different title to the one above'}
-      subtitle={'Lorem ipsum dolor sit amet consectetur. Congue urna molestie diam a dignissim ut. Consequat quis blandit condimentum non nibh. Mi velit urna nulla pretium sit platea tellus cursus est....'}
-      tags={['Ageism', 'Discrimination']}
-    />
+    {
+      experiences.map((experience, index) => {
+        return <PublishedCard
+          showBiasExplorerText={index === 0}
+          key={experience.id}
+          title={experience.headline}
+          subtitle={experience.text}
+          tags={experience.tags}
+        />
+      })
+    }
   </div>
+}
+
+PublishedCardsList.propTypes = {
+  experiences: PropTypes.array,
 }
 
 export default PublishedCardsList;

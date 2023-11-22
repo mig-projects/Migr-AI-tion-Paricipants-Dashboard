@@ -85,9 +85,16 @@ updateExperienceHideAndPublished.propTypes = {
   published: PropTypes.bool.isRequired,
 }
 
+// Fetch all experiences from the database
+const fetchAllExperiences = async () => {
+  const { data, error } = await supabase.from('experiences').select();
+  return { data, error };
+}
+
 export {
   insertNewExperience,
   updateExperienceHeadline,
   updateExperienceText,
   updateExperienceHideAndPublished,
+  fetchAllExperiences,
 };

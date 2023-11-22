@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {HomeScreenState} from "../home_screen.jsx";
 import {useNavigate} from "react-router-dom";
 import {AppRoutes} from "../../../App.jsx";
+import CustomChip from "./custom_chip.jsx";
 
 const HomeLeftDrawer = ({
   currentScreenState,
@@ -48,33 +49,6 @@ const HomeLeftDrawer = ({
 HomeLeftDrawer.propTypes = {
   currentScreenState: PropTypes.string.isRequired,
   setCurrentScreenState: PropTypes.func.isRequired,
-}
-
-const CustomChip = ({
-  text,
-  selected,
-  onClick,
-}) => {
-  return <Chip label={text} onClick={onClick}
-               variant="outlined"
-               sx={{
-                 borderRadius: '8px',
-                 backgroundColor: selected ? '#d3c7fa' : 'white',
-                 border: '2px solid rgba(116, 56, 226, 0.30)',
-                 width: '200px',
-                 height: '50px',
-                 "&&:hover": {
-                   backgroundColor: selected ? '#d3c7fa' : '#f5f5f5',
-                 },
-               }}
-               className={`fw-semibold fs-6`}
-  />
-}
-
-CustomChip.propTypes = {
-  text: PropTypes.string.isRequired,
-  selected: PropTypes.bool,
-  onClick: PropTypes.func,
 }
 
 export default HomeLeftDrawer;

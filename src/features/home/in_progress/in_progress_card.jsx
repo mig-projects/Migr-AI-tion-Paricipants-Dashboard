@@ -13,13 +13,13 @@ import {
   ArrowDropDown, DeleteOutlined, EditOutlined,
 } from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {fetchExperienceTags} from "../../supabase/database/experience_tags.js";
+import {PulseLoader} from "react-spinners";
+import {fetchExperienceCategories} from "../../supabase/database/experience_categories.js";
 
 const InProgressCard = ({
-  entryFor,
-  progress,
-  title,
-  subtitle,
-  tags,
+  experience,
 }) => {
   const BorderLinearProgress = styled(LinearProgress)(() => ({
     height: 20,
@@ -40,6 +40,72 @@ const InProgressCard = ({
   };
 
   const navigate = useNavigate();
+  
+  const [tags, setTags] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [entryFor, setEntryFor] = useState(null);
+  const [progress, setProgress] = useState(0);
+
+  const [loadingTags, setLoadingTags] = useState(false);
+  const [tagsError, setTagsError] = useState(null);
+
+  const calculateProgress = () => {
+    const maxPoints = 4;
+
+    let progress = 0;
+    if (experience.headline) {
+      progress += 1;
+    }
+    if (experience.text) {
+      progress += 1;
+    }
+    if (tags.length > 0) {
+      progress += 1;
+    }
+    if (categories.length > 0) {
+      progress += 1;
+    }
+
+    setProgress(progress / maxPoints);
+  }
+
+  useEffect(() => {
+    calculateProgress();
+  }, [tags, categories, experience.id]);
+
+  const fetchTagsAndCategories = async () => {
+    setLoadingTags(true);
+    setTagsError(null);
+    await fetchExperienceTags({
+      experienceID: experience.id,
+    }).then(({data, error}) => {
+      if (error) {
+        setTagsError(error);
+      } else {
+        setTags(data.map((tag) => ({
+          id: tag.tag_id,
+          name: tag.tags.name,
+        })));
+      }
+
+      setLoadingTags(false);
+    });
+
+    await fetchExperienceCategories({
+      experienceID: experience.id,
+    }).then(({data, error}) => {
+      if (error) { /* empty */ } else {
+        setCategories(data.map((category) => ({
+          id: category.category_id,
+          name: category.categories.name,
+        })));
+      }
+    });
+  }
+
+  useEffect(() => {
+    fetchTagsAndCategories().then(() => {});
+  }, [experience.id]);
 
   return <SlideInCard>
     <div className={`d-flex flex-column gap-2`}>
@@ -93,20 +159,27 @@ const InProgressCard = ({
                   color: '#141145',
                 }}
               >
-                {`"${title}"`}
+                {`"${experience.headline}"`}
               </Typography>
             </AccordionSummary>
             <AccordionDetails
               className={`d-flex flex-column gap-2`}
             >
               {
-                tags && <div className={`d-flex flex-wrap gap-2`}>
+                loadingTags ? <PulseLoader size={7} /> :
+                tagsError ? <Typography sx={{
+                  fontSize: '12px'}}
+                  className={`fst-italic`}
+                  >
+                  Error loading tags - {tagsError}
+                </Typography> :
+                tags.length > 0 && <div className={`d-flex flex-wrap gap-2 mb-2`}>
                   {
                     tags.map((tag, index) => {
                       return <Chip
                         key={index}
                         className={`fw-semibold`}
-                        label={tag}
+                        label={tag.name}
                       />
                     })
                   }
@@ -114,7 +187,7 @@ const InProgressCard = ({
               }
 
               <Typography>
-                {subtitle}
+                {experience.text}
               </Typography>
             </AccordionDetails>
           </Accordion>
@@ -143,11 +216,7 @@ const InProgressCard = ({
 }
 
 InProgressCard.propTypes = {
-  entryFor: PropTypes.string,
-  progress: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string),
+  experience: PropTypes.object,
 };
 
 export default InProgressCard;

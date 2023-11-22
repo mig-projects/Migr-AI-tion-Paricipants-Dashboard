@@ -37,6 +37,16 @@ updateExperienceTags.propTypes = {
   other_tag_text: PropTypes.string,
 }
 
+// Fetch the tags of the experience
+const fetchExperienceTags = async ({
+  // Experience ID
+  experienceID,
+}) => {
+  const { data, error } = await supabase.from('experiences_tags').select(`tag_id, tags (name)`).eq('experience_id', experienceID);
+  return { data, error };
+}
+
 export {
   updateExperienceTags,
+  fetchExperienceTags,
 }
