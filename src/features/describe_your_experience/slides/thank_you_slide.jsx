@@ -119,7 +119,7 @@ const ThankYouSlide = ({
 }
 
 ThankYouSlide.propTypes = {
-  experienceID: PropTypes.number.isRequired,
+  experienceID: PropTypes.number,
 };
 
 export default ThankYouSlide;

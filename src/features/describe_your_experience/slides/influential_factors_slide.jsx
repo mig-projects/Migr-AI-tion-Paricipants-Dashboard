@@ -178,7 +178,7 @@ const InfluentialFactorsSlide = ({
 }
 
 InfluentialFactorsSlide.propTypes = {
-  experienceID: PropTypes.number.isRequired,
+  experienceID: PropTypes.number,
 };
 
 export default InfluentialFactorsSlide;

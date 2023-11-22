@@ -74,7 +74,7 @@ const ExperienceDescriptionSlide = ({
 }
 
 ExperienceDescriptionSlide.propTypes = {
-  experienceID: PropTypes.number.isRequired,
+  experienceID: PropTypes.number,
 };
 
 export default ExperienceDescriptionSlide;
