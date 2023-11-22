@@ -38,7 +38,6 @@ const InProgressCard = ({
 
   const navigate = useNavigate();
 
-  const [entryFor, setEntryFor] = useState(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -64,12 +63,12 @@ const InProgressCard = ({
   return <SlideInCard>
     <div className={`d-flex flex-column gap-2`}>
       {
-        entryFor && <Typography className={`fs-5 fw-semibold`}
+        experience.entry_for && <Typography className={`fs-5 fw-semibold`}
                                   style={{
                                     color: '#7438E2',
                                   }}
         >
-          {entryFor} Entry
+          {experience.entry_for} Entry
         </Typography>
       }
 
