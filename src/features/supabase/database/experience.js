@@ -79,6 +79,12 @@ const updateExperienceHideAndPublished = async ({
   return { error };
 }
 
+updateExperienceHideAndPublished.propTypes = {
+  experienceID: PropTypes.string.isRequired,
+  hideExperienceText: PropTypes.bool.isRequired,
+  published: PropTypes.bool.isRequired,
+}
+
 export {
   insertNewExperience,
   updateExperienceHeadline,
