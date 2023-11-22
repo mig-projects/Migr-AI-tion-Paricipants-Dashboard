@@ -109,7 +109,9 @@ const DescribeYourExperience = () => {
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
-        <ExperienceHeadlineSlide />
+        <ExperienceHeadlineSlide
+          experienceID={experienceID}
+        />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <ThankYouSlide />

@@ -70,14 +70,14 @@ updateExperienceDiscriminationNames.propTypes = {
 // Update the headline of the experience
 const updateExperienceHeadline = async ({
   // Experience ID
-  experience_id,
+  experienceID,
 
   // Headline text
-  headline_text,
+  headlineText,
 }) => {
   const { error } = await supabase.from('experiences').update({
-    headline: headline_text,
-  }).eq('id', experience_id);
+    headline: headlineText,
+  }).eq('id', experienceID);
   return { error };
 }
 
