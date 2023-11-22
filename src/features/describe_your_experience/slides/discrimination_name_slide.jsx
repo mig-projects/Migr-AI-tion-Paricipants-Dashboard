@@ -3,8 +3,9 @@ import {Autocomplete, Box, TextField} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
 import PropTypes from "prop-types";
-import {insertNewExperience, updateExperienceDiscriminationNames} from "../../supabase/database/experience.js";
+import {insertNewExperience} from "../../supabase/database/experience.js";
 import {toast} from "react-toastify";
+import {updateExperienceDiscriminationNames} from "../../supabase/database/experience_discrimination_names.js";
 
 const DiscriminationNameSlide = ({
   experienceID,
