@@ -26,20 +26,20 @@ insertNewExperience.propTypes = {
 // Update an experience text in the database
 const updateExperienceText = async ({
   // Experience ID
-  experience_id,
+  experienceID,
 
   // Experience text
-  experience_text,
+  experienceText,
 }) => {
   const { error } = await supabase.from('experiences').update({
-    text: experience_text,
-  }).eq('id', experience_id);
+    text:   experienceText,
+  }).eq('id', experienceID);
   return { error };
 }
 
 updateExperienceText.propTypes = {
-  experience_id: PropTypes.string.isRequired,
-  experience_text: PropTypes.string.isRequired,
+  experienceID: PropTypes.string.isRequired,
+  experienceText: PropTypes.string.isRequired,
 }
 
 // Update the discrimination names of the experience

@@ -2,8 +2,13 @@ import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Box, TextField} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
+import PropTypes from "prop-types";
+import {updateExperienceText} from "../../supabase/database/experience.js";
+import {toast} from "react-toastify";
 
-const ExperienceDescriptionSlide = () => {
+const ExperienceDescriptionSlide = ({
+  experienceID,
+}) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
@@ -44,7 +49,20 @@ const ExperienceDescriptionSlide = () => {
     <ExperienceFooter
       nextButtonText={'Next'}
       isNextDisabled={!allowNext}
-      onNext={() => {
+      onNext={async () => {
+        const {error} = await updateExperienceText({
+          experienceID,
+          experienceText: experience,
+        });
+
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+
+        toast.success('Progress saved!', {
+          autoClose: 1000,
+        });
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -54,5 +72,9 @@ const ExperienceDescriptionSlide = () => {
     />
   </div>
 }
+
+ExperienceDescriptionSlide.propTypes = {
+  experienceID: PropTypes.number,
+};
 
 export default ExperienceDescriptionSlide;
