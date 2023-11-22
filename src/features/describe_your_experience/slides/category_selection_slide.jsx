@@ -3,8 +3,13 @@ import {useEffect, useState} from "react";
 import {Box, Chip, CircularProgress, TextField} from "@mui/material";
 import ExperienceFooter from "../footer/experience_footer.jsx";
 import {fetchCategories} from "../../supabase/database/categories.js";
+import PropTypes from "prop-types";
+import {updateExperienceCategories} from "../../supabase/database/experience_categories.js";
+import {toast} from "react-toastify";
 
-const CategorySelectionSlide = () => {
+const CategorySelectionSlide = ({
+  experienceID,
+}) => {
   const swiper = useSwiper();
 
   const [allowNext, setAllowNext] = useState(false);
@@ -117,7 +122,25 @@ const CategorySelectionSlide = () => {
     <ExperienceFooter
       isNextDisabled={!allowNext}
       nextButtonText={'Next'}
-      onNext={() => {
+      onNext={async () => {
+        const categoryIDsList = selectedCategories.map((category) => {
+          return category.id;
+        });
+
+        const {error} = await updateExperienceCategories({
+          experienceID,
+          categoryIDsList,
+          otherCategoryText: otherSelected ? otherCategory : null,
+        });
+        if (error) {
+          toast.error(error.message);
+          return;
+        }
+
+        toast.success('Progress saved!', {
+          autoClose: 1000,
+        });
+
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -127,5 +150,9 @@ const CategorySelectionSlide = () => {
     />
   </div>
 }
+
+CategorySelectionSlide.propTypes = {
+  experienceID: PropTypes.number,
+};
 
 export default CategorySelectionSlide;
