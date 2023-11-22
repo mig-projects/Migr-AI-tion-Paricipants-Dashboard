@@ -26,7 +26,17 @@ const InfluentialFactorsSlide = () => {
       if (error) {
         setError(error.message ?? 'Failed to fetch tags!');
       } else {
-        setTagGroups(data);
+        const tagGroups = {};
+        data.forEach((tag) => {
+          if (tagGroups[tag.tag_group_name] === undefined) {
+            tagGroups[tag.tag_group_name] = [];
+          }
+          tagGroups[tag.tag_group_name].push({
+            id: tag.tag_id,
+            name: tag.tag_name,
+          });
+        });
+        setTagGroups(tagGroups);
       }
 
       setLoading(false);
@@ -75,12 +85,13 @@ const InfluentialFactorsSlide = () => {
               return <CustomSelect
                 key={tagGroup}
                 title={tagGroup}
-                list={tagGroups[tagGroup].map((tag) => tag.name)}
+                list={tagGroups[tagGroup]}
                 onChange={(value) => {
                   setSelectedTags({
                     ...selectedTags,
                     [tagGroup]: value,
                   });
+                  console.log(selectedTags);
                 }}
                 value={
                   selectedTags[tagGroup] === undefined ? [] : selectedTags[tagGroup]

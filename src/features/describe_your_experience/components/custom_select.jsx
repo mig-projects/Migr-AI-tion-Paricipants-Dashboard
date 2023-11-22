@@ -6,12 +6,12 @@ const CustomSelect = ({
   value,
   title,
   list,
-  greyedList,
 }) => {
   return <FormControl variant={`outlined`} sx={{ m: 1, minWidth: 150 }}>
     <Select
       sx={{
         '.MuiOutlinedInput-notchedOutline': { border: 0 },
+        maxWidth: '300px',
       }}
       multiple
       value={value}
@@ -20,7 +20,7 @@ const CustomSelect = ({
       }}
       displayEmpty
       inputProps={{ outline: "none" }}
-      renderValue={(selected) => `${title} ${selected.length > 0 ? `(${selected.length})` : ''}`}
+      renderValue={(selected) => selected.length > 0 ? selected.map((e) => e.name).join(', ') : title}
       MenuProps={{
         PaperProps: {
           elevation: 0,
@@ -28,17 +28,12 @@ const CustomSelect = ({
       }}
     >
       {
-        list.map((name) => (
-          <MenuItem key={name} value={name}>
-            <Checkbox checked={value.indexOf(name) > -1} />
-            <ListItemText primary={name} />
+        list.map((tag) => (
+          <MenuItem key={tag.id} value={tag}>
+            <Checkbox checked={value.indexOf(tag) > -1} />
+            <ListItemText primary={tag.name} />
           </MenuItem>
-        )).concat(greyedList === undefined ? [] : greyedList.map((name) => (
-          <MenuItem key={name} value={name} disabled>
-            <Checkbox checked={value.indexOf(name) > -1} />
-            <ListItemText primary={name} />
-          </MenuItem>
-        )))
+        ))
       }
     </Select>
   </FormControl>;
@@ -49,7 +44,6 @@ CustomSelect.propTypes = {
   value: PropTypes.array,
   title: PropTypes.string,
   list: PropTypes.array,
-  greyedList: PropTypes.array,
 }
 
 export default CustomSelect;
