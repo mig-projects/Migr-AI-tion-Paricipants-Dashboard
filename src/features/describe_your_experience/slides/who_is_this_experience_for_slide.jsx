@@ -1,12 +1,13 @@
 import {useSwiper} from "swiper/react";
 import {useState} from "react";
-import {Checkbox, FormControlLabel} from "@mui/material";
+import {Checkbox, FormControlLabel, Link, Typography} from "@mui/material";
 import ExperienceFooter from "../footer/experience_footer.jsx";
+import {toast} from "react-toastify";
 
 const WhoIsThisExperienceForSlide = () => {
   const swiper = useSwiper();
 
-  const [forMyself, setForMyself] = useState(null);
+  const [forMyself, setForMyself] = useState(true);
 
   const checkBoxStyle = {
     backgroundColor: 'white',
@@ -26,13 +27,16 @@ const WhoIsThisExperienceForSlide = () => {
         Your contribution will stay anonymous.
       </p>
 
-      <div className={`d-flex flex-column gap-3 mt-2`}
+      <div className={`d-flex flex-column align-items-center gap-3 mt-2`}
         style={{
           minWidth: '360px',
         }}
       >
         <FormControlLabel
           style={checkBoxStyle}
+          sx={{
+            minWidth: '360px',
+          }}
           control={<Checkbox
             checked={forMyself === true}
             onChange={() => {
@@ -41,16 +45,18 @@ const WhoIsThisExperienceForSlide = () => {
           />}
           label="It’s about myself"
         />
-        <FormControlLabel
-          style={checkBoxStyle}
-          control={<Checkbox
-            checked={forMyself === false}
-            onChange={() => {
-              setForMyself(false);
-            }}
-          />}
-          label="It’s about someone close to me"
-        />
+        <Typography className={`mt-2`}>
+          I’d like to refer someone to contribute to this research: <Link
+          sx={{
+            cursor: 'pointer',
+          }}
+          className={`text-black text-decoration-underline`}
+          onClick={() => {
+            toast.info('Not implemented Yet!', {
+              autoClose: 1500,
+            });
+          }}>Copy link</Link>
+        </Typography>
       </div>
     </div>
 
