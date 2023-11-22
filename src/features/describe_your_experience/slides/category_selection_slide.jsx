@@ -1,21 +1,39 @@
 import {useSwiper} from "swiper/react";
 import {useEffect, useState} from "react";
-import {Box, Chip, TextField} from "@mui/material";
+import {Box, Chip, CircularProgress, TextField} from "@mui/material";
 import ExperienceFooter from "../footer/experience_footer.jsx";
+import {fetchCategories} from "../../supabase/database/categories.js";
 
 const CategorySelectionSlide = () => {
   const swiper = useSwiper();
 
   const [allowNext, setAllowNext] = useState(false);
-
-  const categories = ['Company Values & Exploitation', 'Discrimination in HR', 'Other', 'Cross-cultural Communication', 'Migration Journey', 'Psychological burden', 'Bureaucratic Barriers and Misalignment'];
-  const [selectedCategories, setSelectedCategories] = useState([categories.at(0)]);
+  const [otherSelected, setOtherSelected] = useState(false);
   const [otherCategory, setOtherCategory] = useState('');
+
+  const [categories, setCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchCategories().then(({data, error}) => {
+      if (error) {
+        setError(error.message);
+      } else {
+        setCategories(data);
+        setSelectedCategories([data[0]]);
+      }
+
+      setLoading(false);
+    });
+  }, []);
 
   useEffect(() => {
     setAllowNext(false);
     if (selectedCategories.length > 0) {
-      if (selectedCategories.includes('Other')) {
+      if (otherSelected) {
         if (otherCategory.length > 0) {
           setAllowNext(true);
         }
@@ -23,7 +41,7 @@ const CategorySelectionSlide = () => {
         setAllowNext(true);
       }
     }
-  }, [selectedCategories, otherCategory]);
+  }, [selectedCategories, otherCategory, otherSelected]);
 
   return <div id={'category-selection-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -31,33 +49,46 @@ const CategorySelectionSlide = () => {
       <h2 className={`h2 fw-semibold mb-4`}>
         Which research category does this experience relates to?
       </h2>
-      <Box
-        className={`d-flex flex-wrap gap-3 justify-content-center`}
-      >
-        {
-          categories.map((category, index) => {
-            return <Chip
-              key={index}
-              label={category}
-              variant={'filled'}
-              color={selectedCategories.includes(category) ? 'primary' : 'secondary'}
-              value={category}
-              onClick={() => {
-                if (selectedCategories.includes(category)) {
-                  setSelectedCategories(selectedCategories.filter((selectedCategory) => {
-                    return selectedCategory !== category;
-                  }));
-                } else {
-                  setSelectedCategories([...selectedCategories, category]);
-                }
-              }}
-              className={`fs-5 p-4`}
-            />
-          })
-        }
-      </Box>
+      {
+        loading ? <CircularProgress className={`mt-5`}/> :
+          error ? <p className={`mt-5`}>{error}</p> :
+        <Box
+          className={`d-flex flex-wrap gap-3 justify-content-center`}
+        >
+          {
+            categories.map((category) => {
+              return <Chip
+                key={category.id}
+                label={category.name}
+                variant={'filled'}
+                color={selectedCategories.includes(category) ? 'primary' : 'secondary'}
+                value={category}
+                onClick={() => {
+                  if (selectedCategories.includes(category)) {
+                    setSelectedCategories(selectedCategories.filter((selectedCategory) => {
+                      return selectedCategory !== category;
+                    }));
+                  } else {
+                    setSelectedCategories([...selectedCategories, category]);
+                  }
+                }}
+                className={`fs-5 p-4`}
+              />
+            })
+          }
+          <Chip
+            label={'Other'}
+            variant={'filled'}
+            color={otherSelected ? 'primary' : 'secondary'}
+            onClick={() => {
+              setOtherSelected(!otherSelected);
+            }}
+            className={`fs-5 p-4`}
+          />
+        </Box>
+      }
 
-      {selectedCategories.includes('Other') ?
+      {otherSelected ?
         <div className={`d-flex flex-column align-items-center`}>
           <p className={`mt-4`}>
             Describe “Other”

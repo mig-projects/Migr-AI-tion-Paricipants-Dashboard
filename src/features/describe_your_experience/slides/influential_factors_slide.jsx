@@ -73,8 +73,8 @@ const InfluentialFactorsSlide = () => {
       </p>
 
       {
-        loading ? <CircularProgress /> :
-        error ? <p>{error}</p> :
+        loading ? <CircularProgress className={`mt-5`}/> :
+          error ? <p className={`mt-5`}>{error}</p> :
         <Box
           component="form"
           maxWidth={1200}
