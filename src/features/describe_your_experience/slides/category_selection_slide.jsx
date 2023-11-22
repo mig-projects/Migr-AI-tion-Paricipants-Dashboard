@@ -152,7 +152,7 @@ const CategorySelectionSlide = ({
 }
 
 CategorySelectionSlide.propTypes = {
-  experienceID: PropTypes.number,
+  experienceID: PropTypes.number.isRequired,
 };
 
 export default CategorySelectionSlide;
