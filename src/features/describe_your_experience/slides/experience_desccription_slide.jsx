@@ -1,6 +1,6 @@
 import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Box, TextField} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
 import PropTypes from "prop-types";
 import {updateExperienceText} from "../../supabase/database/experience.js";
@@ -8,11 +8,22 @@ import {toast} from "react-toastify";
 
 const ExperienceDescriptionSlide = ({
   experienceID,
+  savedDescription,
 }) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
-
   const [experience, setExperience] = useState('');
+
+  const minExperienceLength = 300;
+  const maxExperienceLength = 10000;
+
+  useEffect(() => {
+    setExperience(savedDescription ?? '');
+  }, [savedDescription]);
+
+  useEffect(() => {
+    setAllowNext(experience.length >= minExperienceLength);
+  }, [experience]);
 
   return <div id={'experience-description-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -31,7 +42,9 @@ const ExperienceDescriptionSlide = ({
         className={`mt-2`}
       >
         <TextField
+          helperText={`${experience.length}/${maxExperienceLength} characters (min. ${minExperienceLength})`}
           required
+          label="Experience"
           value={experience}
           type="text"
           id="experience"
@@ -40,7 +53,6 @@ const ExperienceDescriptionSlide = ({
           rows={8}
           onChange={(e) => {
             setExperience(e.target.value);
-            setAllowNext(e.target.textLength > 10);
           }}
         />
       </Box>
@@ -75,6 +87,7 @@ const ExperienceDescriptionSlide = ({
 
 ExperienceDescriptionSlide.propTypes = {
   experienceID: PropTypes.number,
+  savedDescription: PropTypes.string,
 };
 
 export default ExperienceDescriptionSlide;
