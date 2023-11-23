@@ -1,6 +1,5 @@
 import {Checkbox, FormControl, ListItemText, MenuItem, Select} from "@mui/material";
 import PropTypes from "prop-types";
-import variables from "../../../variables.module.scss";
 
 const CustomSelect = ({
   onChange,
