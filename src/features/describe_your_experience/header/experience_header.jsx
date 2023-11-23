@@ -1,8 +1,12 @@
 import {AppBar, Toolbar, Typography} from "@mui/material";
 import Logo from "../../../assets/images/logo.svg";
 import variables from "../../../variables.module.scss";
+import PropTypes from "prop-types";
 
-const ExperienceHeader = () => {
+const ExperienceHeader = ({
+  currentStep,
+  totalSteps,
+}) => {
   return <AppBar position="static" className={'appbar'} color={'transparent'}>
     <Toolbar style={{
       backgroundColor: 'white',
@@ -12,12 +16,26 @@ const ExperienceHeader = () => {
 
       <Typography
         color={variables.primaryPurple}
-        className={'fw-bold'}
+        className={'fw-bold flex-grow-1'}
       >
         MIGR-AI-TION
       </Typography>
+
+      <Typography
+        className={'fw-bold'}
+        sx={{
+          color: variables.primaryPurple,
+        }}
+      >
+        Step: {currentStep} / {totalSteps}
+      </Typography>
     </Toolbar>
   </AppBar>
+}
+
+ExperienceHeader.propTypes = {
+  currentStep: PropTypes.number,
+  totalSteps: PropTypes.number,
 }
 
 export default ExperienceHeader;

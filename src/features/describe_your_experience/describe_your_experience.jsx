@@ -46,13 +46,19 @@ const DescribeYourExperience = () => {
     }
   }, [experience]);
 
+  const [currentStep, setCurrentStep] = useState(1);
+  const [totalSteps, setTotalSteps] = useState(1);
+
   return <div id={'describe_your_experience'}
               className={`d-flex flex-column`}
               style={{
                 height: height,
               }}
   >
-    <ExperienceHeader />
+    <ExperienceHeader
+      currentStep={currentStep}
+      totalSteps={totalSteps}
+    />
 
     <LinearProgress variant="determinate" value={onboardingProgress}
                     style={{
@@ -64,9 +70,11 @@ const DescribeYourExperience = () => {
     <Swiper
       initialSlide={0}
       onSlideChange={(swiper) => {
+        setCurrentStep(swiper.activeIndex + 1);
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
       onSwiper={(swiper) => {
+        setTotalSteps(swiper.slides.length);
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
       allowTouchMove={false}
