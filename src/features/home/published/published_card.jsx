@@ -4,12 +4,14 @@ import {
   Typography
 } from "@mui/material";
 import PropTypes from "prop-types";
-import {DeleteOutlined, EditOutlined, MoreVert, Warning} from "@mui/icons-material";
+import {DeleteOutlined, EditOutlined, Info, MoreVert, Warning} from "@mui/icons-material";
 import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {deleteExperience} from "../../supabase/database/experience.js";
+import {deleteExperience, updateExperiencePublished} from "../../supabase/database/experience.js";
 import {toast} from "react-toastify";
 import CustomDialog from "../../../components/dialogs/custom_dialog.jsx";
+import {AppRoutes} from "../../../App.jsx";
+import variables from "../../../variables.module.scss";
 
 const PublishedCard = ({
   showBiasExplorerText = false,
@@ -24,12 +26,13 @@ const PublishedCard = ({
     boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.02)'
   };
 
-  const [openDialog, setOpenDialog] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
   const anchorRef = useRef(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpenPopup((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
@@ -37,18 +40,18 @@ const PublishedCard = ({
       return;
     }
 
-    setOpen(false);
+    setOpenPopup(false);
   };
 
   // return focus to the button when we transitioned from !open -> open
-  const prevOpen = useRef(open);
+  const prevOpen = useRef(openPopup);
   useEffect(() => {
-    if (prevOpen.current === true && open === false) {
+    if (prevOpen.current === true && openPopup === false) {
       anchorRef.current.focus();
     }
 
-    prevOpen.current = open;
-  }, [open]);
+    prevOpen.current = openPopup;
+  }, [openPopup]);
 
   return <SlideInCard>
     <div className={`d-flex flex-column gap-2`}>
@@ -131,15 +134,15 @@ const PublishedCard = ({
             onClick={handleToggle}
             ref={anchorRef}
             id="composition-button"
-            aria-controls={open ? 'composition-menu' : undefined}
-            aria-expanded={open ? 'true' : undefined}
+            aria-controls={openPopup ? 'composition-menu' : undefined}
+            aria-expanded={openPopup ? 'true' : undefined}
             aria-haspopup="true"
           >
             <MoreVert />
           </IconButton>
 
           <Popper
-            open={open}
+            open={openPopup}
             anchorEl={anchorRef.current}
             role={undefined}
             placement="bottom-start"
@@ -157,7 +160,7 @@ const PublishedCard = ({
                 <Paper>
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList
-                      autoFocusItem={open}
+                      autoFocusItem={openPopup}
                       id="composition-menu"
                       aria-labelledby="composition-button"
                       className={`pb-3`}
@@ -173,9 +176,9 @@ const PublishedCard = ({
                       <div
                         className={`d-flex flex-column gap-2`}
                       >
-                        <MenuItem onClick={(e) => {
-                          navigate('/describe_your_experience', { state: { withoutSignup: true } });
-                          handleClose(e);
+                        <MenuItem onClick={() => {
+                          setOpenEditDialog(true);
+                          handleClose();
                         }}
                           style={{
                             padding: '10px 30px',
@@ -194,7 +197,7 @@ const PublishedCard = ({
                             padding: '10px 30px',
                           }}
                           onClick={() => {
-                            setOpenDialog(true);
+                            setOpenDeleteDialog(true);
                             handleClose();
                           }}
                         >
@@ -221,30 +224,32 @@ const PublishedCard = ({
 
     <CustomDialog
       title={<div className={`d-flex gap-3`}>
-        <Warning sx={{
-          color: 'red',
+        <Info sx={{
+          color: variables.backgroundPurple,
         }}/>
         <Typography className={`fw-bold`}>
-          Delete Entry
+          Are you sure?
         </Typography>
       </div>}
-      description={'Are you sure?'}
-      open={openDialog}
+      description={'This will move the entry back to the In Progress section. You can edit and publish it again.'}
+      open={openEditDialog}
       handleClose={() => {
-        setOpenDialog(false);
+        setOpenEditDialog(false);
       }}
       onAgree={async () => {
-        const {error} = await deleteExperience({
+        const {error} = await updateExperiencePublished({
           experienceID: experience.id,
+          published: false,
         });
 
         if (error) {
           toast.error(error.message);
         }
 
-        toast.success('Entry deleted successfully.', {
+        toast.success('Entry moved to In progress', {
           autoClose: 1000,
         });
+        navigate(AppRoutes.DESCRIBE_YOUR_EXPERIENCE, { state: { experience: experience } });
         refreshFunction();
       }}
     />
@@ -259,9 +264,9 @@ const PublishedCard = ({
         </Typography>
       </div>}
       description={'Are you sure you want to delete this entry?'}
-      open={openDialog}
+      open={openDeleteDialog}
       handleClose={() => {
-        setOpenDialog(false);
+        setOpenDeleteDialog(false);
       }}
       onAgree={async () => {
         const {error} = await deleteExperience({

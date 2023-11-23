@@ -85,6 +85,24 @@ updateExperienceHideAndPublished.propTypes = {
   published: PropTypes.bool.isRequired,
 }
 
+const updateExperiencePublished = async ({
+  // Experience ID
+  experienceID,
+
+  // Published status
+  published,
+}) => {
+  const { error } = await supabase.from('experiences').update({
+    published: published,
+  }).eq('id', experienceID);
+  return { error };
+}
+
+updateExperiencePublished.propTypes = {
+  experienceID: PropTypes.string.isRequired,
+  published: PropTypes.bool.isRequired,
+}
+
 // Fetch all experiences from the database
 const fetchAllExperiences = async () => {
   const {data, error} = await supabase.rpc('fetch_experiences').select();
@@ -107,4 +125,5 @@ export {
   updateExperienceHideAndPublished,
   fetchAllExperiences,
   deleteExperience,
+  updateExperiencePublished,
 };

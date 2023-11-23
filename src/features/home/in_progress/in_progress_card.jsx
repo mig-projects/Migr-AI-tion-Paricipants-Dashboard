@@ -16,7 +16,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
 import CustomDialog from "../../../components/dialogs/custom_dialog.jsx";
-import {deleteExperience} from "../../supabase/database/experience.js";
+import {deleteExperience, updateExperiencePublished} from "../../supabase/database/experience.js";
 import {toast} from "react-toastify";
 import {AppRoutes} from "../../../App.jsx";
 
@@ -97,7 +97,20 @@ const InProgressCard = ({
             width: '150px',
           }}
           onClick={async () => {
+            const {error} = await updateExperiencePublished({
+              experienceID: experience.id,
+              published: true,
+            });
 
+            if (error) {
+              toast.error(error.message);
+              return;
+            }
+
+            toast.success('Entry published successfully!', {
+              autoClose: 1000,
+            });
+            refreshFunction();
           }}
         />
       </div>
