@@ -103,7 +103,7 @@ const SignInScreen = () => {
         nextButtonText={'Sign in'}
         isNextDisabled={!allowNext}
         onNext={async () => {
-          const {data, error} = await signIn(email, password);
+          const { error} = await signIn(email, password);
 
           if (error) {
             toast.error(error.message);
