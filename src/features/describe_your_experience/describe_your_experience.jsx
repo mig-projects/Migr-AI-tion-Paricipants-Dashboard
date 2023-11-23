@@ -93,6 +93,8 @@ const DescribeYourExperience = () => {
       <SwiperSlide className={`swiper-slide`}>
         <InfluentialFactorsSlide
           experienceID={experienceID}
+          savedTagsList={experience?.tags_list}
+          savedOtherTagText={experience?.other_tag_text}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>

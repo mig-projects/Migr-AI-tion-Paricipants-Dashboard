@@ -12,6 +12,8 @@ import {toast} from "react-toastify";
 
 const InfluentialFactorsSlide = ({
   experienceID,
+  savedTagsList,
+  savedOtherTagText,
 }) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
@@ -32,6 +34,7 @@ const InfluentialFactorsSlide = ({
         setError(error.message ?? 'Failed to fetch tags!');
       } else {
         const tagGroups = {};
+        const selectedTags = {};
         data.forEach((tag) => {
           if (tagGroups[tag.tag_group_name] === undefined) {
             tagGroups[tag.tag_group_name] = [];
@@ -40,13 +43,28 @@ const InfluentialFactorsSlide = ({
             id: tag.tag_id,
             name: tag.tag_name,
           });
+          if (savedTagsList.includes(tag.tag_name)) {
+            if (selectedTags[tag.tag_group_name] === undefined) {
+              selectedTags[tag.tag_group_name] = [];
+            }
+            selectedTags[tag.tag_group_name].push({
+              id: tag.tag_id,
+              name: tag.tag_name,
+            });
+          }
         });
         setTagGroups(tagGroups);
+        setSelectedTags(selectedTags);
       }
 
       setLoading(false);
     });
-  }, []);
+    
+    if (savedOtherTagText) {
+      setOtherSelected(true);
+      setOtherFactor(savedOtherTagText);
+    }
+  }, [savedOtherTagText, savedTagsList]);
 
   useEffect(() => {
     Object.keys(selectedTags).forEach((tagGroup) => {
@@ -179,6 +197,8 @@ const InfluentialFactorsSlide = ({
 
 InfluentialFactorsSlide.propTypes = {
   experienceID: PropTypes.number,
+  savedTagsList: PropTypes.array,
+  savedOtherTagText: PropTypes.string,
 };
 
 export default InfluentialFactorsSlide;
