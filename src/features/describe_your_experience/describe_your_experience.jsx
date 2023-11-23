@@ -33,6 +33,7 @@ const DescribeYourExperience = () => {
 
   const location = useLocation();
   const {freshSignup} = location.state || {};
+  const {experience} = location.state || {};
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -86,6 +87,7 @@ const DescribeYourExperience = () => {
         <DiscriminationNameSlide
           experienceID={experienceID}
           setExperienceID={setExperienceID}
+          selectedDiscriminationNames={experience?.discrimination_names_list}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>

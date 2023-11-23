@@ -1,6 +1,6 @@
 import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Autocomplete, Box, TextField} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
 import PropTypes from "prop-types";
 import {insertNewExperience} from "../../supabase/database/experience.js";
@@ -10,6 +10,7 @@ import {updateExperienceDiscriminationNames} from "../../supabase/database/exper
 const DiscriminationNameSlide = ({
   experienceID,
   setExperienceID,
+  selectedDiscriminationNames,
 }) => {
   const swiper = useSwiper();
 
@@ -20,6 +21,12 @@ const DiscriminationNameSlide = ({
     'Racism',
     'Homophobia',
   ];
+  
+  useEffect(() => {
+    if (selectedDiscriminationNames) {
+      setDiscriminationNameList(selectedDiscriminationNames);
+    }
+  }, [selectedDiscriminationNames]);
 
   return <div id={'discrimination-name-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -28,7 +35,7 @@ const DiscriminationNameSlide = ({
         Does this type of discrimination have a name? (Optional)
       </h2>
       <p className={`mb-4 h5 fw-normal`}>
-        i.e. ageism or sexism
+        e.g. ageism or sexism
       </p>
       <Box
         maxWidth={'700px'}
@@ -46,7 +53,9 @@ const DiscriminationNameSlide = ({
           renderInput={(params) => (
             <TextField
               {...params}
+              placeholder={'Search or Type'}
               variant="outlined"
+              helperText={'You can either select from the list or type in your own and press enter.'}
             />
           )}
         />
@@ -93,6 +102,7 @@ const DiscriminationNameSlide = ({
 DiscriminationNameSlide.propTypes = {
   experienceID: PropTypes.number,
   setExperienceID: PropTypes.func,
+  selectedDiscriminationNames: PropTypes.array,
 };
 
 export default DiscriminationNameSlide;
