@@ -10,7 +10,6 @@ import ThankYouSlide from "./slides/thank_you_slide.jsx";
 import WhoIsThisExperienceForSlide from "./slides/who_is_this_experience_for_slide.jsx";
 import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
 import variables from '../../variables.module.scss';
-import PropTypes from "prop-types";
 import ExperienceHeader from "./header/experience_header.jsx";
 import TakeABreakSlide from "../onboarding/slides/take_a_break_slide.jsx";
 import {useLocation, useNavigate} from "react-router-dom";
@@ -135,10 +134,6 @@ const DescribeYourExperience = () => {
       </SwiperSlide>
     </Swiper>
   </div>
-}
-
-DescribeYourExperience.propTypes = {
-  withSignup: PropTypes.bool,
 }
 
 export default DescribeYourExperience;
