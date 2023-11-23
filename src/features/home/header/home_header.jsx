@@ -35,7 +35,7 @@ const HomeHeader = () => {
             window.open("https://discord.gg/pV4rzKcm", "_blank")
           }}
         />
-        <CustomButton text={'HR Bias Explorer'} sx={{
+        <CustomButton text={'HR Bias Analysis'} sx={{
           width: '180px',
         }}
           onClick={() => {
