@@ -1,7 +1,8 @@
-import {AppBar, Toolbar, Typography} from "@mui/material";
+import {AppBar, Link, Toolbar, Typography} from "@mui/material";
 import Logo from "../../../assets/images/logo.svg";
 import variables from "../../../variables.module.scss";
 import PropTypes from "prop-types";
+import {AppRoutes} from "../../../App.jsx";
 
 const ExperienceHeader = ({
   currentStep,
@@ -12,14 +13,18 @@ const ExperienceHeader = ({
       backgroundColor: 'white',
       height: '80px',
     }}>
-      <img src={Logo} alt="logo" height={40} width={40} className={'me-4'}/>
-
-      <Typography
-        color={variables.primaryPurple}
-        className={'fw-bold flex-grow-1'}
+      <Link
+        className={`d-flex align-items-center flex-grow-1 text-decoration-none`}
+        href={AppRoutes.HOME}
       >
-        MIGR-AI-TION
-      </Typography>
+        <img src={Logo} alt="logo" height={40} width={40} className={'me-4'}/>
+        <Typography
+          color={variables.primaryPurple}
+          className={'fw-bold'}
+        >
+          MIGR-AI-TION
+        </Typography>
+      </Link>
 
       {
         currentStep && totalSteps && <Typography

@@ -1,5 +1,5 @@
 import {
-  AppBar,
+  AppBar, Link,
   Toolbar,
   Typography
 } from "@mui/material";
@@ -18,14 +18,18 @@ const HomeHeader = () => {
     <Toolbar style={{
       height: '80px',
     }}>
-      <img src={Logo} alt="logo" height={40} width={40} className={'me-4'}/>
-
-      <Typography
-        color={variables.primaryPurple}
-        className={'fw-bold flex-grow-1'}
+      <Link
+        className={`d-flex align-items-center flex-grow-1 text-decoration-none`}
+        href={AppRoutes.HOME}
       >
-        MIGR-AI-TION
-      </Typography>
+        <img src={Logo} alt="logo" height={40} width={40} className={'me-4'}/>
+        <Typography
+          color={variables.primaryPurple}
+          className={'fw-bold'}
+        >
+          MIGR-AI-TION
+        </Typography>
+      </Link>
 
       <div className={`d-flex gap-2`}>
         <CustomButton variant={`outlined`} text={'Discord Community'} sx={{
