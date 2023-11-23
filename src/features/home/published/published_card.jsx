@@ -176,9 +176,9 @@ const PublishedCard = ({
                       <div
                         className={`d-flex flex-column gap-2`}
                       >
-                        <MenuItem onClick={() => {
+                        <MenuItem onClick={(e) => {
                           setOpenEditDialog(true);
-                          handleClose();
+                          handleClose(e);
                         }}
                           style={{
                             padding: '10px 30px',
@@ -196,9 +196,9 @@ const PublishedCard = ({
                           style={{
                             padding: '10px 30px',
                           }}
-                          onClick={() => {
+                          onClick={(e) => {
                             setOpenDeleteDialog(true);
-                            handleClose();
+                            handleClose(e);
                           }}
                         >
                           Delete {<DeleteOutlined
