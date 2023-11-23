@@ -137,12 +137,12 @@ const InProgressCard = ({
             <AccordionSummary
               expandIcon={<ArrowDropDown />}
             >
-              <Typography className={`fw-bold fs-2`}
+              <Typography className={experience.headline ? `fs-2 fw-bold` : `fs-3 fst-italic text-muted`}
                 sx={{
                   color: '#141145',
                 }}
               >
-                {`"${experience.headline}"`}
+                {`"${experience.headline ?? 'Headline goes here'}"`}
               </Typography>
             </AccordionSummary>
             <AccordionDetails
