@@ -45,6 +45,7 @@ const DiscriminationNameSlide = ({
         <Autocomplete
           multiple
           freeSolo
+          value={discriminationNameList}
           id="discrimination-name"
           options={discriminationNameOptions}
           onChange={(event, newValue) => {

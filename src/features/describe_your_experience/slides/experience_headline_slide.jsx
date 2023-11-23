@@ -17,6 +17,7 @@ const ExperienceHeadlineSlide = ({
 
   useEffect(() => {
     setHeadline(savedHeadline ?? '');
+    setAllowNext(savedHeadline?.length > 0);
   }, [savedHeadline]);
 
   return <div id={'experience-headline-slide'} className={`d-flex flex-column h-100 align-items-center`}

@@ -46,6 +46,8 @@ const DescribeYourExperience = () => {
     if (experience) {
       setExperienceID(experience.id);
     }
+
+    console.log(experience);
   }, [experience]);
 
   return <div id={'describe_your_experience'}
@@ -117,7 +119,7 @@ const DescribeYourExperience = () => {
         <CategorySelectionSlide
           experienceID={experienceID}
           savedCategoriesList={experience?.categories_list}
-
+          savedOtherCategoryText={experience?.other_category_text}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>

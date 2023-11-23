@@ -18,6 +18,7 @@ import CustomButton from "../../../components/buttons/custom_button.jsx";
 import CustomDialog from "../../../components/dialogs/custom_dialog.jsx";
 import {deleteExperience} from "../../supabase/database/experience.js";
 import {toast} from "react-toastify";
+import {AppRoutes} from "../../../App.jsx";
 
 const InProgressCard = ({
   experience,
@@ -159,7 +160,7 @@ const InProgressCard = ({
           <IconButton
             sx={iconButtonStyle}
             onClick={() => {
-              navigate('/describe_your_experience', { state: { withoutSignup: true } });
+              navigate(AppRoutes.DESCRIBE_YOUR_EXPERIENCE, { state: { experience: experience } });
             }}
           >
             <EditOutlined />
