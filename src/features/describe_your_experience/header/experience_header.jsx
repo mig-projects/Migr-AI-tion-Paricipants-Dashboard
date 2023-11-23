@@ -21,14 +21,16 @@ const ExperienceHeader = ({
         MIGR-AI-TION
       </Typography>
 
-      <Typography
-        className={'fw-bold'}
-        sx={{
-          color: variables.primaryPurple,
-        }}
-      >
-        Step: {currentStep} / {totalSteps}
-      </Typography>
+      {
+        currentStep && totalSteps && <Typography
+          className={'fw-bold'}
+          sx={{
+            color: variables.primaryPurple,
+          }}
+        >
+          Step: {currentStep} / {totalSteps}
+        </Typography>
+      }
     </Toolbar>
   </AppBar>
 }
