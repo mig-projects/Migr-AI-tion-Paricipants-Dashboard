@@ -17,7 +17,7 @@ const DiscriminationNameSlide = ({
 
   const [discriminationNameList, setDiscriminationNameList] = useState([]);
   const discriminationNameOptions = [
-    'Aegism',
+    'Ageism',
     'Sexism',
     'Racism',
     'Homophobia',
