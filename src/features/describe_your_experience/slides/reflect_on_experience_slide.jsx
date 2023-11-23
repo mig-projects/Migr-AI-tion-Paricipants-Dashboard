@@ -46,7 +46,7 @@ const ReflectOnExperienceSlide = () => {
         Reflect on the experience that you just described.
       </h2>
 
-      <p className={`text-center`}>
+      <p className={`text-center fs-5`}>
         Take a minute and think about how organisational factors influenced your experience.
       </p>
     </div>
