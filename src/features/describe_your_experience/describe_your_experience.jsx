@@ -87,9 +87,11 @@ const DescribeYourExperience = () => {
         </SwiperSlide>
       }
 
-      <SwiperSlide className={`swiper-slide`}>
-        <WhoIsThisExperienceForSlide />
-      </SwiperSlide>
+      {
+        experience == null && <SwiperSlide className={`swiper-slide`}>
+          <WhoIsThisExperienceForSlide />
+        </SwiperSlide>
+      }
       <SwiperSlide className={`swiper-slide`}>
         <DiscriminationNameSlide
           experienceID={experienceID}
