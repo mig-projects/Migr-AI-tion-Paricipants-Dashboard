@@ -169,6 +169,7 @@ const CategorySelectionSlide = ({
 CategorySelectionSlide.propTypes = {
   experienceID: PropTypes.number,
   savedCategoriesList: PropTypes.array,
+  savedOtherCategoryText: PropTypes.string,
 };
 
 export default CategorySelectionSlide;
