@@ -1,6 +1,6 @@
 import ExperienceFooter from "../footer/experience_footer.jsx";
 import {Box, TextField} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useSwiper} from "swiper/react";
 import PropTypes from "prop-types";
 import {updateExperienceHeadline} from "../../supabase/database/experience.js";
@@ -8,11 +8,16 @@ import {toast} from "react-toastify";
 
 const ExperienceHeadlineSlide = ({
   experienceID,
+  savedHeadline,
 }) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
 
   const [headline, setHeadline] = useState('');
+
+  useEffect(() => {
+    setHeadline(savedHeadline ?? '');
+  }, [savedHeadline]);
 
   return <div id={'experience-headline-slide'} className={`d-flex flex-column h-100 align-items-center`}
   >
@@ -33,6 +38,7 @@ const ExperienceHeadlineSlide = ({
       >
         <TextField
           required
+          label={'Headline'}
           value={headline}
           type="text"
           id="headline"
@@ -75,6 +81,7 @@ const ExperienceHeadlineSlide = ({
 
 ExperienceHeadlineSlide.propTypes = {
   experienceID: PropTypes.number,
+  savedHeadline: PropTypes.string,
 };
 
 export default ExperienceHeadlineSlide;
