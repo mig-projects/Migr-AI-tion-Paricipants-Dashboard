@@ -1,20 +1,29 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Box, IconButton, TextField, Typography} from "@mui/material";
 import {ArrowBack} from "@mui/icons-material";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
-import {updateEmail} from "../../supabase/authentication.js";
 import {toast} from "react-toastify";
 import SlideInCard from "../components/slide_in_card.jsx";
 import PropTypes from "prop-types";
 import discordLogo from '../../../assets/icons/discord.svg';
-import {updateDiscordUsername} from "../../supabase/database/discord_username.js";
+import {getDiscordUsername, updateDiscordUsername} from "../../supabase/database/discord_username.js";
 
 const AccountSettingsDiscord = ({
   onBack,
 }) => {
   const [allowSubmit, setAllowSubmit] = useState(false);
-
   const [discordUsername, setDiscordUsername] = useState('');
+
+  useEffect(() => {
+    getDiscordUsername().then(({data, error}) => {
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      setDiscordUsername(data);
+    });
+  }, []);
 
   return <SlideInCard>
     <div className={`d-flex flex-column gap-3 h-100`}

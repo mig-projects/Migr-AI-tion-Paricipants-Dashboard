@@ -16,4 +16,13 @@ updateDiscordUsername.propTypes = {
   discordUsername: PropTypes.string.isRequired,
 }
 
-export { updateDiscordUsername };
+// Get the Discord username of the user
+const getDiscordUsername = async () => {
+  const { data, error } = await supabase.rpc('get_discord_username');
+  return { data, error };
+}
+
+export {
+  updateDiscordUsername,
+  getDiscordUsername,
+};
