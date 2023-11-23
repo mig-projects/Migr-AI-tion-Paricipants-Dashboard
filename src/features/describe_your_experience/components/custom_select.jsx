@@ -1,5 +1,6 @@
 import {Checkbox, FormControl, ListItemText, MenuItem, Select} from "@mui/material";
 import PropTypes from "prop-types";
+import variables from "../../../variables.module.scss";
 
 const CustomSelect = ({
   onChange,
@@ -12,6 +13,11 @@ const CustomSelect = ({
       sx={{
         '.MuiOutlinedInput-notchedOutline': { border: 0 },
         maxWidth: '300px',
+        backgroundColor: value.length > 0 ? '#8e5ee6' : null,
+        color: value.length > 0 ? 'white' : null,
+        '.MuiSvgIcon-root ': {
+          fill: value.length > 0 ? "white" : null,
+        }
       }}
       multiple
       value={value}
@@ -19,7 +25,9 @@ const CustomSelect = ({
         onChange(event.target.value);
       }}
       displayEmpty
-      inputProps={{ outline: "none" }}
+      inputProps={{
+        outline: "none",
+      }}
       renderValue={(selected) => selected.length > 0 ? selected.map((e) => e.name).join(', ') : title}
       MenuProps={{
         PaperProps: {
