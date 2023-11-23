@@ -59,7 +59,7 @@ const DescribeYourExperience = () => {
     />
 
     <Swiper
-      initialSlide={6}
+      initialSlide={7}
       onSlideChange={(swiper) => {
         setOnboardingProgress((swiper.activeIndex + 1) * (100 / swiper.slides.length));
       }}
@@ -124,6 +124,7 @@ const DescribeYourExperience = () => {
       <SwiperSlide className={`swiper-slide`}>
         <ThankYouSlide
           experienceID={experienceID}
+          hideText={experience?.hide_text}
         />
       </SwiperSlide>
     </Swiper>

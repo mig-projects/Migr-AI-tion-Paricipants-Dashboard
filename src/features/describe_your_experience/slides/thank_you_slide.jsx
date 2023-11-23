@@ -3,7 +3,7 @@ import {Box, Card, Chip} from "@mui/material";
 import variables from "../../../variables.module.scss";
 import {useSwiper} from "swiper/react";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {updateExperienceHideAndPublished} from "../../supabase/database/experience.js";
 import {toast} from "react-toastify";
@@ -11,11 +11,18 @@ import {AppRoutes} from "../../../App.jsx";
 
 const ThankYouSlide = ({
   experienceID,
+  hideText,
 }) => {
   const swiper = useSwiper();
   const navigate = useNavigate();
 
   const [detailedSelected, setDetailedSelected] = useState(true);
+
+  useEffect(() => {
+    if (hideText) {
+      setDetailedSelected(!hideText);
+    }
+  }, [hideText]);
 
   return <div id={'add-email-slide'} className={`d-flex flex-column h-100 align-items-center`}
               style={{
@@ -120,6 +127,7 @@ const ThankYouSlide = ({
 
 ThankYouSlide.propTypes = {
   experienceID: PropTypes.number,
+  hideText: PropTypes.bool,
 };
 
 export default ThankYouSlide;
