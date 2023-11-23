@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import {IconButton, Link, Typography} from "@mui/material";
-import {ArrowBack, GppMaybe, GppMaybeOutlined, SafetyCheck} from "@mui/icons-material";
+import {ArrowBack, GppMaybeOutlined} from "@mui/icons-material";
 import SlideInCard from "../components/slide_in_card.jsx";
 import {toast} from "react-toastify";
 
