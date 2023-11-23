@@ -24,7 +24,7 @@ const WelcomeSlide = () => {
   </Card>
   CustomCard.propTypes = {
     text: PropTypes.string.isRequired,
-    image: PropTypes.element.isRequired,
+    image: PropTypes.string.isRequired,
   }
 
   return <div id={'welcome-slide'} className={`d-flex flex-column h-100 align-items-center`}
