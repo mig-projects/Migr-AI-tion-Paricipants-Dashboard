@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
 import PasswordField from "../../../components/fields/password_field.jsx";
@@ -52,6 +52,11 @@ const CreatePasswordSlide = ({
             setAllowNext(e.target.validity.valid && e.target.value.length > 8 && password === e.target.value);
           }}
         />
+
+        <ul style={{fontSize: '12px'}}>
+          <li >At least 8 characters long (the longer, the better).</li>
+          <li>Has a combination of upper and lowercase letters, numbers, punctuation, and special symbols.</li>
+        </ul>
       </Box>
     </div>
 
