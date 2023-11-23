@@ -7,7 +7,7 @@ const EmailCard = () => {
 
   useEffect(() => {
     getCurrentUser().then((user) => {
-      setEmail(user.email);
+      setEmail(user?.email);
     });
   }, []);
 
