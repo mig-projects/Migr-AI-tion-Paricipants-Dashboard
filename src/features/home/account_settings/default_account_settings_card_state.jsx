@@ -57,6 +57,19 @@ const DefaultAccountSettingsCardState = ({
         </div>
       </Button>
 
+      <Button variant="outlined" fullWidth
+              sx={buttonStyle}
+              onClick={() => setAccountSettingsCardStatus(AccountSettingsCardStatus.discordConnect)}
+      >
+        <div className={`d-flex justify-content-between text-black w-100 px-2`}>
+          <Typography className={`fw-semibold`}>
+            Connect Discord
+          </Typography>
+
+          <ChevronRight />
+        </div>
+      </Button>
+
       <div className={`flex-grow-1`} />
 
       <div
