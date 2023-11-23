@@ -1,4 +1,4 @@
-import {Box, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import {useState} from "react";
 import {useSwiper} from "swiper/react";
 import PasswordField from "../../../components/fields/password_field.jsx";
@@ -68,7 +68,7 @@ const CreatePasswordSlide = ({
         swiper.slidePrev();
       }}
       onNext={async () => {
-        const {data, error} = await signUp(email, password);
+        const { error} = await signUp(email, password);
 
         if (error) {
           toast.error(error.message);
