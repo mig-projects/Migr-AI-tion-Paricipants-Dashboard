@@ -118,9 +118,11 @@ const PublishedCard = ({
             </div>
           </div>
 
-          <Typography>
-            {experience.text}
-          </Typography>
+          {
+            !experience.hide_text && <Typography>
+              {experience.text}
+            </Typography>
+          }
         </Card>
 
         <div>
