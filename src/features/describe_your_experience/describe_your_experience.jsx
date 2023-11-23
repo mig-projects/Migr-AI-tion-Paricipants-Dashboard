@@ -95,7 +95,7 @@ const DescribeYourExperience = () => {
           experienceID={experienceID}
           setExperienceID={setExperienceID}
           selectedDiscriminationNames={experience?.discrimination_names_list}
-          isFirstSlide={experience}
+          isFirstSlide={experience !== null || true}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
