@@ -61,8 +61,11 @@ const PublishedCard = ({
           Published cards contribute to our data sets! {
             <Link className={`text-black link-underline-dark`}
               href={''}
+              onClick={() => {
+                toast.info('Coming soon!');
+              }}
             >
-              View Bias Explorer
+              View Bias Analysis
             </Link>
           }
         </Typography>
