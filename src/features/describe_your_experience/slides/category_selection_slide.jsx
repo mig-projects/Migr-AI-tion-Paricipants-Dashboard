@@ -9,6 +9,8 @@ import {toast} from "react-toastify";
 
 const CategorySelectionSlide = ({
   experienceID,
+  savedCategoriesList, 
+  savedOtherCategoryText,
 }) => {
   const swiper = useSwiper();
 
@@ -28,12 +30,25 @@ const CategorySelectionSlide = ({
         setError(error.message);
       } else {
         setCategories(data);
-        setSelectedCategories([data[0]]);
+        if (savedCategoriesList) {
+          setSelectedCategories(data.filter((category) => {
+            return savedCategoriesList.includes(category.name);
+          }));
+        } else {
+          setSelectedCategories([data[0]]);
+        }
       }
 
       setLoading(false);
     });
-  }, []);
+  }, [savedCategoriesList]);
+  
+  useEffect(() => {
+    if (savedOtherCategoryText) {
+      setOtherSelected(true);
+      setOtherCategory(savedOtherCategoryText);
+    }
+  }, [savedOtherCategoryText]);
 
   useEffect(() => {
     setAllowNext(false);
@@ -153,6 +168,7 @@ const CategorySelectionSlide = ({
 
 CategorySelectionSlide.propTypes = {
   experienceID: PropTypes.number,
+  savedCategoriesList: PropTypes.array,
 };
 
 export default CategorySelectionSlide;
