@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import {useState} from "react";
 import CustomButton from "../../../components/buttons/custom_button.jsx";
 import PasswordField from "../../../components/fields/password_field.jsx";
+import {toast} from "react-toastify";
 
 const DefaultAccountSettingsCardState = ({
   setAccountSettingsCardStatus,
@@ -158,7 +159,9 @@ const DefaultAccountSettingsCardState = ({
           <CustomButton text={'Close Account'} color={`error`} variant={`outlined`}
                         disabled={!allowSubmit}
                         onClick={() => {
-
+                          toast.info('Not Implemented yet!', {
+                            autoClose: 1000,
+                          });
                         }}
           />
         </DialogActions>
