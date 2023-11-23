@@ -43,7 +43,7 @@ const InfluentialFactorsSlide = ({
             id: tag.tag_id,
             name: tag.tag_name,
           });
-          if (savedTagsList.includes(tag.tag_name)) {
+          if (savedTagsList?.includes(tag.tag_name)) {
             if (selectedTags[tag.tag_group_name] === undefined) {
               selectedTags[tag.tag_group_name] = [];
             }
