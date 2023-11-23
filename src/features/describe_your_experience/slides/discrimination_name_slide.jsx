@@ -53,7 +53,7 @@ const DiscriminationNameSlide = ({
           renderInput={(params) => (
             <TextField
               {...params}
-              placeholder={'Search or Type'}
+              placeholder={discriminationNameList.length === 0 ? 'Search or Create your own tags' : null}
               variant="outlined"
               helperText={'You can either select from the list or type in your own and press enter.'}
             />
