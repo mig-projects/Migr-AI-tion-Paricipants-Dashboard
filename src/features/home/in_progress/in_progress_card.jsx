@@ -91,28 +91,30 @@ const InProgressCard = ({
           {progress * 100}% Complete
         </Typography>
 
-        <CustomButton
-          text={'Publish'}
-          sx={{
-            width: '150px',
-          }}
-          onClick={async () => {
-            const {error} = await updateExperiencePublished({
-              experienceID: experience.id,
-              published: true,
-            });
+        {
+          progress === 1 && <CustomButton
+            text={'Publish'}
+            sx={{
+              width: '150px',
+            }}
+            onClick={async () => {
+              const {error} = await updateExperiencePublished({
+                experienceID: experience.id,
+                published: true,
+              });
 
-            if (error) {
-              toast.error(error.message);
-              return;
-            }
+              if (error) {
+                toast.error(error.message);
+                return;
+              }
 
-            toast.success('Entry published successfully!', {
-              autoClose: 1000,
-            });
-            refreshFunction();
-          }}
-        />
+              toast.success('Entry published successfully!', {
+                autoClose: 1000,
+              });
+              refreshFunction();
+            }}
+          />
+        }
       </div>
 
       {
