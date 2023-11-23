@@ -61,15 +61,12 @@ const WhoIsThisExperienceForSlide = () => {
     </div>
 
     <ExperienceFooter
-      nextButtonText={'Next'}
+      nextButtonText={'Start'}
       isNextDisabled={forMyself === null}
       onNext={() => {
         swiper.slideNext();
       }}
-      previousButtonText={'Back'}
-      onPrevious={() => {
-        swiper.slidePrev();
-      }}
+      showOnlyOne={true}
     />
   </div>
 }

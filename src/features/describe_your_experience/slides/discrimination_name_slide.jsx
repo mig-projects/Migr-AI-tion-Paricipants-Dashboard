@@ -11,6 +11,7 @@ const DiscriminationNameSlide = ({
   experienceID,
   setExperienceID,
   selectedDiscriminationNames,
+  isFirstSlide,
 }) => {
   const swiper = useSwiper();
 
@@ -92,6 +93,7 @@ const DiscriminationNameSlide = ({
         });
         swiper.slideNext();
       }}
+      showOnlyOne={isFirstSlide}
       previousButtonText={'Back'}
       onPrevious={() => {
         swiper.slidePrev();
@@ -104,6 +106,7 @@ DiscriminationNameSlide.propTypes = {
   experienceID: PropTypes.number,
   setExperienceID: PropTypes.func,
   selectedDiscriminationNames: PropTypes.array,
+  isFirstSlide: PropTypes.bool,
 };
 
 export default DiscriminationNameSlide;
