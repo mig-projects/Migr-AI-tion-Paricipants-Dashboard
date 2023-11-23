@@ -40,11 +40,10 @@ const PublishedCardsList = ({
     {
       experiences.map((experience, index) => {
         return <PublishedCard
-          showBiasExplorerText={index === 0}
           key={experience.id}
-          title={experience.headline}
-          subtitle={experience.text}
-          tags={experience.tags}
+          showBiasExplorerText={index === 0}
+          experience={experience}
+          refreshFunction={refreshFunction}
         />
       })
     }

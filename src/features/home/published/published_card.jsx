@@ -4,15 +4,17 @@ import {
   Typography
 } from "@mui/material";
 import PropTypes from "prop-types";
-import {DeleteOutlined, EditOutlined, MoreVert} from "@mui/icons-material";
+import {DeleteOutlined, EditOutlined, MoreVert, Warning} from "@mui/icons-material";
 import {useEffect, useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {deleteExperience} from "../../supabase/database/experience.js";
+import {toast} from "react-toastify";
+import CustomDialog from "../../../components/dialogs/custom_dialog.jsx";
 
 const PublishedCard = ({
   showBiasExplorerText = false,
-  title,
-  subtitle,
-  tags,
+  experience,
+  refreshFunction,
 }) => {
   const navigate = useNavigate();
 
@@ -22,6 +24,7 @@ const PublishedCard = ({
     boxShadow: '0 0 2px 2px rgba(0, 0, 0, 0.02)'
   };
 
+  const [openDialog, setOpenDialog] = useState(false);
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
@@ -69,28 +72,37 @@ const PublishedCard = ({
       >
         <Card
           elevation={0}
-          className={`d-flex flex-column gap-4`}
+          className={`d-flex flex-column gap-4 flex-grow-1`}
           sx={{
             padding: '20px 30px',
             background: 'linear-gradient(300deg, #AC88EE -0.17%, rgba(255, 255, 255, 0.00) 162.25%)',
           }}
         >
           <Typography className={`fw-bold fs-2`}>
-            {`"${title}"`}
-          </Typography>
-
-          <Typography className={`fw-medium fs-5`}>
-            {'Category'}
+            {`"${experience.headline}"`}
           </Typography>
 
           <div className={`d-flex flex-column gap-2`}>
-            <Typography className={``}>
-              {'Relevant Tags'}
-            </Typography>
+            <div className={`d-flex flex-wrap gap-2`}>
+              {
+                experience.categories_list.map((tag, index) => {
+                  return <Chip
+                    key={index}
+                    className={`fw-medium`}
+                    label={tag}
+                    variant={`outlined`}
+                    sx={{
+                      backgroundColor: '#e5e5e5',
+                      borderRadius: '8px',
+                    }}
+                  />
+                })
+              }
+            </div>
 
             <div className={`d-flex flex-wrap gap-2`}>
               {
-                tags.map((tag, index) => {
+                experience.tags_list.map((tag, index) => {
                   return <Chip
                     key={index}
                     className={`fw-medium`}
@@ -107,7 +119,7 @@ const PublishedCard = ({
           </div>
 
           <Typography>
-            {subtitle}
+            {experience.text}
           </Typography>
         </Card>
 
@@ -175,10 +187,14 @@ const PublishedCard = ({
                                 }} />
                         }
                         </MenuItem>
-                        <MenuItem onClick={handleClose}
-                                  style={{
-                                    padding: '10px 30px',
-                                  }}
+                        <MenuItem
+                          style={{
+                            padding: '10px 30px',
+                          }}
+                          onClick={() => {
+                            setOpenDialog(true);
+                            handleClose();
+                          }}
                         >
                           Delete {<DeleteOutlined
                                   fontSize={`small`}
@@ -200,14 +216,73 @@ const PublishedCard = ({
       </div>
 
     </div>
+
+    <CustomDialog
+      title={<div className={`d-flex gap-3`}>
+        <Warning sx={{
+          color: 'red',
+        }}/>
+        <Typography className={`fw-bold`}>
+          Delete Entry
+        </Typography>
+      </div>}
+      description={'Are you sure?'}
+      open={openDialog}
+      handleClose={() => {
+        setOpenDialog(false);
+      }}
+      onAgree={async () => {
+        const {error} = await deleteExperience({
+          experienceID: experience.id,
+        });
+
+        if (error) {
+          toast.error(error.message);
+        }
+
+        toast.success('Entry deleted successfully.', {
+          autoClose: 1000,
+        });
+        refreshFunction();
+      }}
+    />
+
+    <CustomDialog
+      title={<div className={`d-flex gap-3`}>
+        <Warning sx={{
+          color: 'red',
+        }}/>
+        <Typography className={`fw-bold`}>
+          Delete Entry
+        </Typography>
+      </div>}
+      description={'Are you sure you want to delete this entry?'}
+      open={openDialog}
+      handleClose={() => {
+        setOpenDialog(false);
+      }}
+      onAgree={async () => {
+        const {error} = await deleteExperience({
+          experienceID: experience.id,
+        });
+
+        if (error) {
+          toast.error(error.message);
+        }
+
+        toast.success('Entry deleted successfully.', {
+          autoClose: 1000,
+        });
+        refreshFunction();
+      }}
+    />
   </SlideInCard>
 }
 
 PublishedCard.propTypes = {
   showBiasExplorerText: PropTypes.bool,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  experience: PropTypes.object,
+  refreshFunction: PropTypes.func,
 };
 
 export default PublishedCard;
