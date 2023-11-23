@@ -1,5 +1,5 @@
 import {useSwiper, useSwiperSlide} from "swiper/react";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import variables from "../../../variables.module.scss";
 import ExperienceFooter from "../footer/experience_footer.jsx";
 import {delay} from "../../../utility_functions.js";
@@ -10,12 +10,14 @@ const ReflectOnExperienceSlide = () => {
   const swiper = useSwiper();
   const swiperSlide = useSwiperSlide();
 
+  const player = useRef(null);
   const [allowNext, setAllowNext] = useState(false);
 
   useEffect(() => {
     if (swiperSlide.isActive) {
       delay(5000).then(() => {
         setAllowNext(true);
+        player.current?.stop();
       });
     }
   }, [swiperSlide.isActive]);
@@ -32,6 +34,7 @@ const ReflectOnExperienceSlide = () => {
          }}
     >
       <Player
+        ref={player}
         autoplay
         loop
         src={HourGlass}

@@ -44,8 +44,6 @@ const DescribeYourExperience = () => {
     if (experience) {
       setExperienceID(experience.id);
     }
-
-    console.log(experience);
   }, [experience]);
 
   return <div id={'describe_your_experience'}
