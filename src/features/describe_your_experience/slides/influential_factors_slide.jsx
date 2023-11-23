@@ -59,12 +59,14 @@ const InfluentialFactorsSlide = ({
 
       setLoading(false);
     });
-    
+  }, [savedTagsList]);
+
+  useEffect(() => {
     if (savedOtherTagText) {
       setOtherSelected(true);
       setOtherFactor(savedOtherTagText);
     }
-  }, [savedOtherTagText, savedTagsList]);
+  }, [savedOtherTagText]);
 
   useEffect(() => {
     Object.keys(selectedTags).forEach((tagGroup) => {
