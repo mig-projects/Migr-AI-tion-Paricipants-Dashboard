@@ -11,7 +11,6 @@ import WhoIsThisExperienceForSlide from "./slides/who_is_this_experience_for_sli
 import ReflectOnExperienceSlide from "./slides/reflect_on_experience_slide.jsx";
 import variables from '../../variables.module.scss';
 import ExperienceHeader from "./header/experience_header.jsx";
-import TakeABreakSlide from "../onboarding/slides/take_a_break_slide.jsx";
 import {useLocation, useNavigate} from "react-router-dom";
 import {isUserSignedIn} from "../supabase/authentication.js";
 import {AppRoutes} from "../../App.jsx";
@@ -31,7 +30,6 @@ const DescribeYourExperience = () => {
   const [height, setHeight] = useState(window.innerHeight);
 
   const location = useLocation();
-  const {freshSignup} = location.state || {};
   const {experience} = location.state || {};
 
   useEffect(() => {
@@ -81,12 +79,6 @@ const DescribeYourExperience = () => {
         backgroundColor: variables.backgroundColor,
       }}
     >
-      {
-        freshSignup && <SwiperSlide className={`swiper-slide`}>
-          <TakeABreakSlide />
-        </SwiperSlide>
-      }
-
       {
         experience == null && <SwiperSlide className={`swiper-slide`}>
           <WhoIsThisExperienceForSlide />
