@@ -11,6 +11,8 @@ const CategorySelectionSlide = ({
   experienceID,
   savedCategoriesList, 
   savedOtherCategoryText,
+  thankYouSlideExperience,
+  setThankYouSlideExperience,
 }) => {
   const swiper = useSwiper();
 
@@ -156,6 +158,17 @@ const CategorySelectionSlide = ({
           autoClose: 1000,
         });
 
+        const categoriesList = selectedCategories.map((category) => {
+          return category.name;
+        });
+        if (otherSelected) {
+          categoriesList.push(otherCategory);
+        }
+        setThankYouSlideExperience({
+          ...thankYouSlideExperience,
+          categories: categoriesList,
+        });
+
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -170,6 +183,8 @@ CategorySelectionSlide.propTypes = {
   experienceID: PropTypes.number,
   savedCategoriesList: PropTypes.array,
   savedOtherCategoryText: PropTypes.string,
+  thankYouSlideExperience: PropTypes.object,
+  setThankYouSlideExperience: PropTypes.func,
 };
 
 export default CategorySelectionSlide;

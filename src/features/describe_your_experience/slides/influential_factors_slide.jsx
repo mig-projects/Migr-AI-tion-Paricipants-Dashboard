@@ -14,6 +14,8 @@ const InfluentialFactorsSlide = ({
   experienceID,
   savedTagsList,
   savedOtherTagText,
+  thankYouSlideExperience,
+  setThankYouSlideExperience,
 }) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
@@ -187,6 +189,20 @@ const InfluentialFactorsSlide = ({
         toast.success('Progress saved!', {
           autoClose: 1000,
         });
+
+        const tagsList = [];
+        Object.keys(selectedTags).forEach((tagGroup) => {
+          selectedTags[tagGroup].forEach((tag) => {
+            tagsList.push(tag.name);
+          });
+        });
+        if (otherSelected) {
+          tagsList.push(otherFactor);
+        }
+        setThankYouSlideExperience({
+          ...thankYouSlideExperience,
+          tags: tagsList,
+        });
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -201,6 +217,8 @@ InfluentialFactorsSlide.propTypes = {
   experienceID: PropTypes.number,
   savedTagsList: PropTypes.array,
   savedOtherTagText: PropTypes.string,
+  thankYouSlideExperience: PropTypes.object,
+  setThankYouSlideExperience: PropTypes.func,
 };
 
 export default InfluentialFactorsSlide;

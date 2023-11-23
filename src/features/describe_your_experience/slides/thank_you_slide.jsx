@@ -12,6 +12,7 @@ import {AppRoutes} from "../../../App.jsx";
 const ThankYouSlide = ({
   experienceID,
   hideText,
+  thankYouSlideExperience,
 }) => {
   const swiper = useSwiper();
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const ThankYouSlide = ({
         component="form"
         className={`d-flex gap-5 mb-5 align-items-start`}
       >
-        <Card className={`py-4 px-5`}
+        <Card className={`py-4 px-5 flex-shrink-0 d-flex flex-column gap-2`}
           style={{
             backgroundColor: '#dfd4f2',
             boxShadow: !detailedSelected ? '0px 0px 10px 10px rgba(255, 255, 255, 0.25)' : 'none',
@@ -50,12 +51,21 @@ const ThankYouSlide = ({
                 setDetailedSelected(false);
               }}
         >
-          <p className={`fs-2 fw-bold`}>“Fired twice within 6 months of moving to Germany”</p>
-          <p className={`fs-5 fw-medium`}>Category</p>
-          <p className={`fs-6 fw-normal`}>Relevant tags</p>
-          <div className={`d-flex gap-2 mt-4 mb-2`}>
+          <p className={`fs-2 fw-bold`}>“{thankYouSlideExperience.headline}”</p>
+          <div className={`d-flex gap-2`}>
             {
-              ['women', 'women', 'women'].map((tag, index) => {
+              thankYouSlideExperience.categories?.map((tag, index) => {
+                return <Chip
+                  key={index}
+                  variant="filled"
+                  label={tag}
+                />
+              })
+            }
+          </div>
+          <div className={`d-flex gap-2 mb-2`}>
+            {
+              thankYouSlideExperience.tags?.map((tag, index) => {
                 return <Chip
                   key={index}
                   variant="filled"
@@ -66,7 +76,7 @@ const ThankYouSlide = ({
           </div>
         </Card>
 
-        <Card className={`py-4 px-5`}
+        <Card className={`py-4 px-5 d-flex flex-column gap-2`}
               style={{
                 backgroundColor: '#dfd4f2',
                 boxShadow: detailedSelected ? '0px 0px 10px 10px rgba(255, 255, 255, 0.25)' : 'none',
@@ -76,12 +86,10 @@ const ThankYouSlide = ({
                 setDetailedSelected(true);
               }}
         >
-          <p className={`fs-2 fw-bold`}>“Fired twice within 6 months of moving to Germany”</p>
-          <p className={`fs-5 fw-medium`}>Category</p>
-          <p className={`fs-6 fw-normal`}>Relevant tags</p>
-          <div className={`d-flex gap-2 mt-4 mb-2`}>
+          <p className={`fs-2 fw-bold`}>“{thankYouSlideExperience.headline}”</p>
+          <div className={`d-flex gap-2`}>
             {
-              ['women', 'women', 'women'].map((tag, index) => {
+              thankYouSlideExperience.categories?.map((tag, index) => {
                 return <Chip
                   key={index}
                   variant="filled"
@@ -90,8 +98,19 @@ const ThankYouSlide = ({
               })
             }
           </div>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Congue urna molestie diam a dignissim ut. Consequat quis blandit condimentum non nibh. Mi velit urna nulla pretium sit platea tellus cursus est....
+          <div className={`d-flex gap-2`}>
+            {
+              thankYouSlideExperience.tags?.map((tag, index) => {
+                return <Chip
+                  key={index}
+                  variant="filled"
+                  label={tag}
+                />
+              })
+            }
+          </div>
+          <p className={`mt-3`}>
+            {thankYouSlideExperience.text}
           </p>
         </Card>
       </Box>
@@ -128,6 +147,7 @@ const ThankYouSlide = ({
 ThankYouSlide.propTypes = {
   experienceID: PropTypes.number,
   hideText: PropTypes.bool,
+  thankYouSlideExperience: PropTypes.object,
 };
 
 export default ThankYouSlide;

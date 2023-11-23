@@ -49,6 +49,8 @@ const DescribeYourExperience = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [totalSteps, setTotalSteps] = useState(1);
 
+  const [thankYouSlideExperience, setThankYouSlideExperience] = useState({});
+
   return <div id={'describe_your_experience'}
               className={`d-flex flex-column`}
               style={{
@@ -103,12 +105,16 @@ const DescribeYourExperience = () => {
           experienceID={experienceID}
           savedTagsList={experience?.tags_list}
           savedOtherTagText={experience?.other_tag_text}
+          thankYouSlideExperience={thankYouSlideExperience}
+          setThankYouSlideExperience={setThankYouSlideExperience}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <ExperienceDescriptionSlide
           experienceID={experienceID}
           savedDescription={experience?.text}
+          thankYouSlideExperience={thankYouSlideExperience}
+          setThankYouSlideExperience={setThankYouSlideExperience}
         />
       </SwiperSlide>
 
@@ -121,18 +127,23 @@ const DescribeYourExperience = () => {
           experienceID={experienceID}
           savedCategoriesList={experience?.categories_list}
           savedOtherCategoryText={experience?.other_category_text}
+          thankYouSlideExperience={thankYouSlideExperience}
+          setThankYouSlideExperience={setThankYouSlideExperience}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <ExperienceHeadlineSlide
           experienceID={experienceID}
           savedHeadline={experience?.headline}
+          thankYouSlideExperience={thankYouSlideExperience}
+          setThankYouSlideExperience={setThankYouSlideExperience}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
         <ThankYouSlide
           experienceID={experienceID}
           hideText={experience?.hide_text}
+          thankYouSlideExperience={thankYouSlideExperience}
         />
       </SwiperSlide>
     </Swiper>

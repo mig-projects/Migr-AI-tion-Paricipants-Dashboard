@@ -9,6 +9,8 @@ import {toast} from "react-toastify";
 const ExperienceDescriptionSlide = ({
   experienceID,
   savedDescription,
+  thankYouSlideExperience,
+  setThankYouSlideExperience,
 }) => {
   const swiper = useSwiper();
   const [allowNext, setAllowNext] = useState(false);
@@ -75,6 +77,11 @@ const ExperienceDescriptionSlide = ({
         toast.success('Progress saved!', {
           autoClose: 1000,
         });
+
+        setThankYouSlideExperience({
+          ...thankYouSlideExperience,
+          text: experience,
+        });
         swiper.slideNext();
       }}
       previousButtonText={'Back'}
@@ -88,6 +95,8 @@ const ExperienceDescriptionSlide = ({
 ExperienceDescriptionSlide.propTypes = {
   experienceID: PropTypes.number,
   savedDescription: PropTypes.string,
+  thankYouSlideExperience: PropTypes.object,
+  setThankYouSlideExperience: PropTypes.func,
 };
 
 export default ExperienceDescriptionSlide;
