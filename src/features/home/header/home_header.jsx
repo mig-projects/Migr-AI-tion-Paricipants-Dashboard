@@ -30,10 +30,18 @@ const HomeHeader = () => {
       <div className={`d-flex gap-2`}>
         <CustomButton variant={`outlined`} text={'Discord Community'} sx={{
           width: '200px',
-        }} />
+        }}
+          onClick={() => {
+            window.open("https://discord.gg/pV4rzKcm", "_blank")
+          }}
+        />
         <CustomButton text={'HR Bias Explorer'} sx={{
           width: '180px',
-        }} />
+        }}
+          onClick={() => {
+            toast.info('Coming soon!');
+          }}
+        />
         <CustomButton
           text={'Log out'}
           variant={`outlined`}
