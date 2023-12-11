@@ -101,18 +101,18 @@ const DescribeYourExperience = () => {
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
-        <InfluentialFactorsSlide
+        <ExperienceDescriptionSlide
           experienceID={experienceID}
-          savedTagsList={experience?.tags_list}
-          savedOtherTagText={experience?.other_tag_text}
+          savedDescription={experience?.text}
           thankYouSlideExperience={thankYouSlideExperience}
           setThankYouSlideExperience={setThankYouSlideExperience}
         />
       </SwiperSlide>
       <SwiperSlide className={`swiper-slide`}>
-        <ExperienceDescriptionSlide
+        <InfluentialFactorsSlide
           experienceID={experienceID}
-          savedDescription={experience?.text}
+          savedTagsList={experience?.tags_list}
+          savedOtherTagText={experience?.other_tag_text}
           thankYouSlideExperience={thankYouSlideExperience}
           setThankYouSlideExperience={setThankYouSlideExperience}
         />
